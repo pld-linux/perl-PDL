@@ -39,8 +39,8 @@ perlDL rozsze¿a mo¿liwo¶ci perl'a o funkcje do obliczeñ numerycznych i
 naukowaych.
 
 %package perldl
-Summary:	perlDL shell
-Summary(pl):	Pow³oka perlDL
+Summary:	PDL shell
+Summary(pl):	Pow³oka PDL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
@@ -50,8 +50,8 @@ Group(pl):	Programowanie/Jêzyki/Perl
 %description -l pl perldl
 
 %package Graphics-TriD
-Summary:	perlDL OpenGL support
-Summary(pl):	Wsparcie perlDL dla OpenGL
+Summary:	PDL 3D interface
+Summary(pl):	Interfejs 3D dla PDL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
@@ -73,7 +73,7 @@ Group(pl):	Programowanie/Jêzyki/Perl
 
 %package Graphics-PGPLOT
 Summary:	PGPLOT enhanced interface for PDL
-Summary(pl):	Rozszerzony interfejs bibliotek PGPLOT dla PDL
+Summary(pl):	Rozszerzony interfejs biblioteki PGPLOT dla PDL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
@@ -94,8 +94,8 @@ Group(pl):	Programowanie/Jêzyki/Perl
 %description -l pl Graphics-IIS
 
 %package Graphics-OpenGL
-Summary:	 Graphics-OpenGL
-Summary(pl):	 Graphics-OpenGL
+Summary:	 PDL interface to the OpenGL graphics library
+Summary(pl):	Interfejs OpenGL dla PDL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
@@ -103,6 +103,17 @@ Group(pl):	Programowanie/Jêzyki/Perl
 %description Graphics-OpenGL
 
 %description -l pl Graphics-OpenGL
+
+%package IO
+Summary:	IO interfaces for PDL
+Summary(pl):	Interfejsy wej¶cia/wyj¶cia dla PDL
+Group:		Development/Languages/Perl
+Group(de):	Entwicklung/Sprachen/Perl
+Group(pl):	Programowanie/Jêzyki/Perl
+
+%description IO
+
+%description -l pl IO
 
 %prep
 %setup  -q -n PDL-%{version}
@@ -138,7 +149,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/PDL::F*
 %{_mandir}/man3/PDL::Ga*
 %{_mandir}/man3/PDL::Graphics::LUT*
-%{_mandir}/man3/PDL::I*
+%{_mandir}/man3/PDL::Im*
 %{_mandir}/man3/PDL::L*
 %{_mandir}/man3/PDL::M*
 %{_mandir}/man3/PDL::O*
@@ -162,7 +173,7 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL/F*
 %{perl_sitearch}/PDL/Ga*
 %{perl_sitearch}/PDL/H*
-%{perl_sitearch}/PDL/I*
+%{perl_sitearch}/PDL/Im*
 %{perl_sitearch}/PDL/L*
 %{perl_sitearch}/PDL/M*
 %{perl_sitearch}/PDL/O*
@@ -201,7 +212,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/CallExt
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Core
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Fit
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/IO
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/ImageND
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Math
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Primitive
@@ -252,3 +262,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Graphics/OpenGL*
 %{perl_sitearch}/PDL/Graphics/OpenGL*
+
+%files IO
+%{_mandir}/man3/PDL::IO*
+
+%attr(-,root,root) %{perl_sitearch}/auto/PDL/IO
+%{perl_sitearch}/PDL/IO
