@@ -45,11 +45,11 @@ chmod +x find-*
 
 %build
 perl Makefile.PL
-make OPTIMIZE="$RPM_OPT_FLAGS -I%{_includedir}/ncurses -DNCURSES -DPERL_POLLUTE" 
+%{__make} OPTIMIZE="$RPM_OPT_FLAGS -I%{_includedir}/ncurses -DNCURSES -DPERL_POLLUTE" 
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make install \
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 find $RPM_BUILD_ROOT%{perl_sitearch}/auto/PDL -name \*.so -exec \
