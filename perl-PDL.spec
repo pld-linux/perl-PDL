@@ -1,5 +1,4 @@
 %include	/usr/lib/rpm/macros.perl
-%define		__find_provides	%{_builddir}/PDL-%{version}/find-perl-provides
 %define		__find_requires %{_builddir}/PDL-%{version}/find-perl-requires
 Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
@@ -25,6 +24,15 @@ BuildRequires:	perl-PGPLOT
 BuildRequires:	perl-ExtUtils-F77 >= 1.10
 %requires_eq	perl
 Requires:	%{perl_sitearch}
+Provides:	perl(PDL::Lite)
+Provides:	perl(PDL::LiteF)
+Provides:	perl(PDL::PP::CType)
+Provides:	perl(PDL::PP::Dims)
+Provides:	perl(PDL::PP::PDLCode)
+Provides:	perl(PDL::PP::SymTab)
+Provides:	perl(PDL::PP::XS)
+# it's not true (Slatec is not built), but it's in requires...
+Provides:	perl(PDL::Slatec)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -46,6 +54,7 @@ Summary(pl):	Pow³oka PDL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Requires:	%{name} = %{version}
 
 %description perldl
 The program perldl is a simple shell (written in perl) for interactive use
@@ -66,6 +75,12 @@ Summary(pl):	Interfejs 3D dla PDL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Requires:	%{name} = %{version}
+Requires:	%{name}-Graphics-OpenGL = %{version}
+Requires:	%{name}-IO-Pic = %{version}
+Provides:	perl(PDL::Graphics::TriD::Objects)
+Provides:	perl(PDL::Graphics::TriD::TextObjects)
+Provides:	perl(PDL::Graphics::TriD::GL)
 
 %description Graphics-TriD
 This module implements a generic 3D plotting interface for PDL.  Points,
@@ -96,6 +111,9 @@ Summary(pl):	Kontrolka interfejsu Tk dla PDL-Graphics-TriD
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Requires:	%{name} = %{version}
+Requires:	%{name}-Graphics-OpenGL = %{version}
+Requires:	%{name}-Graphics-TriD = %{version}
 
 %description Graphics-TriD-Tk
 The widget is composed of a Frame and the Display device of the TriD
@@ -120,6 +138,7 @@ Summary(pl):	Rozszerzony interfejs biblioteki PGPLOT dla PDL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Requires:	%{name} = %{version}
 
 %description Graphics-PGPLOT
 `PDL::Graphics::PGPLOT' is a convenience interface to the PGPLOT commands,
@@ -139,6 +158,7 @@ Summary(pl):	Wy¶wietlanie grafiki PDL na urz±dzeniach IIS (saoimage/ximtool)
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Requires:	%{name} = %{version}
 
 %description Graphics-IIS
 Display PDL images on IIS devices (saoimage/ximtool).
@@ -152,6 +172,7 @@ Summary(pl):	N/A
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Requires:	%{name} = %{version}
 
 %description Graphics-LUT
 Provides access to a number of look-up tables for PDL.
@@ -164,6 +185,7 @@ Summary(pl):	Interfejs OpenGL dla PDL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Requires:	%{name} = %{version}
 
 %description Graphics-OpenGL
 PDL interface to the OpenGL graphics library.
@@ -177,6 +199,7 @@ Summary(pl):	Przegl±darka danych 2D dla PDL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Requires:	%{name} = %{version}
 
 %description IO-Browser
 2D data browser for PDL.
@@ -190,6 +213,7 @@ Summary(pl):	Prosty, szybki i wygodny format wej¶cia/wyj¶cia dla PDL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Requires:	%{name} = %{version}
 
 %description IO-FastRaw
 A simple, fast and convenient IO format for PDL.
@@ -203,6 +227,7 @@ Summary(pl):	Elastyczny binarny format wej¶cia/wyj¶cia dla PDL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Requires:	%{name} = %{version}
 
 %description IO-FlexRaw
 A flexible binary IO format for PDL.
@@ -216,6 +241,7 @@ Summary(pl):	Wsparcie dla n-wymiarowych struktur danych firmy Starlink dla PDL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Requires:	%{name} = %{version}
 
 %description IO-NDF
 Starlink N-dimensional data structures for PDL.
@@ -230,6 +256,8 @@ Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
 Requires:	netpbm
+Requires:	%{name} = %{version}
+Requires:	%{name}-IO-Pnm = %{version}
 
 %description IO-Pic
 IO-Pic.
@@ -243,6 +271,7 @@ Summary(pl):	Wsparcie dla formatu PNM dla PDL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Requires:	%{name} = %{version}
 
 %description IO-Pnm
 PNM format IO for PDL.
@@ -256,6 +285,12 @@ Summary(pl):	Przyk³adowe skrypty z u¿yciem PDL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Requires:	%{name} = %{version}
+Requires:	%{name}-Graphics-LUT = %{version}
+Requires:	%{name}-Graphics-PGPLOT = %{version}
+Requires:	%{name}-Graphics-TriD = %{version}
+Requires:	%{name}-Graphics-TriD-Tk = %{version}
+Provides:	perl(PDL::Demos::Screen)
 
 %description Demos
 PDL demos.
@@ -314,7 +349,8 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL/Image2D.pm
 %{perl_sitearch}/PDL/ImageND.pm
 %{perl_sitearch}/PDL/ImageRGB.pm
-%{perl_sitearch}/PDL/IO
+%dir %{perl_sitearch}/PDL/IO
+%{perl_sitearch}/PDL/IO/Misc.pm
 %{perl_sitearch}/PDL/LiteF.pm
 %{perl_sitearch}/PDL/Lite.pm
 %{perl_sitearch}/PDL/Math.pm
