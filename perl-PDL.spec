@@ -5,7 +5,7 @@ Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR):	Módulo PDL para perl
 Name:		perl-PDL
 Version:	2.3.3
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Development/Languages/Perl
@@ -341,9 +341,12 @@ cd $RPM_BUILD_ROOT%{_mandir}/man3
 mv -f PDL::Dev.3pm		PDL::Core::Dev.3pm
 mv -f PDL::Linear.3pm		PDL::Filter::Linear.3pm
 mv -f PDL::LinPred.3pm		PDL::Filter::LinPred.3pm
-mv -f PDL::Linfit.3pm 		PDL::Fit::Linfit.3pm
 mv -f PDL::LM.3pm		PDL::Fit::LM.3pm
+mv -f PDL::Linfit.3pm 		PDL::Fit::Linfit.3pm
 mv -f PDL::Polynomial.3pm	PDL::Fit::Polynomial.3pm
+mv -f PDL::State.3pm		PDL::Graphics::State.3pm
+mv -f PDL::Histogram.3pm	PDL::RandVar::Histogram.3pm
+mv -f PDL::Sobol.3pm		PDL::RandVar::Sobol.3pm
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -365,6 +368,7 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL/Core
 %{perl_sitearch}/PDL/Core.pm
 %{perl_sitearch}/PDL/Dbg.pm
+%{perl_sitearch}/PDL/DiskCache.pm
 %{perl_sitearch}/PDL/Doc
 %{perl_sitearch}/PDL/Doc.pm
 %{perl_sitearch}/PDL/Exporter.pm
@@ -376,15 +380,18 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL/Fit/Gaussian.pm
 %{perl_sitearch}/PDL/Func.pm
 %dir %{perl_sitearch}/PDL/Graphics
+%{perl_sitearch}/PDL/Graphics/State.pm
 %{perl_sitearch}/PDL/Image2D.pm
 %{perl_sitearch}/PDL/ImageND.pm
 %{perl_sitearch}/PDL/ImageRGB.pm
 %dir %{perl_sitearch}/PDL/IO
+%{perl_sitearch}/PDL/IO/Dumper.pm
 %{perl_sitearch}/PDL/IO/Misc.pm
 %{perl_sitearch}/PDL/LiteF.pm
 %{perl_sitearch}/PDL/Lite.pm
 %{perl_sitearch}/PDL/Lvalue.pm
 %{perl_sitearch}/PDL/Math.pm
+%{perl_sitearch}/PDL/NiceSlice.pm
 %{perl_sitearch}/PDL/Opt
 %{perl_sitearch}/PDL/Ops.pm
 %{perl_sitearch}/PDL/Options.pm
@@ -392,6 +399,8 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL/PP.pm
 %{perl_sitearch}/PDL/Primitive.pm
 %{perl_sitearch}/PDL/Pod
+%{perl_sitearch}/PDL/RandVar.pm
+%{perl_sitearch}/PDL/RandVar
 %{perl_sitearch}/PDL/Reduce.pm
 %{perl_sitearch}/PDL/Slices.pm
 %{perl_sitearch}/PDL/Tests.pm
@@ -459,18 +468,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Tests/*.so
 
 %{perl_sitearch}/Inline/Pdlpp.pm
-%{perl_sitearch}/PDL/DiskCache.pm
-%{perl_sitearch}/PDL/Graphics/State.pm
-%{perl_sitearch}/PDL/IO/Dumper.pm
-%{perl_sitearch}/PDL/NiceSlice.pm
-%{perl_sitearch}/PDL/RandVar/Histogram.pm
-%{perl_sitearch}/PDL/RandVar.pm
-%{perl_sitearch}/PDL/RandVar/Sobol.pm
 
 %{_mandir}/man1/pdl*
 %{_mandir}/man1/PDL*
-%{_mandir}/man1/pptemplate.1.gz
-%{_mandir}/man3/Inline::Pdlpp.3pm.gz
+%{_mandir}/man1/pptemplate.1*
+%{_mandir}/man3/Inline::Pdlpp.3pm*
 %{_mandir}/man3/PDL.*
 %{_mandir}/man3/PDL::A*
 %{_mandir}/man3/PDL::Ba*
@@ -480,22 +482,20 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/PDL::FFT*
 %{_mandir}/man3/PDL::Filter::Linear*
 %{_mandir}/man3/PDL::Fit::Gaussian*
+%{_mandir}/man3/PDL::Func.3pm.gz
+%{_mandir}/man3/PDL::Graphics::State.3pm*
 %{_mandir}/man3/PDL::Im*
 %{_mandir}/man3/PDL::IO::Misc*
 %{_mandir}/man3/PDL::L*
 %{_mandir}/man3/PDL::Math*
+%{_mandir}/man3/PDL::NiceSlice.3pm*
 %{_mandir}/man3/PDL::O*
 %{_mandir}/man3/PDL::P*
 %{_mandir}/man3/PDL::R*
 %{_mandir}/man3/PDL::Slices*
 %{_mandir}/man3/PDL::T*
 %{_mandir}/man3/PDL::U*
-%{_mandir}/man3/PDL::Func.3pm.gz
-%{_mandir}/man3/PDL::Histogram.3pm.gz
-%{_mandir}/man3/PDL::NiceSlice.3pm.gz
-%{_mandir}/man3/PDL::pptemplate.3pm.gz
-%{_mandir}/man3/PDL::Sobol.3pm.gz
-%{_mandir}/man3/PDL::State.3pm.gz
+%{_mandir}/man3/PDL::pptemplate.3pm*
 
 %files docs
 %defattr(644,root,root,755)
