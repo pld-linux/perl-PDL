@@ -10,7 +10,7 @@ License:	GPL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
-Source0:	ftp://download.sourceforge.net/pub/sourceforge/PDL/PDL-%{version}.tar.gz
+Source0:	ftp://ftp.perl.org/pub/CPAN/modules/by-module/PDL/PDL-%{version}.tar.gz
 Patch0:		%{name}-conf.patch
 Patch1:		%{name}-dep.patch
 Patch2:		%{name}-Makefile.PL.patch-dumb
