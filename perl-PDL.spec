@@ -29,17 +29,17 @@ BuildRequires:	fftw-devel >= 2.1.3-5
 BuildRequires:	gsl-devel >= 1.0
 %{!?_without_karma:BuildRequires:	karma-devel}
 BuildRequires:	ncurses-devel >= 5.0
-BuildRequires:	perl-devel >= 5.8.0-0.32
 BuildRequires:	perl-ExtUtils-F77 >= 1.10
 BuildRequires:	perl-Filter
 BuildRequires:	perl-Inline >= 0.43
 BuildRequires:	perl-PGPLOT
 BuildRequires:	perl-Tk
+BuildRequires:	perl-devel >= 5.8.0-0.32
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define 	_noautoreqdep	libGL.so.1 libGLU.so.1 libGLcore.so.1
-%define		_noautoreq	"perl(local.perldlrc)"
+%define		_noautoreq	'perl(local.perldlrc)'
 
 %description
 The perlDL project aims to turn Perl into an efficient numerical
@@ -396,8 +396,8 @@ Przyk³adowe skrypty z u¿yciem PDL.
 %build
 %{__perl} Makefile.PL \
 	INSTALLDIRS=vendor
-%{__make} OPTIMIZE="%{rpmcflags} \
-	-I%{_includedir}/ncurses -DNCURSES -DPERL_POLLUTE"
+%{__make} \
+	OPTIMIZE="%{rpmcflags} -I/usr/include/ncurses -DNCURSES -DPERL_POLLUTE"
 
 %install
 rm -rf $RPM_BUILD_ROOT
