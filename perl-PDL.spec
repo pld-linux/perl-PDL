@@ -147,8 +147,8 @@ przycisków myszki mo¿na kontrolowaæ widok obiektu (przycisk pierwszy)
 oraz jego rozmiar (przycisk trzeci).
 
 %package docs
-Summary:	Supplied extra documentation for PDL::* perl modules.
-Summary(pl):	Dodatkowo dostarczona dokumentacja do modu³ów perla PDL::*.
+Summary:	Supplied extra documentation for PDL::* perl modules
+Summary(pl):	Dodatkowo dostarczona dokumentacja do modu³ów perla PDL::*
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{version}
 
@@ -160,8 +160,8 @@ Dodatkowa, dostarczona przez autorów, dokumentacja do modu³ów PDL::*.
 
 %if %{!?_with_html:0}%{?_with_html:1}
 %package docs-HTML
-Summary:	Supplied extra documentation for PDL::* perl modules in HTML format.
-Summary(pl):	Dodatkowo dostarczona dokumentacja w HTML-u do modu³ów perla PDL::*.
+Summary:	Supplied extra documentation for PDL::* perl modules in HTML format
+Summary(pl):	Dodatkowo dostarczona dokumentacja w HTML-u do modu³ów perla PDL::*
 Group:		Development/Languages/Perl
 # for install dir
 Requires:	%{name}
