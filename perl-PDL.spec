@@ -1,7 +1,8 @@
 #
-%bcond_without  karma
-%bcond_with     html # generate an extra package with PDL documentation in HTML
-
+# Conditional build:
+%bcond_without  karma	# build package with PDL::Graphics::Karma modules
+%bcond_without  html	# don't generate package with PDL documentation in HTML
+#
 %include	/usr/lib/rpm/macros.perl
 %define		pdir	PDL
 Summary:	perlDL - efficient numerical computing for Perl
@@ -417,8 +418,6 @@ mv -f PDL::LM.3pm		PDL::Fit::LM.3pm
 mv -f PDL::Linfit.3pm 		PDL::Fit::Linfit.3pm
 mv -f PDL::Polynomial.3pm	PDL::Fit::Polynomial.3pm
 mv -f PDL::State.3pm		PDL::Graphics::State.3pm
-mv -f PDL::Histogram.3pm	PDL::RandVar::Histogram.3pm
-mv -f PDL::Sobol.3pm		PDL::RandVar::Sobol.3pm
 mv -f Pdlpp.3pm			Inline::Pdlpp.3pm
 
 # some man pages do not belong to the man1 section
@@ -652,6 +651,7 @@ fi
 %{perl_vendorarch}/PDL/Lite.pm
 %{perl_vendorarch}/PDL/Lvalue.pm
 %{perl_vendorarch}/PDL/Math.pm
+%{perl_vendorarch}/PDL/MatrixOps.pm
 %{perl_vendorarch}/PDL/NiceSlice.pm
 %{perl_vendorarch}/PDL/Opt
 %{perl_vendorarch}/PDL/Ops.pm
@@ -660,11 +660,12 @@ fi
 %{perl_vendorarch}/PDL/PP.pm
 %{perl_vendorarch}/PDL/Primitive.pm
 %{perl_vendorarch}/PDL/Pod
-%{perl_vendorarch}/PDL/RandVar.pm
-%{perl_vendorarch}/PDL/RandVar
 %{perl_vendorarch}/PDL/Reduce.pm
 %{perl_vendorarch}/PDL/Slices.pm
 %{perl_vendorarch}/PDL/Tests.pm
+# maybe separate PDL::Transform? (~500kB)
+%{perl_vendorarch}/PDL/Transform.pm
+%{perl_vendorarch}/PDL/Transform
 %{perl_vendorarch}/PDL/Types.pm
 %{perl_vendorarch}/PDL/Ufunc.pm
 %{perl_vendorarch}/PDL/Version.pm
@@ -720,6 +721,9 @@ fi
 %dir %{perl_vendorarch}/auto/PDL/Math
 %{perl_vendorarch}/auto/PDL/Math/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Math/*.so
+%dir %{perl_vendorarch}/auto/PDL/MatrixOps
+%{perl_vendorarch}/auto/PDL/MatrixOps/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/MatrixOps/*.so
 %dir %{perl_vendorarch}/auto/PDL/Primitive
 %{perl_vendorarch}/auto/PDL/Primitive/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Primitive/*.so
@@ -744,6 +748,7 @@ fi
 %{_mandir}/man3/PDL::I[mn]*
 %{_mandir}/man3/PDL::IO::Misc*
 %{_mandir}/man3/PDL::Math*
+%{_mandir}/man3/PDL::MatrixOps.3pm*
 %{_mandir}/man3/PDL::NiceSlice.3pm*
 %{_mandir}/man3/PDL::Slices*
 %{_mandir}/man3/PDL::pptemplate.3pm*
@@ -878,7 +883,7 @@ fi
 %{_mandir}/man3/PDL::Fit::LM*
 %{_mandir}/man3/PDL::Fit::Polynomial*
 %{_mandir}/man3/PDL::Gaussian*
-%{_mandir}/man3/PDL::Matrix*
+%{_mandir}/man3/PDL::Matrix.3pm*
 %{_mandir}/man3/PDL::Slatec*
 %{perl_vendorarch}/PDL/Filter/LinPred.pm
 %{perl_vendorarch}/PDL/Fit/Linfit.pm
@@ -895,6 +900,15 @@ fi
 %defattr(644,root,root,755)
 %{perl_vendorarch}/PDL/GSL
 %dir %{perl_vendorarch}/auto/PDL/GSL
+%dir %{perl_vendorarch}/auto/PDL/GSL/DIFF
+%{perl_vendorarch}/auto/PDL/GSL/DIFF/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSL/DIFF/*.so
+%dir %{perl_vendorarch}/auto/PDL/GSL/INTEG
+%{perl_vendorarch}/auto/PDL/GSL/INTEG/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSL/INTEG/*.so
+%dir %{perl_vendorarch}/auto/PDL/GSL/INTERP
+%{perl_vendorarch}/auto/PDL/GSL/INTERP/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSL/INTERP/*.so
 %dir %{perl_vendorarch}/auto/PDL/GSL/RNG
 %{perl_vendorarch}/auto/PDL/GSL/RNG/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSL/RNG/*.so
