@@ -49,7 +49,7 @@ chmod +x find-*
 
 %build
 perl Makefile.PL
-%{__make} OPTIMIZE="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g} -I%{_includedir}/ncurses -DNCURSES -DPERL_POLLUTE" 
+%{__make} OPTIMIZE="%{?debug:-O -g}%{!?debug:$RPM_OPT_FLAGS} -I%{_includedir}/ncurses -DNCURSES -DPERL_POLLUTE" 
 
 %install
 rm -rf $RPM_BUILD_ROOT
