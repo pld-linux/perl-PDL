@@ -8,8 +8,8 @@ Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR):	Módulo PDL para perl
 Name:		perl-PDL
-Version:	2.3.3
-Release:	4
+Version:	2.3.4
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Development/Languages/Perl
@@ -386,6 +386,7 @@ mv -f PDL::Polynomial.3pm	PDL::Fit::Polynomial.3pm
 mv -f PDL::State.3pm		PDL::Graphics::State.3pm
 mv -f PDL::Histogram.3pm	PDL::RandVar::Histogram.3pm
 mv -f PDL::Sobol.3pm		PDL::RandVar::Sobol.3pm
+mv -f Pdlpp.3pm			Inline::Pdlpp.3pm
 
 # some man pages do not belong to the man1 section
 cd $RPM_BUILD_ROOT%{_mandir}/man1
