@@ -13,6 +13,7 @@ Source0:	ftp://download.sourceforge.net/pub/sourceforge/PDL/PDL-%{version}.tar.g
 Patch0:		%{name}-conf.patch
 Patch1:		%{name}-dep.patch
 Patch2:		%{name}-Makefile.PL.patch-dumb
+Patch3:		%{name}-perl-5.6.1.patch
 URL:		http://www.perl.com/CPAN//modules/by-module/PDL/PDL-%{version}.readme
 BuildRequires:	rpm-perlprov >= 3.0.3-18
 BuildRequires:	perl >= 5.6.0-2
@@ -305,6 +306,7 @@ Przyk³adowe skrypty z u¿yciem PDL.
 %patch0 -p1 
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 chmod +x find-*
 
