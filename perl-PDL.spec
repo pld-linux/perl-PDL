@@ -9,7 +9,7 @@ Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR):	Módulo PDL para perl
 Name:		perl-PDL
 Version:	2.3.4
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Development/Languages/Perl
@@ -31,7 +31,7 @@ BuildRequires:	perl-Filter
 BuildRequires:	perl-Inline >= 0.43
 BuildRequires:	perl-PGPLOT
 BuildRequires:	perl-Tk
-BuildRequires:	rpm-perlprov >= 3.0.3-18
+BuildRequires:	rpm-perlprov >= 4.1-13
 Provides:	perl(PDL::Lite)
 Provides:	perl(PDL::LiteF)
 Provides:	perl(PDL::PP::CType)
@@ -384,7 +384,8 @@ Przyk³adowe skrypty z u¿yciem PDL.
 %{__perl} -pi -e 's@o \$mycflags s@o %{rpmcflags} s@' Lib/Slatec/Makefile.PL
 
 %build
-%{__perl} Makefile.PL
+%{__perl} Makefile.PL \
+	INSTALLDIRS=vendor 
 %{__make} OPTIMIZE="%{rpmcflags} \
 	-I%{_includedir}/ncurses -DNCURSES -DPERL_POLLUTE" 
 
@@ -395,7 +396,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 # perl script to regenerate pdldoc database
-install Doc/scantree.pl $RPM_BUILD_ROOT%{perl_sitearch}/PDL/scantree.pl
+install Doc/scantree.pl $RPM_BUILD_ROOT%{perl_vendorarch}/PDL/scantree.pl
 
 # some manuals have wrong names - this can be fixed in "Makefile.PL"s or here:
 cd $RPM_BUILD_ROOT%{_mandir}/man3
@@ -420,293 +421,293 @@ done
 rm -rf $RPM_BUILD_ROOT
 
 %post docs
-/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 
 %post Graphics-TriD
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %post Graphics-TriD-Tk
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %post Graphics-PGPLOT
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %post Graphics-IIS
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %post Graphics-LUT
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %post Graphics-OpenGL
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %post IO-Browser
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %post IO-FastRaw
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %post IO-FlexRaw
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %post IO-NDF
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %post IO-Pic
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %post IO-Pnm
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %post IO-Storable
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %post Slatec
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %post GSL
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %post GSLSF
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %post Demos
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %postun Graphics-TriD
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %postun Graphics-TriD-Tk
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %postun Graphics-PGPLOT
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %postun Graphics-IIS
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %postun Graphics-LUT
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %postun Graphics-OpenGL
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %postun IO-Browser
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %postun IO-FastRaw
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %postun IO-FlexRaw
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %postun IO-NDF
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %postun IO-Pic
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %postun IO-Pnm
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %postun IO-Storable
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %postun Slatec
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %postun GSL
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %postun GSLSF
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %postun Demos
-if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/pptemplate
-%dir %{perl_sitearch}/PDL
+%dir %{perl_vendorarch}/PDL
 
-%{perl_sitearch}/PDL.pm
-%{perl_sitearch}/PDL/AutoLoader.pm
-%{perl_sitearch}/PDL/Bad.pm
-%{perl_sitearch}/PDL/Basic.pm
-%{perl_sitearch}/PDL/CallExt.pm
-%{perl_sitearch}/PDL/Char.pm
-%{perl_sitearch}/PDL/Complex.pm
-%{perl_sitearch}/PDL/Config.pm
-%{perl_sitearch}/PDL/Core
-%{perl_sitearch}/PDL/Core.pm
-%{perl_sitearch}/PDL/Dbg.pm
-%{perl_sitearch}/PDL/DiskCache.pm
-%{perl_sitearch}/PDL/Doc
-%{perl_sitearch}/PDL/Doc.pm
-%{perl_sitearch}/PDL/Exporter.pm
-%{perl_sitearch}/PDL/FFT.pm
-%{perl_sitearch}/PDL/FFTW.pm
-%dir %{perl_sitearch}/PDL/Filter
-%{perl_sitearch}/PDL/Filter/Linear.pm
-%dir %{perl_sitearch}/PDL/Fit
-%{perl_sitearch}/PDL/Fit/Gaussian.pm
-%{perl_sitearch}/PDL/Func.pm
-%dir %{perl_sitearch}/PDL/Graphics
-%{perl_sitearch}/PDL/Graphics/State.pm
-%{perl_sitearch}/PDL/Image2D.pm
-%{perl_sitearch}/PDL/ImageND.pm
-%{perl_sitearch}/PDL/ImageRGB.pm
-%dir %{perl_sitearch}/PDL/IO
-%{perl_sitearch}/PDL/IO/Dumper.pm
-%{perl_sitearch}/PDL/IO/Misc.pm
-%{perl_sitearch}/PDL/LiteF.pm
-%{perl_sitearch}/PDL/Lite.pm
-%{perl_sitearch}/PDL/Lvalue.pm
-%{perl_sitearch}/PDL/Math.pm
-%{perl_sitearch}/PDL/NiceSlice.pm
-%{perl_sitearch}/PDL/Opt
-%{perl_sitearch}/PDL/Ops.pm
-%{perl_sitearch}/PDL/Options.pm
-%{perl_sitearch}/PDL/PP
-%{perl_sitearch}/PDL/PP.pm
-%{perl_sitearch}/PDL/Primitive.pm
-%{perl_sitearch}/PDL/Pod
-%{perl_sitearch}/PDL/RandVar.pm
-%{perl_sitearch}/PDL/RandVar
-%{perl_sitearch}/PDL/Reduce.pm
-%{perl_sitearch}/PDL/Slices.pm
-%{perl_sitearch}/PDL/Tests.pm
-%{perl_sitearch}/PDL/Types.pm
-%{perl_sitearch}/PDL/Ufunc.pm
-%{perl_sitearch}/PDL/Version.pm
-%{perl_sitearch}/PDL/default.perldlrc
+%{perl_vendorarch}/PDL.pm
+%{perl_vendorarch}/PDL/AutoLoader.pm
+%{perl_vendorarch}/PDL/Bad.pm
+%{perl_vendorarch}/PDL/Basic.pm
+%{perl_vendorarch}/PDL/CallExt.pm
+%{perl_vendorarch}/PDL/Char.pm
+%{perl_vendorarch}/PDL/Complex.pm
+%{perl_vendorarch}/PDL/Config.pm
+%{perl_vendorarch}/PDL/Core
+%{perl_vendorarch}/PDL/Core.pm
+%{perl_vendorarch}/PDL/Dbg.pm
+%{perl_vendorarch}/PDL/DiskCache.pm
+%{perl_vendorarch}/PDL/Doc
+%{perl_vendorarch}/PDL/Doc.pm
+%{perl_vendorarch}/PDL/Exporter.pm
+%{perl_vendorarch}/PDL/FFT.pm
+%{perl_vendorarch}/PDL/FFTW.pm
+%dir %{perl_vendorarch}/PDL/Filter
+%{perl_vendorarch}/PDL/Filter/Linear.pm
+%dir %{perl_vendorarch}/PDL/Fit
+%{perl_vendorarch}/PDL/Fit/Gaussian.pm
+%{perl_vendorarch}/PDL/Func.pm
+%dir %{perl_vendorarch}/PDL/Graphics
+%{perl_vendorarch}/PDL/Graphics/State.pm
+%{perl_vendorarch}/PDL/Image2D.pm
+%{perl_vendorarch}/PDL/ImageND.pm
+%{perl_vendorarch}/PDL/ImageRGB.pm
+%dir %{perl_vendorarch}/PDL/IO
+%{perl_vendorarch}/PDL/IO/Dumper.pm
+%{perl_vendorarch}/PDL/IO/Misc.pm
+%{perl_vendorarch}/PDL/LiteF.pm
+%{perl_vendorarch}/PDL/Lite.pm
+%{perl_vendorarch}/PDL/Lvalue.pm
+%{perl_vendorarch}/PDL/Math.pm
+%{perl_vendorarch}/PDL/NiceSlice.pm
+%{perl_vendorarch}/PDL/Opt
+%{perl_vendorarch}/PDL/Ops.pm
+%{perl_vendorarch}/PDL/Options.pm
+%{perl_vendorarch}/PDL/PP
+%{perl_vendorarch}/PDL/PP.pm
+%{perl_vendorarch}/PDL/Primitive.pm
+%{perl_vendorarch}/PDL/Pod
+%{perl_vendorarch}/PDL/RandVar.pm
+%{perl_vendorarch}/PDL/RandVar
+%{perl_vendorarch}/PDL/Reduce.pm
+%{perl_vendorarch}/PDL/Slices.pm
+%{perl_vendorarch}/PDL/Tests.pm
+%{perl_vendorarch}/PDL/Types.pm
+%{perl_vendorarch}/PDL/Ufunc.pm
+%{perl_vendorarch}/PDL/Version.pm
+%{perl_vendorarch}/PDL/default.perldlrc
 
-%dir %{perl_sitearch}/auto/PDL
-%dir %{perl_sitearch}/auto/PDL/Bad
-%{perl_sitearch}/auto/PDL/Bad/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/Bad/*.so
-%dir %{perl_sitearch}/auto/PDL/Complex
-%{perl_sitearch}/auto/PDL/Complex/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/Complex/*.so
-%dir %{perl_sitearch}/auto/PDL/FFT
-%{perl_sitearch}/auto/PDL/FFT/*bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/FFT/*so
-%dir %{perl_sitearch}/auto/PDL/FFTW
-%{perl_sitearch}/auto/PDL/FFTW/*bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/FFTW/*so
-%dir %{perl_sitearch}/auto/PDL/Graphics
-%dir %{perl_sitearch}/auto/PDL/IO
+%dir %{perl_vendorarch}/auto/PDL
+%dir %{perl_vendorarch}/auto/PDL/Bad
+%{perl_vendorarch}/auto/PDL/Bad/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Bad/*.so
+%dir %{perl_vendorarch}/auto/PDL/Complex
+%{perl_vendorarch}/auto/PDL/Complex/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Complex/*.so
+%dir %{perl_vendorarch}/auto/PDL/FFT
+%{perl_vendorarch}/auto/PDL/FFT/*bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/FFT/*so
+%dir %{perl_vendorarch}/auto/PDL/FFTW
+%{perl_vendorarch}/auto/PDL/FFTW/*bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/FFTW/*so
+%dir %{perl_vendorarch}/auto/PDL/Graphics
+%dir %{perl_vendorarch}/auto/PDL/IO
 
-%dir %{perl_sitearch}/auto/PDL/Image2D
-%{perl_sitearch}/auto/PDL/Image2D/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/Image2D/*.so
-%dir %{perl_sitearch}/auto/PDL/ImageRGB
-%{perl_sitearch}/auto/PDL/ImageRGB/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/ImageRGB/*.so
-%dir %{perl_sitearch}/auto/PDL/Ops
-%{perl_sitearch}/auto/PDL/Ops/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/Ops/*.so
-%dir %{perl_sitearch}/auto/PDL/Slices
-%{perl_sitearch}/auto/PDL/Slices/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/Slices/*.so
-%dir %{perl_sitearch}/auto/PDL/Ufunc
-%{perl_sitearch}/auto/PDL/Ufunc/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/Ufunc/*.so
-%dir %{perl_sitearch}/auto/PDL/CallExt
-%{perl_sitearch}/auto/PDL/CallExt/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/CallExt/*.so
-%dir %{perl_sitearch}/auto/PDL/Core
-%{perl_sitearch}/auto/PDL/Core/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/Core/*.so
-%dir %{perl_sitearch}/auto/PDL/Fit
-%dir %{perl_sitearch}/auto/PDL/Fit/Gaussian
-%{perl_sitearch}/auto/PDL/Fit/Gaussian/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/Fit/Gaussian/*.so
-%dir %{perl_sitearch}/auto/PDL/ImageND
-%{perl_sitearch}/auto/PDL/ImageND/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/ImageND/*.so
-%dir %{perl_sitearch}/auto/PDL/IO/Misc
-%{perl_sitearch}/auto/PDL/IO/Misc/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/IO/Misc/*.so
-%dir %{perl_sitearch}/auto/PDL/Math
-%{perl_sitearch}/auto/PDL/Math/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/Math/*.so
-%dir %{perl_sitearch}/auto/PDL/Primitive
-%{perl_sitearch}/auto/PDL/Primitive/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/Primitive/*.so
-%dir %{perl_sitearch}/auto/PDL/Tests
-%{perl_sitearch}/auto/PDL/Tests/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/Tests/*.so
+%dir %{perl_vendorarch}/auto/PDL/Image2D
+%{perl_vendorarch}/auto/PDL/Image2D/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Image2D/*.so
+%dir %{perl_vendorarch}/auto/PDL/ImageRGB
+%{perl_vendorarch}/auto/PDL/ImageRGB/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/ImageRGB/*.so
+%dir %{perl_vendorarch}/auto/PDL/Ops
+%{perl_vendorarch}/auto/PDL/Ops/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Ops/*.so
+%dir %{perl_vendorarch}/auto/PDL/Slices
+%{perl_vendorarch}/auto/PDL/Slices/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Slices/*.so
+%dir %{perl_vendorarch}/auto/PDL/Ufunc
+%{perl_vendorarch}/auto/PDL/Ufunc/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Ufunc/*.so
+%dir %{perl_vendorarch}/auto/PDL/CallExt
+%{perl_vendorarch}/auto/PDL/CallExt/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/CallExt/*.so
+%dir %{perl_vendorarch}/auto/PDL/Core
+%{perl_vendorarch}/auto/PDL/Core/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Core/*.so
+%dir %{perl_vendorarch}/auto/PDL/Fit
+%dir %{perl_vendorarch}/auto/PDL/Fit/Gaussian
+%{perl_vendorarch}/auto/PDL/Fit/Gaussian/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Fit/Gaussian/*.so
+%dir %{perl_vendorarch}/auto/PDL/ImageND
+%{perl_vendorarch}/auto/PDL/ImageND/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/ImageND/*.so
+%dir %{perl_vendorarch}/auto/PDL/IO/Misc
+%{perl_vendorarch}/auto/PDL/IO/Misc/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/Misc/*.so
+%dir %{perl_vendorarch}/auto/PDL/Math
+%{perl_vendorarch}/auto/PDL/Math/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Math/*.so
+%dir %{perl_vendorarch}/auto/PDL/Primitive
+%{perl_vendorarch}/auto/PDL/Primitive/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Primitive/*.so
+%dir %{perl_vendorarch}/auto/PDL/Tests
+%{perl_vendorarch}/auto/PDL/Tests/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Tests/*.so
 
-%{perl_sitearch}/Inline/Pdlpp.pm
+%{perl_vendorarch}/Inline/Pdlpp.pm
 
 %{_mandir}/man1/pdl.1*
 %{_mandir}/man1/pptemplate.1*
@@ -730,14 +731,14 @@ fi
 %files docs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/pdldoc
-%attr(755,root,root) %{perl_sitearch}/PDL/scantree.pl
-%ghost %{perl_sitearch}/PDL/pdldoc.db
-%doc %{perl_sitearch}/PDL/*.pod
+%attr(755,root,root) %{perl_vendorarch}/PDL/scantree.pl
+%ghost %{perl_vendorarch}/PDL/pdldoc.db
+%doc %{perl_vendorarch}/PDL/*.pod
 %{_mandir}/man1/pdldoc.1*
 
 %if %{!?_with_html:0}%{?_with_html:1}
 %files docs-HTML
-%doc %{perl_sitearch}/PDL/HtmlDocs
+%doc %{perl_vendorarch}/PDL/HtmlDocs
 %endif
 
 %files perldl
@@ -749,94 +750,94 @@ fi
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics::TriD.*
 %{_mandir}/man3/PDL::Graphics::TriD::[A-SU-Z]*
-%dir %{perl_sitearch}/auto/PDL/Graphics/TriD
-%dir %{perl_sitearch}/auto/PDL/Graphics/TriD/Rout
-%{perl_sitearch}/auto/PDL/Graphics/TriD/Rout/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/Graphics/TriD/Rout/*.so
-%dir %{perl_sitearch}/PDL/Graphics/TriD
-%{perl_sitearch}/PDL/Graphics/TriD/[A-SU-Z]*
-%{perl_sitearch}/PDL/Graphics/TriD/Te*
-%{perl_sitearch}/PDL/Graphics/VRML*
-%{perl_sitearch}/PDL/Graphics/TriD.pm
+%dir %{perl_vendorarch}/auto/PDL/Graphics/TriD
+%dir %{perl_vendorarch}/auto/PDL/Graphics/TriD/Rout
+%{perl_vendorarch}/auto/PDL/Graphics/TriD/Rout/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/TriD/Rout/*.so
+%dir %{perl_vendorarch}/PDL/Graphics/TriD
+%{perl_vendorarch}/PDL/Graphics/TriD/[A-SU-Z]*
+%{perl_vendorarch}/PDL/Graphics/TriD/Te*
+%{perl_vendorarch}/PDL/Graphics/VRML*
+%{perl_vendorarch}/PDL/Graphics/TriD.pm
 
 %files Graphics-TriD-Tk
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics::TriD::Tk*
-%{perl_sitearch}/PDL/Graphics/TriD/Tk*
+%{perl_vendorarch}/PDL/Graphics/TriD/Tk*
 
 %files Graphics-PGPLOT
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics2D*
 %{_mandir}/man3/PDL::Graphics::PGPLOT*
-%dir %{perl_sitearch}/auto/PDL/Graphics/PGPLOT
-%dir %{perl_sitearch}/auto/PDL/Graphics/PGPLOT/Window
-%{perl_sitearch}/auto/PDL/Graphics/PGPLOT/Window/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/Graphics/PGPLOT/Window/*.so
-%{perl_sitearch}/PDL/Graphics/PGPLOT*
-%{perl_sitearch}/PDL/Graphics2D*
+%dir %{perl_vendorarch}/auto/PDL/Graphics/PGPLOT
+%dir %{perl_vendorarch}/auto/PDL/Graphics/PGPLOT/Window
+%{perl_vendorarch}/auto/PDL/Graphics/PGPLOT/Window/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/PGPLOT/Window/*.so
+%{perl_vendorarch}/PDL/Graphics/PGPLOT*
+%{perl_vendorarch}/PDL/Graphics2D*
 
 %files Graphics-LUT
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics::LUT*
-%{perl_sitearch}/PDL/Graphics/LUT*
+%{perl_vendorarch}/PDL/Graphics/LUT*
 
 %files Graphics-IIS
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics::IIS*
-%dir %{perl_sitearch}/auto/PDL/Graphics/IIS
-%{perl_sitearch}/auto/PDL/Graphics/IIS/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/Graphics/IIS/*.so
-%{perl_sitearch}/PDL/Graphics/IIS*
+%dir %{perl_vendorarch}/auto/PDL/Graphics/IIS
+%{perl_vendorarch}/auto/PDL/Graphics/IIS/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/IIS/*.so
+%{perl_vendorarch}/PDL/Graphics/IIS*
 
 %files Graphics-OpenGL
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics::OpenGL*
-%dir %{perl_sitearch}/auto/PDL/Graphics/OpenGL*
-%{perl_sitearch}/auto/PDL/Graphics/OpenGL*/*bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/Graphics/OpenGL*/*so
-%{perl_sitearch}/PDL/Graphics/OpenGL*
+%dir %{perl_vendorarch}/auto/PDL/Graphics/OpenGL*
+%{perl_vendorarch}/auto/PDL/Graphics/OpenGL*/*bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/OpenGL*/*so
+%{perl_vendorarch}/PDL/Graphics/OpenGL*
 
 %files IO-Browser
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::IO::Browser*
-%dir %{perl_sitearch}/auto/PDL/IO/Browser
-%{perl_sitearch}/auto/PDL/IO/Browser/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/IO/Browser/*.so
-%{perl_sitearch}/PDL/IO/Browser*
+%dir %{perl_vendorarch}/auto/PDL/IO/Browser
+%{perl_vendorarch}/auto/PDL/IO/Browser/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/Browser/*.so
+%{perl_vendorarch}/PDL/IO/Browser*
 
 %files IO-FastRaw
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::IO::FastRaw*
-%{perl_sitearch}/PDL/IO/FastRaw*
+%{perl_vendorarch}/PDL/IO/FastRaw*
 
 %files IO-FlexRaw
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::IO::FlexRaw*
-%{perl_sitearch}/PDL/IO/FlexRaw*
+%{perl_vendorarch}/PDL/IO/FlexRaw*
 
 %files IO-NDF
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::IO::NDF*
-%{perl_sitearch}/PDL/IO/NDF*
+%{perl_vendorarch}/PDL/IO/NDF*
 
 %files IO-Pic
 %defattr(644,root,root,755)
-%{perl_sitearch}/PDL/IO/Pic*
+%{perl_vendorarch}/PDL/IO/Pic*
 
 %files IO-Pnm
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::IO::Pnm*
-%dir %{perl_sitearch}/auto/PDL/IO/Pnm
-%{perl_sitearch}/auto/PDL/IO/Pnm/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/IO/Pnm/*.so
-%{perl_sitearch}/PDL/IO/Pnm*
+%dir %{perl_vendorarch}/auto/PDL/IO/Pnm
+%{perl_vendorarch}/auto/PDL/IO/Pnm/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/Pnm/*.so
+%{perl_vendorarch}/PDL/IO/Pnm*
 
 %files IO-Storable
 %defattr(644,root,root,755)
-%{perl_sitearch}/PDL/IO/Storable.pm
-%dir %{perl_sitearch}/auto/PDL/IO/Storable
-%{perl_sitearch}/auto/PDL/IO/Storable/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/IO/Storable/*.so
+%{perl_vendorarch}/PDL/IO/Storable.pm
+%dir %{perl_vendorarch}/auto/PDL/IO/Storable
+%{perl_vendorarch}/auto/PDL/IO/Storable/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/Storable/*.so
 %{_mandir}/man3/PDL::IO::Storable*
 
 %files Slatec
@@ -848,36 +849,36 @@ fi
 %{_mandir}/man3/PDL::Gaussian*
 %{_mandir}/man3/PDL::Matrix*
 %{_mandir}/man3/PDL::Slatec*
-%{perl_sitearch}/PDL/Filter/LinPred.pm
-%{perl_sitearch}/PDL/Fit/Linfit.pm
-%{perl_sitearch}/PDL/Fit/LM.pm
-%{perl_sitearch}/PDL/Fit/Polynomial.pm
-%{perl_sitearch}/PDL/Gaussian.pm
-%{perl_sitearch}/PDL/Matrix.pm
-%{perl_sitearch}/PDL/Slatec.pm
-%dir %{perl_sitearch}/auto/PDL/Slatec
-%{perl_sitearch}/auto/PDL/Slatec/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/Slatec/*.so
+%{perl_vendorarch}/PDL/Filter/LinPred.pm
+%{perl_vendorarch}/PDL/Fit/Linfit.pm
+%{perl_vendorarch}/PDL/Fit/LM.pm
+%{perl_vendorarch}/PDL/Fit/Polynomial.pm
+%{perl_vendorarch}/PDL/Gaussian.pm
+%{perl_vendorarch}/PDL/Matrix.pm
+%{perl_vendorarch}/PDL/Slatec.pm
+%dir %{perl_vendorarch}/auto/PDL/Slatec
+%{perl_vendorarch}/auto/PDL/Slatec/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Slatec/*.so
 
 %files GSL
 %defattr(644,root,root,755)
-%{perl_sitearch}/PDL/GSL
-%dir %{perl_sitearch}/auto/PDL/GSL
-%dir %{perl_sitearch}/auto/PDL/GSL/RNG
-%{perl_sitearch}/auto/PDL/GSL/RNG/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/GSL/RNG/*.so
+%{perl_vendorarch}/PDL/GSL
+%dir %{perl_vendorarch}/auto/PDL/GSL
+%dir %{perl_vendorarch}/auto/PDL/GSL/RNG
+%{perl_vendorarch}/auto/PDL/GSL/RNG/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSL/RNG/*.so
 %{_mandir}/man3/PDL::GSL::*
 
 %files GSLSF
 %defattr(644,root,root,755)
-%{perl_sitearch}/PDL/GSLSF
-%dir %{perl_sitearch}/auto/PDL/GSLSF
-%dir %{perl_sitearch}/auto/PDL/GSLSF/*
-%{perl_sitearch}/auto/PDL/GSLSF/*/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/GSLSF/*/*.so
+%{perl_vendorarch}/PDL/GSLSF
+%dir %{perl_vendorarch}/auto/PDL/GSLSF
+%dir %{perl_vendorarch}/auto/PDL/GSLSF/*
+%{perl_vendorarch}/auto/PDL/GSLSF/*/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSLSF/*/*.so
 %{_mandir}/man3/PDL::GSLSF::*
 
 %files Demos
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::BAD*
-%{perl_sitearch}/PDL/Demos
+%{perl_vendorarch}/PDL/Demos
