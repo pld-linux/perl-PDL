@@ -9,7 +9,7 @@ Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR):	Módulo PDL para perl
 Name:		perl-PDL
 Version:	2.3.4
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Development/Languages/Perl
@@ -32,13 +32,6 @@ BuildRequires:	perl-Inline >= 0.43
 BuildRequires:	perl-PGPLOT
 BuildRequires:	perl-Tk
 BuildRequires:	rpm-perlprov >= 4.0.2-104
-Provides:	perl(PDL::Lite)
-Provides:	perl(PDL::LiteF)
-Provides:	perl(PDL::PP::CType)
-Provides:	perl(PDL::PP::Dims)
-Provides:	perl(PDL::PP::PDLCode)
-Provides:	perl(PDL::PP::SymTab)
-Provides:	perl(PDL::PP::XS)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define 	_noautoreqdep	libGL.so.1 libGLU.so.1 libGLcore.so.1
@@ -737,6 +730,7 @@ fi
 
 %if %{!?_with_html:0}%{?_with_html:1}
 %files docs-HTML
+%defattr(644,root,root,755)
 %doc %{perl_sitearch}/PDL/HtmlDocs
 %endif
 
