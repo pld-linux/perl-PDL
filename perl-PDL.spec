@@ -382,7 +382,7 @@ Przyk³adowe skrypty z u¿yciem PDL.
 
 %prep
 %setup -q -n %{pdir}-%{version}
-%patch0 -p1 
+%patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -395,9 +395,9 @@ Przyk³adowe skrypty z u¿yciem PDL.
 
 %build
 %{__perl} Makefile.PL \
-	INSTALLDIRS=vendor 
+	INSTALLDIRS=vendor
 %{__make} OPTIMIZE="%{rpmcflags} \
-	-I%{_includedir}/ncurses -DNCURSES -DPERL_POLLUTE" 
+	-I%{_includedir}/ncurses -DNCURSES -DPERL_POLLUTE"
 
 %install
 rm -rf $RPM_BUILD_ROOT
