@@ -1,0 +1,24 @@
+--- PDL-2.3.4/perldl.conf.orig	Tue Mar 18 22:00:45 2003
++++ PDL-2.3.4/perldl.conf	Thu Mar 20 14:38:11 2003
+@@ -78,8 +78,8 @@
+ #	OPENGL_DEFINE => undef,
+ # Whether or not to build the Karma interface module
+ 
+-        WITH_KARMA => undef,    # Leave it up to PDL to decide
+-        WHERE_KARMA => 0,   # you may explicitly specify directory location
++        WITH_KARMA => 1,    # Leave it up to PDL to decide
++        WHERE_KARMA => "/usr/lib/karma",   # you may explicitly specify directory location
+ 	
+ # Whether or not to build the PDL::Slatec module
+ # 0 -> don't use
+--- PDL-2.3.4/Graphics/Karma/Makefile.PL.orig	Sat Nov 17 02:25:53 2001
++++ PDL-2.3.4/Graphics/Karma/Makefile.PL	Thu Mar 20 14:39:43 2003
+@@ -85,7 +85,7 @@
+ @pack = (["karma.pd",Karma,PDL::Graphics::Karma]);
+ 
+ %hash = pdlpp_stdargs(@::pack);
+-$hash{INC}         .= " -I$karmabase/include $mallocinc";
++$hash{INC}         .= " -I/usr/include/karma -I$karmabase/include $mallocinc";
+ $hash{LIBS}[0]     .=' -L'. $karmabase."/lib" .' -lkarma -lkarmagraphics -L/usr/X11R6/lib -lkarmaX11 -lX11 -lXext -lm ' . $malloclib;
+ # change here approriately for other platforms !
+ if ($^O =~ 'irix' or $^O eq 'dec_osf') { $rflag = '-rpath ' } else { $rflag = '-R' }

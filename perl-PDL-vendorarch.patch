@@ -1,0 +1,14 @@
+--- PDL-2.3.4/Makefile.PL.orig	Thu Mar 20 14:52:46 2003
++++ PDL-2.3.4/Makefile.PL	Thu Mar 20 15:15:29 2003
+@@ -313,6 +313,11 @@
+ 	@$(PERL) -Mblib Doc/scantree.pl $(INSTALLSITEARCH)
+ 	@$(PERL) Doc/mkhtmldoc.pl $(INSTALLSITEARCH)/PDL
+   
++doc_vendor_install ::
++	@echo "doc_vendor_install: Building PDL documentation database ..."
++	@$(PERL) -Mblib Doc/scantree.pl $(INSTALLVENDORARCH)
++	@$(PERL) Doc/mkhtmldoc.pl $(INSTALLVENDORARCH)/PDL
++  
+ doc_perl_install ::
+ 	@echo "doc_perl_install: Building PDL documentation database ..."
+ 	@$(PERL) -Mblib Doc/scantree.pl $(INSTALLARCHLIB)

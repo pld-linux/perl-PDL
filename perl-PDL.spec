@@ -19,26 +19,22 @@ Patch1:		%{name}-dep.patch
 Patch2:		%{name}-Makefile.PL.patch-dumb
 Patch3:		%{name}-fftw-shared.patch
 Patch4:		%{name}-WITH_IO_BROWSER.patch
+Patch5:		%{name}-karma.patch
+Patch6:		%{name}-vendorarch.patch
 URL:		http://pdl.perl.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	XFree86-devel
 BuildRequires:	fftw-devel >= 2.1.3-5
 BuildRequires:	gsl-devel >= 1.0
+%{!?_without_karma:BuildRequires:	karma-devel}
 BuildRequires:	ncurses-devel >= 5.0
-BuildRequires:	perl >= 5.6.1
+BuildRequires:	perl >= 5.8.0-0.32
 BuildRequires:	perl-ExtUtils-F77 >= 1.10
 BuildRequires:	perl-Filter
 BuildRequires:	perl-Inline >= 0.43
 BuildRequires:	perl-PGPLOT
 BuildRequires:	perl-Tk
 BuildRequires:	rpm-perlprov >= 4.1-13
-Provides:	perl(PDL::Lite)
-Provides:	perl(PDL::LiteF)
-Provides:	perl(PDL::PP::CType)
-Provides:	perl(PDL::PP::Dims)
-Provides:	perl(PDL::PP::PDLCode)
-Provides:	perl(PDL::PP::SymTab)
-Provides:	perl(PDL::PP::XS)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define 	_noautoreqdep	libGL.so.1 libGLU.so.1 libGLcore.so.1
@@ -86,6 +82,102 @@ prosty sposób wprowadzane, a tak¿e edytowane je¶li masz zainstalowan±
 odpowiedni± wersjê modu³ó ReadLines oraz ReadKeys. W tym ostatnim
 przypadku perldl wspiera mechanizm historii komend.
 
+%package docs
+Summary:	Supplied extra documentation for PDL::* perl modules
+Summary(pl):	Dodatkowo dostarczona dokumentacja do modu³ów perla PDL::*
+Group:		Development/Languages/Perl
+Requires:	%{name} = %{version}
+
+%description docs
+Additional, supplied by authors, documentation to all PDL::* modules.
+
+%description docs -l pl
+Dodatkowa, dostarczona przez autorów, dokumentacja do modu³ów PDL::*.
+
+%package docs-HTML
+Summary:	Supplied extra documentation for PDL::* perl modules in HTML format
+Summary(pl):	Dodatkowo dostarczona dokumentacja w HTML-u do modu³ów perla PDL::*
+Group:		Development/Languages/Perl
+# for install dir
+Requires:	%{name}
+
+%description docs-HTML
+Additional, supplied by authors, documentation in HTML format to all
+PDL::* modules.
+
+%description docs-HTML -l pl
+Dodatkowa, dostarczona przez autorów, dokumentacja do modu³ów PDL::*,
+w formacie HTML.
+
+%package Graphics-IIS
+Summary:	Display PDL images on IIS devices (saoimage/ximtool)
+Summary(pl):	Wy¶wietlanie grafiki PDL na urz±dzeniach IIS (saoimage/ximtool)
+Group:		Development/Languages/Perl
+Requires:	%{name} = %{version}
+
+%description Graphics-IIS
+Display PDL images on IIS devices (saoimage/ximtool).
+
+%description Graphics-IIS -l pl
+Wy¶wietlanie grafiki PDL na urz±dzeniach IIS (saoimage/ximtool).
+
+%package Graphics-Karma
+Summary:	Interface to Karma visualisation applications
+Summary(pl):	Interfejs do aplikacji wizualizuj±cych Karma
+Group:		Development/Languages/Perl
+Requires:	%{name} = %{version}
+
+%description Graphics-Karma
+PDL::Graphics::Karma is an interface to Karma visualisation
+applications. It can send PDL 2D/3D data to kview, xray, kslice_3d,
+etc.
+
+%description Graphics-Karma -l pl
+PDL::Graphics::Karma to interfejs do aplikacji wizualizuj±cych Karma.
+Mo¿e wysy³aæ dane 2D i 3D do kview, xray, kslice_3d itp.
+
+%package Graphics-LUT
+Summary:	Provides access to a number of look-up tables for PDL
+Summary(pl):	Dostêp do tablic kolorów dla PDL
+Group:		Development/Languages/Perl
+Requires:	%{name} = %{version}
+
+%description Graphics-LUT
+Provides access to a number of look-up tables for PDL.
+
+%description Graphics-LUT -l pl
+Modu³ zapewnia dostêp do ró¿nych tablic kolorów (palet) dla PDL.
+
+%package Graphics-OpenGL
+Summary:	PDL interface to the OpenGL graphics library
+Summary(pl):	Interfejs OpenGL dla PDL
+Group:		Development/Languages/Perl
+Requires:	%{name} = %{version}
+
+%description Graphics-OpenGL
+PDL interface to the OpenGL graphics library.
+
+%description Graphics-OpenGL -l pl
+Interfejs OpenGL dla PDL.
+
+%package Graphics-PGPLOT
+Summary:	PGPLOT enhanced interface for PDL
+Summary(pl):	Rozszerzony interfejs biblioteki PGPLOT dla PDL
+Group:		Development/Languages/Perl
+Requires:	%{name} = %{version}
+
+%description Graphics-PGPLOT
+`PDL::Graphics::PGPLOT' is a convenience interface to the PGPLOT
+commands, implemented using the object oriented PGPLOT plotting
+package in the PDL::Graphics::PGPLOT::Window manpage. See the
+documentation for that package for in-depth information about the
+usage of these commands and the options they accept.
+
+%description Graphics-PGPLOT -l pl
+Modu³ ten jest interfejsem do komend biblioteki PGPLOT. Jest ona
+zaimplementowany za pomoc± obiektowo zorientowanego pakietu PGPLOT
+(spójrz do manuala modu³u PDL::Graphics::PGPLOT::Window).
+
 %package Graphics-TriD
 Summary:	PDL 3D interface
 Summary(pl):	Interfejs 3D dla PDL
@@ -93,9 +185,6 @@ Group:		Development/Languages/Perl
 Requires:	%{name} = %{version}
 Requires:	%{name}-Graphics-OpenGL = %{version}
 Requires:	%{name}-IO-Pic = %{version}
-Provides:	perl(PDL::Graphics::TriD::GL)
-Provides:	perl(PDL::Graphics::TriD::Objects)
-Provides:	perl(PDL::Graphics::TriD::TextObjects)
 
 %description Graphics-TriD
 This module implements a generic 3D plotting interface for PDL.
@@ -146,87 +235,6 @@ za wyj±tkiem zdarzenia <expose>, które musi byæ obs³u¿one przez modu³
 TriD, poniewa¿ obiekt Frame nie jest nigdy wy¶wietlany. Za pomoc±
 przycisków myszki mo¿na kontrolowaæ widok obiektu (przycisk pierwszy)
 oraz jego rozmiar (przycisk trzeci).
-
-%package docs
-Summary:	Supplied extra documentation for PDL::* perl modules
-Summary(pl):	Dodatkowo dostarczona dokumentacja do modu³ów perla PDL::*
-Group:		Development/Languages/Perl
-Requires:	%{name} = %{version}
-
-%description docs
-Additional, supplied by authors, documentation to all PDL::* modules.
-
-%description docs -l pl
-Dodatkowa, dostarczona przez autorów, dokumentacja do modu³ów PDL::*.
-
-%package docs-HTML
-Summary:	Supplied extra documentation for PDL::* perl modules in HTML format
-Summary(pl):	Dodatkowo dostarczona dokumentacja w HTML-u do modu³ów perla PDL::*
-Group:		Development/Languages/Perl
-# for install dir
-Requires:	%{name}
-
-%description docs-HTML
-Additional, supplied by authors, documentation in HTML format to all
-PDL::* modules.
-
-%description docs-HTML -l pl
-Dodatkowa, dostarczona przez autorów, dokumentacja do modu³ów PDL::*,
-w formacie HTML.
-
-%package Graphics-PGPLOT
-Summary:	PGPLOT enhanced interface for PDL
-Summary(pl):	Rozszerzony interfejs biblioteki PGPLOT dla PDL
-Group:		Development/Languages/Perl
-Requires:	%{name} = %{version}
-
-%description Graphics-PGPLOT
-`PDL::Graphics::PGPLOT' is a convenience interface to the PGPLOT
-commands, implemented using the object oriented PGPLOT plotting
-package in the PDL::Graphics::PGPLOT::Window manpage. See the
-documentation for that package for in-depth information about the
-usage of these commands and the options they accept.
-
-%description Graphics-PGPLOT -l pl
-Modu³ ten jest interfejsem do komend biblioteki PGPLOT. Jest ona
-zaimplementowany za pomoc± obiektowo zorientowanego pakietu PGPLOT
-(spójrz do manuala modu³u PDL::Graphics::PGPLOT::Window).
-
-%package Graphics-IIS
-Summary:	Display PDL images on IIS devices (saoimage/ximtool)
-Summary(pl):	Wy¶wietlanie grafiki PDL na urz±dzeniach IIS (saoimage/ximtool)
-Group:		Development/Languages/Perl
-Requires:	%{name} = %{version}
-
-%description Graphics-IIS
-Display PDL images on IIS devices (saoimage/ximtool).
-
-%description Graphics-IIS -l pl
-Wy¶wietlanie grafiki PDL na urz±dzeniach IIS (saoimage/ximtool).
-
-%package Graphics-LUT
-Summary:	Provides access to a number of look-up tables for PDL
-Summary(pl):	Dostêp do tablic kolorów dla PDL
-Group:		Development/Languages/Perl
-Requires:	%{name} = %{version}
-
-%description Graphics-LUT
-Provides access to a number of look-up tables for PDL.
-
-%description Graphics-LUT -l pl
-Modu³ zapewnia dostêp do ró¿nych tablic kolorów (palet) dla PDL.
-
-%package Graphics-OpenGL
-Summary:	PDL interface to the OpenGL graphics library
-Summary(pl):	Interfejs OpenGL dla PDL
-Group:		Development/Languages/Perl
-Requires:	%{name} = %{version}
-
-%description Graphics-OpenGL
-PDL interface to the OpenGL graphics library.
-
-%description Graphics-OpenGL -l pl
-Interfejs OpenGL dla PDL.
 
 %package IO-Browser
 Summary:	2D data browser for PDL
@@ -364,7 +372,6 @@ Requires:	%{name}-Graphics-LUT = %{version}
 Requires:	%{name}-Graphics-PGPLOT = %{version}
 Requires:	%{name}-Graphics-TriD = %{version}
 Requires:	%{name}-Graphics-TriD-Tk = %{version}
-Provides:	perl(PDL::Demos::Screen)
 
 %description Demos
 PDL demos.
@@ -379,6 +386,8 @@ Przyk³adowe skrypty z u¿yciem PDL.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%{!?_without_karma:%patch5 -p1}
+%patch6 -p1
 
 # g77 flags for compiling Slatec:
 %{__perl} -pi -e 's@o \$mycflags s@o %{rpmcflags} s@' Lib/Slatec/Makefile.PL
@@ -423,22 +432,12 @@ rm -rf $RPM_BUILD_ROOT
 %post docs
 /usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 
-%post Graphics-TriD
-if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
-fi
-
-%post Graphics-TriD-Tk
-if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
-fi
-
-%post Graphics-PGPLOT
-if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
-fi
-
 %post Graphics-IIS
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
+%post Graphics-Karma
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
@@ -449,6 +448,21 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 fi
 
 %post Graphics-OpenGL
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
+%post Graphics-PGPLOT
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
+%post Graphics-TriD
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
+%post Graphics-TriD-Tk
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
@@ -508,22 +522,12 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
-%postun Graphics-TriD
-if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
-fi
-
-%postun Graphics-TriD-Tk
-if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
-fi
-
-%postun Graphics-PGPLOT
-if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
-fi
-
 %postun Graphics-IIS
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
+%postun Graphics-Karma
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
@@ -534,6 +538,21 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 fi
 
 %postun Graphics-OpenGL
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
+%postun Graphics-PGPLOT
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
+%postun Graphics-TriD
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
+%postun Graphics-TriD-Tk
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
@@ -738,6 +757,7 @@ fi
 
 %if %{!?_with_html:0}%{?_with_html:1}
 %files docs-HTML
+%defattr(644,root,root,755)
 %doc %{perl_vendorarch}/PDL/HtmlDocs
 %endif
 
@@ -746,56 +766,66 @@ fi
 %attr(755,root,root) %{_bindir}/perldl
 %{_mandir}/man1/perldl*
 
+%files Graphics-IIS
+%defattr(644,root,root,755)
+%{perl_vendorarch}/PDL/Graphics/IIS*
+%dir %{perl_vendorarch}/auto/PDL/Graphics/IIS
+%{perl_vendorarch}/auto/PDL/Graphics/IIS/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/IIS/*.so
+%{_mandir}/man3/PDL::Graphics::IIS*
+
+%if 0%{!?_without_karma:1}
+%files Graphics-Karma
+%defattr(644,root,root,755)
+%{perl_vendorarch}/PDL/Graphics/Karma.pm
+%dir %{perl_vendorarch}/auto/PDL/Graphics/Karma
+%{perl_vendorarch}/auto/PDL/Graphics/Karma/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/Karma/*.so
+%{_mandir}/man3/PDL::Graphics::Karma*
+%endif
+
+%files Graphics-LUT
+%defattr(644,root,root,755)
+%{perl_vendorarch}/PDL/Graphics/LUT*
+%{_mandir}/man3/PDL::Graphics::LUT*
+
+%files Graphics-OpenGL
+%defattr(644,root,root,755)
+%{perl_vendorarch}/PDL/Graphics/OpenGL*
+%dir %{perl_vendorarch}/auto/PDL/Graphics/OpenGL*
+%{perl_vendorarch}/auto/PDL/Graphics/OpenGL*/*bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/OpenGL*/*so
+%{_mandir}/man3/PDL::Graphics::OpenGL*
+
+%files Graphics-PGPLOT
+%defattr(644,root,root,755)
+%{perl_vendorarch}/PDL/Graphics/PGPLOT*
+%{perl_vendorarch}/PDL/Graphics2D*
+%dir %{perl_vendorarch}/auto/PDL/Graphics/PGPLOT
+%dir %{perl_vendorarch}/auto/PDL/Graphics/PGPLOT/Window
+%{perl_vendorarch}/auto/PDL/Graphics/PGPLOT/Window/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/PGPLOT/Window/*.so
+%{_mandir}/man3/PDL::Graphics2D*
+%{_mandir}/man3/PDL::Graphics::PGPLOT*
+
 %files Graphics-TriD
 %defattr(644,root,root,755)
-%{_mandir}/man3/PDL::Graphics::TriD.*
-%{_mandir}/man3/PDL::Graphics::TriD::[A-SU-Z]*
-%dir %{perl_vendorarch}/auto/PDL/Graphics/TriD
-%dir %{perl_vendorarch}/auto/PDL/Graphics/TriD/Rout
-%{perl_vendorarch}/auto/PDL/Graphics/TriD/Rout/*.bs
-%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/TriD/Rout/*.so
 %dir %{perl_vendorarch}/PDL/Graphics/TriD
 %{perl_vendorarch}/PDL/Graphics/TriD/[A-SU-Z]*
 %{perl_vendorarch}/PDL/Graphics/TriD/Te*
 %{perl_vendorarch}/PDL/Graphics/VRML*
 %{perl_vendorarch}/PDL/Graphics/TriD.pm
+%dir %{perl_vendorarch}/auto/PDL/Graphics/TriD
+%dir %{perl_vendorarch}/auto/PDL/Graphics/TriD/Rout
+%{perl_vendorarch}/auto/PDL/Graphics/TriD/Rout/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/TriD/Rout/*.so
+%{_mandir}/man3/PDL::Graphics::TriD.*
+%{_mandir}/man3/PDL::Graphics::TriD::[A-SU-Z]*
 
 %files Graphics-TriD-Tk
 %defattr(644,root,root,755)
-%{_mandir}/man3/PDL::Graphics::TriD::Tk*
 %{perl_vendorarch}/PDL/Graphics/TriD/Tk*
-
-%files Graphics-PGPLOT
-%defattr(644,root,root,755)
-%{_mandir}/man3/PDL::Graphics2D*
-%{_mandir}/man3/PDL::Graphics::PGPLOT*
-%dir %{perl_vendorarch}/auto/PDL/Graphics/PGPLOT
-%dir %{perl_vendorarch}/auto/PDL/Graphics/PGPLOT/Window
-%{perl_vendorarch}/auto/PDL/Graphics/PGPLOT/Window/*.bs
-%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/PGPLOT/Window/*.so
-%{perl_vendorarch}/PDL/Graphics/PGPLOT*
-%{perl_vendorarch}/PDL/Graphics2D*
-
-%files Graphics-LUT
-%defattr(644,root,root,755)
-%{_mandir}/man3/PDL::Graphics::LUT*
-%{perl_vendorarch}/PDL/Graphics/LUT*
-
-%files Graphics-IIS
-%defattr(644,root,root,755)
-%{_mandir}/man3/PDL::Graphics::IIS*
-%dir %{perl_vendorarch}/auto/PDL/Graphics/IIS
-%{perl_vendorarch}/auto/PDL/Graphics/IIS/*.bs
-%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/IIS/*.so
-%{perl_vendorarch}/PDL/Graphics/IIS*
-
-%files Graphics-OpenGL
-%defattr(644,root,root,755)
-%{_mandir}/man3/PDL::Graphics::OpenGL*
-%dir %{perl_vendorarch}/auto/PDL/Graphics/OpenGL*
-%{perl_vendorarch}/auto/PDL/Graphics/OpenGL*/*bs
-%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/OpenGL*/*so
-%{perl_vendorarch}/PDL/Graphics/OpenGL*
+%{_mandir}/man3/PDL::Graphics::TriD::Tk*
 
 %files IO-Browser
 %defattr(644,root,root,755)
