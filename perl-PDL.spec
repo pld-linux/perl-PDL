@@ -36,6 +36,7 @@ BuildRequires:	perl-Inline >= 0.43
 BuildRequires:	perl-PGPLOT
 BuildRequires:	perl-Tk
 BuildRequires:	perl-devel >= 5.8.0-0.32
+BuildRequires:	plplot-devel >= 5.1.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -179,6 +180,22 @@ usage of these commands and the options they accept.
 Modu³ ten jest interfejsem do komend biblioteki PGPLOT. Jest ona
 zaimplementowany za pomoc± obiektowo zorientowanego pakietu PGPLOT
 (spójrz do manuala modu³u PDL::Graphics::PGPLOT::Window).
+
+%package Graphics-PLplot
+Summary:	PDL::Graphics::PLplot - interface to the PLplot plotting library
+Summary(pl):	PDL::Graphics::PLplot - interfejs do biblioteki rysuj±cej PLplot
+Group:		Development/Languages/Perl
+Requires:	%{name} = %{epoch}:%{version}
+
+%description Graphics-PLplot
+PDL::Graphics::PLplot is the PDL interface to the PLplot graphics
+library. It is designed to be simple and light weight with a familiar
+'perlish' Object Oriented interface.
+
+%description Graphics-PLplot -l pl
+PDL::Graphics::PLplot to interfejs PLD do biblioteki graficznej
+PLplot. Jest zaprojektowany tak, aby by³ prosty i lekki ze znajomym
+perlowatym zorientowanym obiektowo interfejsem.
 
 %package Graphics-TriD
 Summary:	PDL 3D interface
@@ -457,6 +474,11 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
+%post Graphics-PLplot
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
 %post Graphics-TriD
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
@@ -543,6 +565,11 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 fi
 
 %postun Graphics-PGPLOT
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
+%postun Graphics-PLplot
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
@@ -813,6 +840,15 @@ fi
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/PGPLOT/Window/*.so
 %{_mandir}/man3/PDL::Graphics2D*
 %{_mandir}/man3/PDL::Graphics::PGPLOT*
+
+%files Graphics-PLplot
+%defattr(644,root,root,755)
+%doc Graphics/PLplot/{Changes,README}
+%{perl_vendorarch}/PDL/Graphics/PLplot.pm
+%dir %{perl_vendorarch}/auto/PDL/Graphics/PLplot
+%{perl_vendorarch}/auto/PDL/Graphics/PLplot/PLplot.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/PLplot/PLplot.so
+%{_mandir}/man3/PDL::Graphics::PLplot.3pm*
 
 %files Graphics-TriD
 %defattr(644,root,root,755)
