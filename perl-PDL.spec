@@ -310,7 +310,7 @@ chmod +x find-*
 
 %build
 perl Makefile.PL
-%{__make} OPTIMIZE="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS} \
+%{__make} OPTIMIZE="%{rpmcflags} \
 	-I%{_includedir}/ncurses -DNCURSES -DPERL_POLLUTE" 
 
 %install
