@@ -1,7 +1,7 @@
 #
 # Conditional build:
-%bcond_without  karma	# build package with PDL::Graphics::Karma modules
-%bcond_without  html	# don't generate package with PDL documentation in HTML
+%bcond_without	karma	# build package with PDL::Graphics::Karma modules
+%bcond_without	html	# don't generate package with PDL documentation in HTML
 %bcond_with	tests	# perform "make test"
 			# require a valid DISPLAY
 #
