@@ -359,10 +359,10 @@ Przyk³adowe skrypty z u¿yciem PDL.
 %patch4 -p1
 
 # g77 flags for compiling Slatec:
-perl -pi -e 's@o \$mycflags s@o %{rpmcflags} s@' Lib/Slatec/Makefile.PL
+%{__perl} -pi -e 's@o \$mycflags s@o %{rpmcflags} s@' Lib/Slatec/Makefile.PL
 
 %build
-perl Makefile.PL
+%{__perl} Makefile.PL
 %{__make} OPTIMIZE="%{rpmcflags} \
 	-I%{_includedir}/ncurses -DNCURSES -DPERL_POLLUTE" 
 
