@@ -8,7 +8,7 @@ Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR):	Módulo PDL para perl
 Name:		perl-PDL
 Version:	2.3.3
-Release:	3
+Release:	4
 Epoch:		1
 License:	GPL
 Group:		Development/Languages/Perl
@@ -687,7 +687,7 @@ fi
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/pdldoc
 %attr(755,root,root) %{perl_sitearch}/PDL/scantree.pl
-%config %{perl_sitearch}/PDL/pdldoc.db
+%ghost %{perl_sitearch}/PDL/pdldoc.db
 %doc %{perl_sitearch}/PDL/*.pod
 %{_mandir}/man1/pdldoc.1*
 
