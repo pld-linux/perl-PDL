@@ -340,6 +340,7 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL/Doc.pm
 %{perl_sitearch}/PDL/Exporter.pm
 %{perl_sitearch}/PDL/FFT.pm
+%{perl_sitearch}/PDL/FFTW.pm
 %{perl_sitearch}/PDL/Filter
 %{perl_sitearch}/PDL/Fit
 %{perl_sitearch}/PDL/Func.pm
@@ -352,6 +353,7 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL/IO/Misc.pm
 %{perl_sitearch}/PDL/LiteF.pm
 %{perl_sitearch}/PDL/Lite.pm
+%{perl_sitearch}/PDL/Lvalue.pm
 %{perl_sitearch}/PDL/Math.pm
 %{perl_sitearch}/PDL/Matrix.pm
 %{perl_sitearch}/PDL/Opt
@@ -372,40 +374,59 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %{perl_sitearch}/auto/PDL
 %dir %{perl_sitearch}/auto/PDL/Bad
+%{perl_sitearch}/auto/PDL/Bad/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Bad/*.so
 %dir %{perl_sitearch}/auto/PDL/Complex
+%{perl_sitearch}/auto/PDL/Complex/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Complex/*.so
 %dir %{perl_sitearch}/auto/PDL/FFT
+%{perl_sitearch}/auto/PDL/FFT/*bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/FFT/*so
+%dir %{perl_sitearch}/auto/PDL/FFTW
+%{perl_sitearch}/auto/PDL/FFTW/*bs
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/FFTW/*so
 %dir %{perl_sitearch}/auto/PDL/Graphics
 %dir %{perl_sitearch}/auto/PDL/IO
 
 %dir %{perl_sitearch}/auto/PDL/Image2D
+%{perl_sitearch}/auto/PDL/Image2D/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Image2D/*.so
 %dir %{perl_sitearch}/auto/PDL/ImageRGB
+%{perl_sitearch}/auto/PDL/ImageRGB/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/ImageRGB/*.so
 %dir %{perl_sitearch}/auto/PDL/Ops
+%{perl_sitearch}/auto/PDL/Ops/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Ops/*.so
 %dir %{perl_sitearch}/auto/PDL/Slices
+%{perl_sitearch}/auto/PDL/Slices/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Slices/*.so
 %dir %{perl_sitearch}/auto/PDL/Ufunc
+%{perl_sitearch}/auto/PDL/Ufunc/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Ufunc/*.so
 %dir %{perl_sitearch}/auto/PDL/CallExt
+%{perl_sitearch}/auto/PDL/CallExt/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/CallExt/*.so
 %dir %{perl_sitearch}/auto/PDL/Core
+%{perl_sitearch}/auto/PDL/Core/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Core/*.so
 %dir %{perl_sitearch}/auto/PDL/Fit
 %dir %{perl_sitearch}/auto/PDL/Fit/Gaussian
+%{perl_sitearch}/auto/PDL/Fit/Gaussian/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Fit/Gaussian/*.so
 %dir %{perl_sitearch}/auto/PDL/ImageND
+%{perl_sitearch}/auto/PDL/ImageND/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/ImageND/*.so
 %dir %{perl_sitearch}/auto/PDL/IO/Misc
+%{perl_sitearch}/auto/PDL/IO/Misc/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/IO/Misc/*.so
 %dir %{perl_sitearch}/auto/PDL/Math
+%{perl_sitearch}/auto/PDL/Math/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Math/*.so
 %dir %{perl_sitearch}/auto/PDL/Primitive
+%{perl_sitearch}/auto/PDL/Primitive/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Primitive/*.so
 %dir %{perl_sitearch}/auto/PDL/Tests
+%{perl_sitearch}/auto/PDL/Tests/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Tests/*.so
 
 %{_mandir}/man1/PDL*
@@ -442,11 +463,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/PDL::Graphics::TriD::[A-SU-Z]*
 %dir %{perl_sitearch}/auto/PDL/Graphics/TriD
 %dir %{perl_sitearch}/auto/PDL/Graphics/TriD/Rout
+%{perl_sitearch}/auto/PDL/Graphics/TriD/Rout/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Graphics/TriD/Rout/*.so
 %dir %{perl_sitearch}/PDL/Graphics/TriD
 %{perl_sitearch}/PDL/Graphics/TriD/[A-SU-Z]*
 %{perl_sitearch}/PDL/Graphics/TriD/Te*
 %{perl_sitearch}/PDL/Graphics/VRML*
+%{perl_sitearch}/PDL/Graphics/TriD.pm
 
 %files Graphics-TriD-Tk
 %defattr(644,root,root,755)
@@ -459,6 +482,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/PDL::Graphics::PGPLOT*
 %dir %{perl_sitearch}/auto/PDL/Graphics/PGPLOT
 %dir %{perl_sitearch}/auto/PDL/Graphics/PGPLOT/Window
+%{perl_sitearch}/auto/PDL/Graphics/PGPLOT/Window/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Graphics/PGPLOT/Window/*.so
 %{perl_sitearch}/PDL/Graphics/PGPLOT*
 %{perl_sitearch}/PDL/Graphics2D*
@@ -472,6 +496,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics::IIS*
 %dir %{perl_sitearch}/auto/PDL/Graphics/IIS
+%{perl_sitearch}/auto/PDL/Graphics/IIS/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Graphics/IIS/*.so
 %{perl_sitearch}/PDL/Graphics/IIS*
 
@@ -479,6 +504,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics::OpenGL*
 %dir %{perl_sitearch}/auto/PDL/Graphics/OpenGL*
+%{perl_sitearch}/auto/PDL/Graphics/OpenGL*/*bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Graphics/OpenGL*/*so
 %{perl_sitearch}/PDL/Graphics/OpenGL*
 
@@ -486,6 +512,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::IO::Browser*
 %dir %{perl_sitearch}/auto/PDL/IO/Browser
+%{perl_sitearch}/auto/PDL/IO/Browser/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/IO/Browser/*.so
 %{perl_sitearch}/PDL/IO/Browser*
 
@@ -512,6 +539,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::IO::Pnm*
 %dir %{perl_sitearch}/auto/PDL/IO/Pnm
+%{perl_sitearch}/auto/PDL/IO/Pnm/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/IO/Pnm/*.so
 %{perl_sitearch}/PDL/IO/Pnm*
 
