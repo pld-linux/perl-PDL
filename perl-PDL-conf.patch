@@ -1,7 +1,7 @@
-diff -Nur PDL-2.1.2cvs20001124.orig/perldl.conf PDL-2.1.2cvs20001124/perldl.conf
---- PDL-2.1.2cvs20001124.orig/perldl.conf	Mon Sep 25 22:59:31 2000
-+++ PDL-2.1.2cvs20001124/perldl.conf	Sat Nov 25 17:58:04 2000
-@@ -45,16 +45,16 @@
+diff -Nur PDL-2.3.3.orig/perldl.conf PDL-2.3.3/perldl.conf
+--- PDL-2.3.3.orig/perldl.conf	Mon Dec  3 08:39:02 2001
++++ PDL-2.3.3/perldl.conf	Fri Jul 12 13:39:31 2002
+@@ -45,15 +45,18 @@
  #	BADVAL_USENAN => 1,
  
  # Try to build Graphics/TriD
@@ -10,19 +10,18 @@ diff -Nur PDL-2.1.2cvs20001124.orig/perldl.conf PDL-2.1.2cvs20001124/perldl.conf
  #
  #  For Mesa 3.2
  #
--#	OPENGL_LIBS => '-L/usr/local/Mesa/lib -lGL -lGLU -lXext -lX11',
+ #	OPENGL_LIBS => '-L/usr/local/Mesa/lib -lGL -lGLU -lXext -lX11',
 +	OPENGL_LIBS => '-L/usr/X11R6/lib -lGL -lGLU -lXext -lX11',
- #
  #  Mesa need -DGL_GLEXT_LEGACY for glPolygonOffsetEXT amoung others
  #
--#	OPENGL_DEFINE => '-DGL_GLEXT_LEGACY',
--# 	OPENGL_INC => '-I/usr/local/Mesa/include',
+ #	OPENGL_DEFINE => '-DGL_GLEXT_LEGACY',
+ # 	OPENGL_INC => '-I/usr/include/GL/',
 +	OPENGL_DEFINE => '-DGL_GLEXT_LEGACY',
-+ 	OPENGL_INC => '-I/usr/X11R6/include',
++	OPENGL_INC => '-I/usr/X11R6/include',
  #
  # 
  # For SGI GL
-@@ -64,13 +64,13 @@
+@@ -63,13 +66,13 @@
  #	OPENGL_DEFINE => '',
  #
  # Let perl try to figure it out
