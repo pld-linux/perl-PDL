@@ -2,6 +2,7 @@
 # Conditional build:
 %bcond_without  karma	# build package with PDL::Graphics::Karma modules
 %bcond_without  html	# don't generate package with PDL documentation in HTML
+%bcond_without	tests	# do not perform "make test"
 #
 %include	/usr/lib/rpm/macros.perl
 %define		pdir	PDL
@@ -12,7 +13,8 @@ Name:		perl-PDL
 Version:	2.4.0
 Release:	1
 Epoch:		1
-License:	GPL
+# same as perl
+License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{version}.tar.gz
 # Source0-md5:	4804aedbfdf6eb2574a61ca0134386ae
@@ -416,6 +418,8 @@ Przyk³adowe skrypty z u¿yciem PDL.
 	INSTALLDIRS=vendor
 %{__make} \
 	OPTIMIZE="%{rpmcflags} -I/usr/include/ncurses -DNCURSES -DPERL_POLLUTE"
+
+%{?with_tests:%{__make} test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
