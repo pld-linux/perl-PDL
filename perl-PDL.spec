@@ -4,7 +4,7 @@ Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
 Name:		perl-PDL
 Version:	2.2.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
@@ -18,6 +18,7 @@ BuildRequires:	rpm-perlprov >= 3.0.3-18
 BuildRequires:	perl >= 5.6.1
 BuildRequires:	OpenGL-devel
 BuildRequires:	XFree86-devel
+BuildRequires:	fftw-devel >= 2.1.3-5
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	perl-Tk
 BuildRequires:	perl-PGPLOT
