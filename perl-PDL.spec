@@ -128,7 +128,25 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/pdldoc
 %{_mandir}/man1/PDL*
 %{_mandir}/man1/pdl*
-%{_mandir}/man3/*
+%{_mandir}/man3/PDL.*
+%{_mandir}/man3/PDL::A*
+%{_mandir}/man3/PDL::BAD_*
+%{_mandir}/man3/PDL::Ba*
+%{_mandir}/man3/PDL::C*
+%{_mandir}/man3/PDL::D*
+%{_mandir}/man3/PDL::E*
+%{_mandir}/man3/PDL::F*
+%{_mandir}/man3/PDL::Ga*
+%{_mandir}/man3/PDL::Graphics::LUT*
+%{_mandir}/man3/PDL::I*
+%{_mandir}/man3/PDL::L*
+%{_mandir}/man3/PDL::M*
+%{_mandir}/man3/PDL::O*
+%{_mandir}/man3/PDL::P*
+%{_mandir}/man3/PDL::R*
+%{_mandir}/man3/PDL::S*
+%{_mandir}/man3/PDL::T*
+%{_mandir}/man3/PDL::U*
 
 %dir %{perl_sitearch}/PDL
 
@@ -192,10 +210,14 @@ rm -rf $RPM_BUILD_ROOT
 %files perldl
 %attr(755,root,root) %{_bindir}/perldl
 %{_mandir}/man1/perldl*
+
 %{perl_sitearch}/PDL/perldl*
 %{perl_sitearch}/PDL/Demos/Screen*
 
 %files Graphics-TriD
+%{_mandir}/man3/PDL::Graphics::TriD.*
+%{_mandir}/man3/PDL::Graphics::TriD::[A-SU-Z]*
+
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Graphics/TriD
 %dir %{perl_sitearch}/PDL/Graphics/TriD
 %{perl_sitearch}/PDL/Graphics/TriD/[A-SU-Z]*
@@ -203,10 +225,16 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL/Demos/TriD*
 
 %files Graphics-TriD-Tk
-%{perl_sitearch}/PDL/Graphics/TriD/Tk.pm
+%{_mandir}/man3/PDL::Graphics::TriD::Tk*
+
+%{perl_sitearch}/PDL/Graphics/TriD/Tk*
 %{perl_sitearch}/PDL/Demos/TkTriD*
 
 %files Graphics-PGPLOT
+%{_mandir}/man3/PDL::BAD2_*
+%{_mandir}/man3/PDL::Graphics2D*
+%{_mandir}/man3/PDL::Graphics::PGPLOT*
+
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Graphics/PGPLOT
 %{perl_sitearch}/PDL/Graphics/PGPLOT*
 %{perl_sitearch}/PDL/Graphics2D*
@@ -214,9 +242,13 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL/Demos/BAD2_*
 
 %files Graphics-IIS
+%{_mandir}/man3/PDL::Graphics::IIS*
+
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Graphics/IIS
 %{perl_sitearch}/PDL/Graphics/IIS*
 
 %files Graphics-OpenGL
+%{_mandir}/man3/PDL::Graphics::OpenGL*
+
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Graphics/OpenGL*
 %{perl_sitearch}/PDL/Graphics/OpenGL*
