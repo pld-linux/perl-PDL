@@ -93,6 +93,17 @@ Group(pl):	Programowanie/Jêzyki/Perl
 
 %description -l pl Graphics-IIS
 
+%package Graphics-LUT
+Summary:	Provides access to a number of look-up tables for PDL
+Summary(pl):	N/A
+Group:		Development/Languages/Perl
+Group(de):	Entwicklung/Sprachen/Perl
+Group(pl):	Programowanie/Jêzyki/Perl
+
+%description Graphics-LUT
+
+%description -l pl Graphics-LUT
+
 %package Graphics-OpenGL
 Summary:	 PDL interface to the OpenGL graphics library
 Summary(pl):	Interfejs OpenGL dla PDL
@@ -104,16 +115,83 @@ Group(pl):	Programowanie/Jêzyki/Perl
 
 %description -l pl Graphics-OpenGL
 
-%package IO
-Summary:	IO interfaces for PDL
-Summary(pl):	Interfejsy wej¶cia/wyj¶cia dla PDL
+%package IO-Browser
+Summary:	2D data browser for PDL
+Summary(pl):	Przegl±darka danych 2D dla PDL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
 
-%description IO
+%description IO-Browser
 
-%description -l pl IO
+%description -l pl IO-Browser
+
+%package IO-FastRaw
+Summary:	A simple, fast and convenient IO format for PDL
+Summary(pl):	Prosty, szybki i wygodny format wej¶cia/wyj¶cia dla PDL
+Group:		Development/Languages/Perl
+Group(de):	Entwicklung/Sprachen/Perl
+Group(pl):	Programowanie/Jêzyki/Perl
+
+%description IO-FastRaw
+
+%description -l pl IO-FastRaw
+
+%package IO-FlexRaw
+Summary:	 A flexible binary IO format for PDL
+Summary(pl):	Elastyczny binarny format wej¶cia/wyj¶cia dla PDL
+Group:		Development/Languages/Perl
+Group(de):	Entwicklung/Sprachen/Perl
+Group(pl):	Programowanie/Jêzyki/Perl
+
+%description IO-FlexRaw
+
+%description -l pl IO-FlexRaw
+
+%package IO-NDF
+Summary:	Starlink N-dimensional data structures for PDL
+Summary(pl):	Wsparcie dla n-wymiarowych struktur danych firmy Starlink dla PDL
+Group:		Development/Languages/Perl
+Group(de):	Entwicklung/Sprachen/Perl
+Group(pl):	Programowanie/Jêzyki/Perl
+
+%description IO-NDF
+
+%description -l pl IO-NDF
+
+%package IO-Pic
+Summary:	IO-Pic
+Summary(pl):	IO-Pic
+Group:		Development/Languages/Perl
+Group(de):	Entwicklung/Sprachen/Perl
+Group(pl):	Programowanie/Jêzyki/Perl
+Requires:	netpbm
+
+%description IO-Pic
+
+%description -l pl IO-Pic
+
+%package IO-Pnm
+Summary:	PNM format IO for PDL
+Summary(pl):	Wsparcie dla formatu PNM dla PDL
+Group:		Development/Languages/Perl
+Group(de):	Entwicklung/Sprachen/Perl
+Group(pl):	Programowanie/Jêzyki/Perl
+
+%description IO-Pnm
+
+%description -l pl IO-Pnm
+
+%package Demos
+Summary:	PDL demos
+Summary(pl):	Przyk³adowe skrypty z u¿yciem PDL
+Group:		Development/Languages/Perl
+Group(de):	Entwicklung/Sprachen/Perl
+Group(pl):	Programowanie/Jêzyki/Perl
+
+%description Demos
+
+%description -l pl Demos
 
 %prep
 %setup  -q -n PDL-%{version}
@@ -141,15 +219,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/pdl*
 %{_mandir}/man3/PDL.*
 %{_mandir}/man3/PDL::A*
-%{_mandir}/man3/PDL::BAD_*
 %{_mandir}/man3/PDL::Ba*
 %{_mandir}/man3/PDL::C*
 %{_mandir}/man3/PDL::D*
 %{_mandir}/man3/PDL::E*
 %{_mandir}/man3/PDL::F*
 %{_mandir}/man3/PDL::Ga*
-%{_mandir}/man3/PDL::Graphics::LUT*
 %{_mandir}/man3/PDL::Im*
+%{_mandir}/man3/PDL::IO::Misc*
 %{_mandir}/man3/PDL::L*
 %{_mandir}/man3/PDL::M*
 %{_mandir}/man3/PDL::O*
@@ -174,6 +251,7 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL/Ga*
 %{perl_sitearch}/PDL/H*
 %{perl_sitearch}/PDL/Im*
+%{perl_sitearch}/PDL/IO/Misc*
 %{perl_sitearch}/PDL/L*
 %{perl_sitearch}/PDL/M*
 %{perl_sitearch}/PDL/O*
@@ -187,19 +265,10 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL/pdl*
 
 %dir %{perl_sitearch}/PDL/Graphics
-%{perl_sitearch}/PDL/Graphics/LUT*
-%{perl_sitearch}/PDL/Graphics/VRML*
-
-#
-# Demos
-#
-%dir %{perl_sitearch}/PDL/Demos
-%{perl_sitearch}/PDL/Demos/BAD_*
-%{perl_sitearch}/PDL/Demos/G*
-%{perl_sitearch}/PDL/Demos/m51.fits
 
 %dir %{perl_sitearch}/auto/PDL
-%dir %{perl_sitearch}/auto/PDL/Graphics/
+%dir %{perl_sitearch}/auto/PDL/Graphics
+%dir %{perl_sitearch}/auto/PDL/IO
 
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Bad
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Complex
@@ -213,6 +282,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Core
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Fit
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/ImageND
+%attr(-,root,root) %{perl_sitearch}/auto/PDL/IO/Misc
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Math
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Primitive
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Tests
@@ -221,57 +291,80 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/perldl
 %{_mandir}/man1/perldl*
-
 %{perl_sitearch}/PDL/perldl*
-%{perl_sitearch}/PDL/Demos/Screen*
 
 %files Graphics-TriD
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics::TriD.*
 %{_mandir}/man3/PDL::Graphics::TriD::[A-SU-Z]*
-
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Graphics/TriD
 %dir %{perl_sitearch}/PDL/Graphics/TriD
 %{perl_sitearch}/PDL/Graphics/TriD/[A-SU-Z]*
 %{perl_sitearch}/PDL/Graphics/TriD/Te*
-%{perl_sitearch}/PDL/Demos/TriD*
+%{perl_sitearch}/PDL/Graphics/VRML*
 
 %files Graphics-TriD-Tk
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics::TriD::Tk*
-
 %{perl_sitearch}/PDL/Graphics/TriD/Tk*
-%{perl_sitearch}/PDL/Demos/TkTriD*
 
 %files Graphics-PGPLOT
 %defattr(644,root,root,755)
-%{_mandir}/man3/PDL::BAD2_*
 %{_mandir}/man3/PDL::Graphics2D*
 %{_mandir}/man3/PDL::Graphics::PGPLOT*
-
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Graphics/PGPLOT
 %{perl_sitearch}/PDL/Graphics/PGPLOT*
 %{perl_sitearch}/PDL/Graphics2D*
-%{perl_sitearch}/PDL/Demos/PGPLOT*
-%{perl_sitearch}/PDL/Demos/BAD2_*
+
+%files Graphics-LUT
+%defattr(644,root,root,755)
+%{_mandir}/man3/PDL::Graphics::LUT*
+%{perl_sitearch}/PDL/Graphics/LUT*
 
 %files Graphics-IIS
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics::IIS*
-
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Graphics/IIS
 %{perl_sitearch}/PDL/Graphics/IIS*
 
 %files Graphics-OpenGL
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics::OpenGL*
-
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Graphics/OpenGL*
 %{perl_sitearch}/PDL/Graphics/OpenGL*
 
-%files IO
+%files IO-Browser
 %defattr(644,root,root,755)
-%{_mandir}/man3/PDL::IO*
+%{_mandir}/man3/PDL::IO::Browser*
+%attr(-,root,root) %{perl_sitearch}/auto/PDL/IO/Browser
+%{perl_sitearch}/PDL/IO/Browser*
 
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/IO
-%{perl_sitearch}/PDL/IO
+%files IO-FastRaw
+%defattr(644,root,root,755)
+%{_mandir}/man3/PDL::IO::FastRaw*
+%{perl_sitearch}/PDL/IO/FastRaw*
+
+%files IO-FlexRaw
+%defattr(644,root,root,755)
+%{_mandir}/man3/PDL::IO::FlexRaw*
+%{perl_sitearch}/PDL/IO/FlexRaw*
+
+%files IO-NDF
+%defattr(644,root,root,755)
+%{_mandir}/man3/PDL::IO::NDF*
+%{perl_sitearch}/PDL/IO/NDF*
+
+%files IO-Pic
+%defattr(644,root,root,755)
+%{perl_sitearch}/PDL/IO/Pic*
+
+%files IO-Pnm
+%defattr(644,root,root,755)
+%{_mandir}/man3/PDL::IO::Pnm*
+%attr(-,root,root) %{perl_sitearch}/auto/PDL/IO/Pnm
+%{perl_sitearch}/PDL/IO/Pnm*
+
+%files Demos
+%defattr(644,root,root,755)
+%{_mandir}/man3/PDL::BAD*
+%{perl_sitearch}/PDL/Demos
