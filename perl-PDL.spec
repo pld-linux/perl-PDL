@@ -1,8 +1,8 @@
 Summary:	perlDL
 Summary(pl):	perlDL
 Name:		perl-PDL
-Version:	2.0
-Release:	2
+Version:	2.002
+Release:	1
 Group:		Development/Languages/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
 Copyright:	GPL
@@ -10,7 +10,9 @@ URL:		http://www.perl.com/CPAN//modules/by-module/PDL/PDL-%{version}.readme
 Source:		ftp://ftp.digital.com/pub/plan/perl/CPAN/modules/by-module/PDL/PDL-%{version}.tar.gz
 Patch0:		perl-PDL-conf.patch
 Patch1:		perl-PDL-doc.patch
-BuildRequires:	perl >= 5.002
+Patch2:		perl-PDL-die_where.patch
+Patch3:		perl-PDL-croak.patch
+BuildRequires:	perl >= 5.005_61-0.1
 BuildRequires:	Mesa-devel
 BuildRequires:	XFree86-devel
 BuildRequires:	ncurses-devel
@@ -33,19 +35,18 @@ i naukowaych.
 %prep
 %setup  -q -n PDL-%{version}
 %patch0 -p1
-%patch1 -p1
+#%patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 perl Makefile.PL
-make OPTIMIZE="$RPM_OPT_FLAGS -I/usr/include/ncurses -DNCURSES" 
+make OPTIMIZE="$RPM_OPT_FLAGS -I/usr/include/ncurses -DNCURSES -DPERL_POLLUTE" 
 
 %install
 rm -rf $RPM_BUILD_ROOT
 make install \
-	MKPATH="install -d" \
-	PREFIX=$RPM_BUILD_ROOT%{_prefix} \
-	INSTALLMAN3DIR=$RPM_BUILD_ROOT%{_mandir}/man3 \
-	INSTALLMAN1DIR=$RPM_BUILD_ROOT%{_mandir}/man1
+	DESTDIR=$RPM_BUILD_ROOT
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man{1,3}/*
 
