@@ -268,7 +268,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 %description IO-Browser
 2D data browser for PDL.
 
-%description -l pl IO-Browser
+%description IO-Browser -l pl
 Przegl±darka danych 2D dla PDL.
 
 %package IO-FastRaw
