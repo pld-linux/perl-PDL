@@ -1,15 +1,15 @@
 #
-# Conditional build:
-# _with_html - generate an extra package with PDL documentation in HTML
-#
+%bcond_without  karma
+%bcond_with     html # generate an extra package with PDL documentation in HTML
+
 %include	/usr/lib/rpm/macros.perl
 %define		pdir	PDL
 Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR):	Módulo PDL para perl
 Name:		perl-PDL
-Version:	2.3.4
-Release:	3
+Version:	2.4.0
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Development/Languages/Perl
@@ -27,7 +27,7 @@ BuildRequires:	OpenGL-devel
 BuildRequires:	XFree86-devel
 BuildRequires:	fftw-devel >= 2.1.3-5
 BuildRequires:	gsl-devel >= 1.0
-%{!?_without_karma:BuildRequires:	karma-devel}
+%{?with_karma:BuildRequires:	karma-devel}
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	perl-ExtUtils-F77 >= 1.10
 BuildRequires:	perl-Filter
@@ -387,7 +387,7 @@ Przyk³adowe skrypty z u¿yciem PDL.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%{!?_without_karma:%patch5 -p1}
+%{?with_karma:%patch5 -p1}
 %patch6 -p1
 
 # g77 flags for compiling Slatec:
@@ -756,7 +756,7 @@ fi
 %doc %{perl_vendorarch}/PDL/*.pod
 %{_mandir}/man1/pdldoc.1*
 
-%if %{!?_with_html:0}%{?_with_html:1}
+%if %{with html}
 %files docs-HTML
 %defattr(644,root,root,755)
 %doc %{perl_vendorarch}/PDL/HtmlDocs
@@ -775,7 +775,7 @@ fi
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/IIS/*.so
 %{_mandir}/man3/PDL::Graphics::IIS*
 
-%if 0%{!?_without_karma:1}
+%if %{with karma}
 %files Graphics-Karma
 %defattr(644,root,root,755)
 %{perl_vendorarch}/PDL/Graphics/Karma.pm
