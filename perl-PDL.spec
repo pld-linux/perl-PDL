@@ -31,7 +31,7 @@ BuildRequires:	perl-Filter
 BuildRequires:	perl-Inline >= 0.43
 BuildRequires:	perl-PGPLOT
 BuildRequires:	perl-Tk
-BuildRequires:	rpm-perlprov >= 3.0.3-18
+BuildRequires:	rpm-perlprov >= 4.0.2-104
 Provides:	perl(PDL::Lite)
 Provides:	perl(PDL::LiteF)
 Provides:	perl(PDL::PP::CType)
