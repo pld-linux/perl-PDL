@@ -5,13 +5,14 @@ Summary:	perlDL
 Summary(pl):	perlDL
 Name:		perl-PDL
 Version:	2.1.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		Development/Languages/Perl
+Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
 Source0:	ftp://download.sourceforge.net/pub/sourceforge/PDL/PDL-%{version}.tar.gz
-Patch0:		perl-PDL-conf.patch
-Patch1:		perl-PDL-dep.patch
+Patch0:		%{name}-conf.patch
+Patch1:		%{name}-dep.patch
 URL:		http://www.perl.com/CPAN//modules/by-module/PDL/PDL-%{version}.readme
 BuildRequires:	rpm-perlprov >= 3.0.3-18
 BuildRequires:	perl >= 5.005_03-14
@@ -47,23 +48,18 @@ chmod +x find-*
 
 %build
 perl Makefile.PL
-%{__make} OPTIMIZE="$RPM_OPT_FLAGS -I%{_includedir}/ncurses -DNCURSES -DPERL_POLLUTE" 
+%{__make} OPTIMIZE="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g} -I%{_includedir}/ncurses -DNCURSES -DPERL_POLLUTE" 
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-find $RPM_BUILD_ROOT%{perl_sitearch}/auto/PDL -name \*.so -exec \
-	strip --strip-unneeded {} \;
-
 (
   cd $RPM_BUILD_ROOT%{perl_sitearch}/auto/PDL
   sed -e "s#$RPM_BUILD_ROOT##" .packlist >.packlist.new
-  mv .packlist.new .packlist
+  mv -f .packlist.new .packlist
 )
-
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man{1,3}/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
