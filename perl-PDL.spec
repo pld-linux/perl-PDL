@@ -10,10 +10,10 @@ URL:		http://www.perl.com/CPAN//modules/by-module/PDL/PDL-%{version}.readme
 Source:		ftp://ftp.digital.com/pub/plan/perl/CPAN/modules/by-module/PDL/PDL-%{version}.tar.gz
 Patch0:		perl-PDL-conf.patch
 Patch1:		perl-PDL-doc.patch
-BuildPreReq:	perl >= 5.002
-BuildPrereq:	Mesa-devel
-BuildPrereq:	XFree86-devel
-BuildPrereq:	ncurses-devel
+BuildRequires:	perl >= 5.002
+BuildRequires:	Mesa-devel
+BuildRequires:	XFree86-devel
+BuildRequires:	ncurses-devel
 %requires_eq	perl
 Requires:	%{perl_sitearch}
 Buildroot:	/tmp/%{name}-%{version}-root
