@@ -1,8 +1,8 @@
 %include	/usr/lib/rpm/macros.perl
 %define		__find_provides	%{_builddir}/PDL-%{version}/find-perl-provides
 %define		__find_requires %{_builddir}/PDL-%{version}/find-perl-requires
-Summary:	perlDL
-Summary(pl):	perlDL
+Summary:	perlDL - efficient numerical computing for Perl
+Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
 Name:		perl-PDL
 Version:	2.1.2cvs20001124
 Release:	1
@@ -27,16 +27,17 @@ Requires:	%{perl_sitearch}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-The perlDL project aims to turn perl into an efficient numerical
-language for scientific computing. The PDL module gives standard perl
-the ability to COMPACTLY store and SPEEDILY manipulate the large
-N-dimensional data sets which are the bread and butter of scientific
-computing. e.g. C<$a=$b+$c> can add two 2048x2048 images in only a
-fraction of a second.
+The perlDL project aims to turn Perl into an efficient numerical language
+for scientific computing. The PDL module gives standard Perl the ability to
+COMPACTLY store and SPEEDILY manipulate the large N-dimensional data sets
+which are the bread and butter of scientific computing, i.e. C<$a=$b+$c>
+can add two 2048x2048 images in only a fraction of a second.
 
 %description -l pl
-perlDL rozsze¿a mo¿liwo¶ci perl'a o funkcje do obliczeñ numerycznych i
-naukowaych.
+Modu³ perlDL rozszerza mo¿liwo¶ci Perla o funkcje do obliczeñ numerycznych.
+Umo¿liwia przechowywanie oraz szybkie manipulowanie du¿ymi n-wymiarowymi
+zbiorami danych, które s± chlebem powszednim naukowych obliczeñ, np.:
+C<$a=$b+$c> dodaje dwie bitmapy rozmiaru 2048x2048 w u³amku sekundy.
 
 %package perldl
 Summary:	PDL shell
@@ -46,8 +47,17 @@ Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
 
 %description perldl
+The program perldl is a simple shell (written in perl) for interactive use
+of PDL.  perl/PDL commands can simply be typed in - and edited if you have
+appropriate version of the ReadLines and ReadKeys modules installed.  In
+that case perldl also supports a history mechanism.
 
 %description -l pl perldl
+Program perldl jest prost± pow³ok± napisan± w Perlu do interaktywnego
+wykonywania funkcji modu³u PDL. Komendy Perla lub PDL mog± byæ w prosty
+sposób wprowadzane, a tak¿e edytowane je¶li masz zainstalowan± odpowiedni±
+wersjê modu³ó ReadLines oraz ReadKeys. W tym ostatnim przypadku perldl
+wspiera mechanizm historii komend.
 
 %package Graphics-TriD
 Summary:	PDL 3D interface
@@ -57,8 +67,27 @@ Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
 
 %description Graphics-TriD
+This module implements a generic 3D plotting interface for PDL.  Points,
+lines and surfaces (among other objects) are supported.
+
+With OpenGL, it is easy to manipulate the resulting 3D objects with the
+mouse in real time - this helps data visualization a lot.
+
+With VRML, you can generate objects for everyone to see with e.g.  Silicon
+Graphics' Cosmo Player. You can find out more about VRML at
+`http://vrml.sgi.com/' or `http://www.vrml.org/'
 
 %description -l pl Graphics-TriD
+Modu³ ten implementuje podstawowy interfejs 3D dla PDL. Dostêpne s± - w¶ród innych
+obiektów - punkty, linie oraz powierzchnie.
+
+Za pomoc± OpenGL, stworzonymi obiektami 3D mo¿na ³atwo manipulowaæ w czasie
+rzeczywistym za pomoc± myszy, co bardzo wspomaga wizualizacjê danych.
+
+Mo¿esz te¿ generowaæ obiekty w formacie VRML, które mog± byæ ogl±dane
+przez inne osoby za pomoc± np.: programu Cosmo Player firmy Silicon Graphics.
+Wiêcej na temat VRML mo¿esz znale¼æ pod adresami http://vrml.sgi.com/
+lub http://www.vrml.org/.
 
 %package Graphics-TriD-Tk
 Summary:	A Tk widget interface to the PDL-Graphics-TriD
@@ -68,8 +97,22 @@ Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
 
 %description Graphics-TriD-Tk
+The widget is composed of a Frame and the Display device of the TriD
+output.  It inherits all of the attributes of a Tk Frame.  All of the
+events associated with this window are handled through Tk with the
+exception of the <expose> event which must be handled by TriD because the
+Frame is never exposed.  Default mouse bindings, defined for button1 and
+button3, control TriD object orientation and size respectively.
+
 
 %description -l pl Graphics-TriD-Tk
+Kontrolka ta sk³ada siê z obiektu Frame oraz urz±dzenia Display
+modu³u TriD. Dziedziczy ona wszystkie atrybuty obiektu Tk Frame.
+Wszystkie zdarzenia skojarzone z tym oknem kontrolki s± obs³ugiwane
+za pomoc± Tk za wyj±tkiem zdarzenia <expose>, które musi byæ obs³u¿one
+przez modu³ TriD, poniewa¿ obiekt Frame nie jest nigdy wy¶wietlany.
+Za pomoc± przycisków myszki mo¿na kontrolowaæ widok obiektu
+(przycisk pierwszy) oraz jego rozmiar (przycisk trzeci).
 
 %package Graphics-PGPLOT
 Summary:	PGPLOT enhanced interface for PDL
@@ -79,8 +122,17 @@ Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
 
 %description Graphics-PGPLOT
+`PDL::Graphics::PGPLOT' is a convenience interface to the PGPLOT commands,
+implemented using the object oriented PGPLOT plotting package in the
+PDL::Graphics::PGPLOT::Window manpage. See the documentation for that
+package for in-depth information about the usage of these commands and the
+options they accept.
+
 
 %description -l pl Graphics-PGPLOT
+Modu³ ten jest interfejsem do komend biblioteki PGPLOT. Jest ona
+zaimplementowany za pomoc± obiektowo zorientowanego pakietu PGPLOT
+(spójrz do manuala modu³u PDL::Graphics::PGPLOT::Window).
 
 %package Graphics-IIS
 Summary:	Display PDL images on IIS devices (saoimage/ximtool)
