@@ -6,7 +6,7 @@
 			# require a valid DISPLAY
 #
 %include	/usr/lib/rpm/macros.perl
-%define	pdir	PDL
+%define		pdir	PDL
 Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR):	Módulo PDL para perl
