@@ -345,7 +345,6 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL/Func.pm
 %{perl_sitearch}/PDL/Gaussian.pm
 %dir %{perl_sitearch}/PDL/Graphics
-%{perl_sitearch}/PDL/Graphics2D.pm
 %{perl_sitearch}/PDL/Image2D.pm
 %{perl_sitearch}/PDL/ImageND.pm
 %{perl_sitearch}/PDL/ImageRGB.pm
