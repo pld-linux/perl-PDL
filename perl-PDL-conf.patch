@@ -1,18 +1,23 @@
---- PDL-2.005/perldl.conf	Wed Jan 26 07:05:01 2000
-+++ PDL-2.005.new/perldl.conf	Fri Jun 23 06:32:58 2000
-@@ -19,10 +19,9 @@
- # Try to build Graphics/TriD
- 	WITH_3D => undef,
- # Where to get PDL::OpenGL module libs and includes.. 
--#  You can use e.g. '-lMesaGL -lMesaGLU' with the correct -L directory
- #  to use Mesa.
- 	OPENGL_LIBS => 
--             '-L/usr/X11R6/lib -L/usr/lib/mesa -lMesaGL -lMesaGLU -lGL -lGLU -lXext -lX11',
-+             '-L/usr/X11R6/lib -lGL -lGLU -lXext -lX11',
- 	OPENGL_DEFINE => '',
-  	OPENGL_INC => '-I/usr/X11R6/include',
- 
-@@ -30,13 +29,13 @@
+diff -Nur PDL-2.1.2cvs20001124.orig/perldl.conf PDL-2.1.2cvs20001124/perldl.conf
+--- PDL-2.1.2cvs20001124.orig/perldl.conf	Mon Sep 25 22:59:31 2000
++++ PDL-2.1.2cvs20001124/perldl.conf	Sat Nov 25 01:33:46 2000
+@@ -49,12 +49,12 @@
+ #
+ #  For Mesa 3.2
+ #
+-#	OPENGL_LIBS => '-L/usr/local/Mesa/lib -lGL -lGLU -lXext -lX11',
++	OPENGL_LIBS => '-L/usr/X11R6/lib -lGL -lGLU -lXext -lX11',
+ #
+ #  Mesa need -DGL_GLEXT_LEGACY for glPolygonOffsetEXT amoung others
+ #
+-#	OPENGL_DEFINE => '-DGL_GLEXT_LEGACY',
+-# 	OPENGL_INC => '-I/usr/local/Mesa/include',
++	OPENGL_DEFINE => '-DGL_GLEXT_LEGACY',
++ 	OPENGL_INC => '-I/usr/X11R6/include',
+ #
+ # 
+ # For SGI GL
+@@ -70,13 +70,13 @@
  # Whether or not to build the Karma interface module
  
          WITH_KARMA => undef,    # Leave it up to PDL to decide
@@ -26,5 +31,5 @@
 -        WITH_SLATEC => undef,    # Leave it up to PDL to decide
 +        WITH_SLATEC => 0,    # Leave it up to PDL to decide
  
- 
  # Whether or not to build the PDL::GSL module
+ # 0 -> don't use
