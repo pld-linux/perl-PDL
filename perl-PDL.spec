@@ -591,6 +591,7 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL/Fit/Polynomial.pm
 %{perl_sitearch}/PDL/Gaussian.pm
 %{perl_sitearch}/PDL/Matrix.pm
+%{perl_sitearch}/PDL/Slatec.pm
 %dir %{perl_sitearch}/auto/PDL/Slatec
 %{perl_sitearch}/auto/PDL/Slatec/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Slatec/*.so
