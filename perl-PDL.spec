@@ -4,12 +4,12 @@
 Summary:	perlDL
 Summary(pl):	perlDL
 Name:		perl-PDL
-Version:	2.003
-Release:	2
+Version:	2.1.1
+Release:	1
 License:	GPL
 Group:		Development/Languages/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
-Source0:	ftp://ftp.digital.com/pub/plan/perl/CPAN/modules/by-module/PDL/PDL-%{version}.tar.gz
+Source0:	ftp://download.sourceforge.net/pub/sourceforge/PDL/PDL-%{version}.tar.gz
 Patch0:		perl-PDL-conf.patch
 Patch1:		perl-PDL-dep.patch
 URL:		http://www.perl.com/CPAN//modules/by-module/PDL/PDL-%{version}.readme
