@@ -35,6 +35,8 @@ Provides:	perl(PDL::PP::XS)
 Provides:	perl(PDL::Slatec)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define 	_noautoreqdep	libGL.so.1 libGLU.so.1
+
 %description
 The perlDL project aims to turn Perl into an efficient numerical language
 for scientific computing. The PDL module gives standard Perl the ability to
