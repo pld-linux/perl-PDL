@@ -11,14 +11,14 @@ Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR):	Módulo PDL para perl
 Name:		perl-PDL
-Version:	2.4.0
-Release:	2
+Version:	2.4.1
+Release:	1
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{version}.tar.gz
-# Source0-md5:	4804aedbfdf6eb2574a61ca0134386ae
+# Source0-md5:	0d57eb5ccb4d9e63103622e1e1144793
 Patch0:		%{name}-conf.patch
 Patch1:		%{name}-dep.patch
 Patch2:		%{name}-Makefile.PL.patch-dumb
@@ -30,7 +30,7 @@ URL:		http://pdl.perl.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	XFree86-devel
 BuildRequires:	fftw-devel >= 2.1.3-5
-BuildRequires:	gsl-devel >= 1.0
+BuildRequires:	gsl-devel >= 1.3
 %{?with_karma:BuildRequires:	karma-devel}
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	perl-ExtUtils-F77 >= 1.10
@@ -39,7 +39,7 @@ BuildRequires:	perl-Inline >= 0.43
 BuildRequires:	perl-PGPLOT
 BuildRequires:	perl-Tk
 BuildRequires:	perl-devel >= 1:5.8.0
-BuildRequires:	plplot-devel >= 5.1.0
+BuildRequires:	plplot-devel >= 5.2.1
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -413,7 +413,7 @@ Przyk³adowe skrypty z u¿yciem PDL.
 
 %{__perl} -pi -e 's/\b(pdlpp_postamble)\b/$1_int/g' Graphics/PLplot/Makefile.PL
 # g77 flags for compiling Slatec:
-%{__perl} -pi -e 's@o \$mycflags s@o %{rpmcflags} s@' Lib/Slatec/Makefile.PL
+%{__perl} -pi -e 's@\) \$mycflags s@\) %{rpmcflags} -fPIC s@' Lib/Slatec/Makefile.PL
 
 %build
 %{__perl} Makefile.PL \
@@ -679,6 +679,7 @@ fi
 %{perl_vendorarch}/PDL/ImageRGB.pm
 %dir %{perl_vendorarch}/PDL/IO
 %{perl_vendorarch}/PDL/IO/Dumper.pm
+%{perl_vendorarch}/PDL/IO/FITS.pm
 %{perl_vendorarch}/PDL/IO/Misc.pm
 %{perl_vendorarch}/PDL/LiteF.pm
 %{perl_vendorarch}/PDL/Lite.pm
@@ -763,6 +764,9 @@ fi
 %dir %{perl_vendorarch}/auto/PDL/Tests
 %{perl_vendorarch}/auto/PDL/Tests/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Tests/*.so
+%dir %{perl_vendorarch}/auto/PDL/Transform
+%{perl_vendorarch}/auto/PDL/Transform/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Transform/*.so
 
 %{perl_vendorarch}/Inline/Pdlpp.pm
 
@@ -779,6 +783,7 @@ fi
 %{_mandir}/man3/PDL::Func.3pm*
 %{_mandir}/man3/PDL::Graphics::State.3pm*
 %{_mandir}/man3/PDL::I[mn]*
+%{_mandir}/man3/PDL::IO::FITS.3pm*
 %{_mandir}/man3/PDL::IO::Misc*
 %{_mandir}/man3/PDL::Math*
 %{_mandir}/man3/PDL::MatrixOps.3pm*
