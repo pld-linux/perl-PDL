@@ -28,7 +28,7 @@ BuildRequires:	fftw-devel >= 2.1.3-5
 BuildRequires:	gsl-devel >= 1.0
 %{!?_without_karma:BuildRequires:	karma-devel}
 BuildRequires:	ncurses-devel >= 5.0
-BuildRequires:	perl >= 5.8.0-0.32
+BuildRequires:	perl-devel >= 5.8.0-0.32
 BuildRequires:	perl-ExtUtils-F77 >= 1.10
 BuildRequires:	perl-Filter
 BuildRequires:	perl-Inline >= 0.43
