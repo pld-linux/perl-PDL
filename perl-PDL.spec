@@ -4,7 +4,7 @@
 Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
 Name:		perl-PDL
-Version:	2.1.2cvs20001124
+Version:	2.2
 Release:	1
 License:	GPL
 Group:		Development/Languages/Perl
@@ -286,8 +286,94 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/pdldoc
+%dir %{perl_sitearch}/PDL
+
+%{perl_sitearch}/PDL.pm
+%{perl_sitearch}/PDL/AutoLoader.pm
+%{perl_sitearch}/PDL/Bad.pm
+%{perl_sitearch}/PDL/Basic.pm
+%{perl_sitearch}/PDL/CallExt.pm
+%{perl_sitearch}/PDL/Char.pm
+%{perl_sitearch}/PDL/Complex.pm
+%{perl_sitearch}/PDL/Config.pm
+%{perl_sitearch}/PDL/Core
+%{perl_sitearch}/PDL/Core.pm
+%{perl_sitearch}/PDL/Dbg.pm
+%{perl_sitearch}/PDL/Doc
+%{perl_sitearch}/PDL/Doc.pm
+%{perl_sitearch}/PDL/Exporter.pm
+%{perl_sitearch}/PDL/FFT.pm
+%{perl_sitearch}/PDL/Filter
+%{perl_sitearch}/PDL/Fit
+%{perl_sitearch}/PDL/Func.pm
+%{perl_sitearch}/PDL/Gaussian.pm
+%dir %{perl_sitearch}/PDL/Graphics
+%{perl_sitearch}/PDL/Graphics2D.pm
+%{perl_sitearch}/PDL/Image2D.pm
+%{perl_sitearch}/PDL/ImageND.pm
+%{perl_sitearch}/PDL/ImageRGB.pm
+%{perl_sitearch}/PDL/IO
+%{perl_sitearch}/PDL/LiteF.pm
+%{perl_sitearch}/PDL/Lite.pm
+%{perl_sitearch}/PDL/Math.pm
+%{perl_sitearch}/PDL/Matrix.pm
+%{perl_sitearch}/PDL/Opt
+%{perl_sitearch}/PDL/Ops.pm
+%{perl_sitearch}/PDL/Options.pm
+%{perl_sitearch}/PDL/PP
+%{perl_sitearch}/PDL/PP.pm
+%{perl_sitearch}/PDL/Primitive.pm
+%{perl_sitearch}/PDL/Pod
+%{perl_sitearch}/PDL/Reduce.pm
+%{perl_sitearch}/PDL/Slices.pm
+%{perl_sitearch}/PDL/Tests.pm
+%{perl_sitearch}/PDL/Types.pm
+%{perl_sitearch}/PDL/Ufunc.pm
+%{perl_sitearch}/PDL/Version.pm
+%{perl_sitearch}/PDL/default.perldlrc
+%{perl_sitearch}/PDL/pdl*
+
+%dir %{perl_sitearch}/auto/PDL
+%dir %{perl_sitearch}/auto/PDL/Bad
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/Bad/*.so
+%dir %{perl_sitearch}/auto/PDL/Complex
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/Complex/*.so
+%dir %{perl_sitearch}/auto/PDL/FFT
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/FFT/*so
+%dir %{perl_sitearch}/auto/PDL/Graphics
+%dir %{perl_sitearch}/auto/PDL/IO
+
+%dir %{perl_sitearch}/auto/PDL/Image2D
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/Image2D/*.so
+%dir %{perl_sitearch}/auto/PDL/ImageRGB
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/ImageRGB/*.so
+%dir %{perl_sitearch}/auto/PDL/Ops
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/Ops/*.so
+%dir %{perl_sitearch}/auto/PDL/Slices
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/Slices/*.so
+%dir %{perl_sitearch}/auto/PDL/Ufunc
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/Ufunc/*.so
+%dir %{perl_sitearch}/auto/PDL/CallExt
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/CallExt/*.so
+%dir %{perl_sitearch}/auto/PDL/Core
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/Core/*.so
+%dir %{perl_sitearch}/auto/PDL/Fit
+%dir %{perl_sitearch}/auto/PDL/Fit/Gaussian
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/Fit/Gaussian/*.so
+%dir %{perl_sitearch}/auto/PDL/ImageND
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/ImageND/*.so
+%dir %{perl_sitearch}/auto/PDL/IO/Misc
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/IO/Misc/*.so
+%dir %{perl_sitearch}/auto/PDL/Math
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/Math/*.so
+%dir %{perl_sitearch}/auto/PDL/Primitive
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/Primitive/*.so
+%dir %{perl_sitearch}/auto/PDL/Tests
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/Tests/*.so
+
 %{_mandir}/man1/PDL*
-%{_mandir}/man1/pdl*
+%{_mandir}/man1/pdl.*
+%{_mandir}/man1/pdldoc.*
 %{_mandir}/man3/PDL.*
 %{_mandir}/man3/PDL::A*
 %{_mandir}/man3/PDL::Ba*
@@ -307,57 +393,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/PDL::T*
 %{_mandir}/man3/PDL::U*
 
-%dir %{perl_sitearch}/PDL
-
-%{perl_sitearch}/PDL.pm
-%{perl_sitearch}/PDL/A*
-%{perl_sitearch}/PDL/B*
-%{perl_sitearch}/PDL/C*
-%{perl_sitearch}/PDL/Da*
-%{perl_sitearch}/PDL/Db*
-%{perl_sitearch}/PDL/Del*
-%{perl_sitearch}/PDL/Do*
-%{perl_sitearch}/PDL/E*
-%{perl_sitearch}/PDL/F*
-%{perl_sitearch}/PDL/Ga*
-%{perl_sitearch}/PDL/H*
-%{perl_sitearch}/PDL/Im*
-%{perl_sitearch}/PDL/IO/Misc*
-%{perl_sitearch}/PDL/L*
-%{perl_sitearch}/PDL/M*
-%{perl_sitearch}/PDL/O*
-%{perl_sitearch}/PDL/P*
-%{perl_sitearch}/PDL/R*
-%{perl_sitearch}/PDL/S*
-%{perl_sitearch}/PDL/T*
-%{perl_sitearch}/PDL/U*
-%{perl_sitearch}/PDL/V*
-%{perl_sitearch}/PDL/d*
-%{perl_sitearch}/PDL/pdl*
-
-%dir %{perl_sitearch}/PDL/Graphics
-
-%dir %{perl_sitearch}/auto/PDL
-%dir %{perl_sitearch}/auto/PDL/Graphics
-%dir %{perl_sitearch}/auto/PDL/IO
-
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/Bad
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/Complex
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/FFT
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/Image2D
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/ImageRGB
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/Ops
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/Slices
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/Ufunc
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/CallExt
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/Core
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/Fit
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/ImageND
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/IO/Misc
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/Math
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/Primitive
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/Tests
-
 %files perldl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/perldl
@@ -368,7 +403,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics::TriD.*
 %{_mandir}/man3/PDL::Graphics::TriD::[A-SU-Z]*
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/Graphics/TriD
+%dir %{perl_sitearch}/auto/PDL/Graphics/TriD
+%dir %{perl_sitearch}/auto/PDL/Graphics/TriD/Rout
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/Graphics/TriD/Rout/*.so
 %dir %{perl_sitearch}/PDL/Graphics/TriD
 %{perl_sitearch}/PDL/Graphics/TriD/[A-SU-Z]*
 %{perl_sitearch}/PDL/Graphics/TriD/Te*
@@ -383,7 +420,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics2D*
 %{_mandir}/man3/PDL::Graphics::PGPLOT*
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/Graphics/PGPLOT
+%dir %{perl_sitearch}/auto/PDL/Graphics/PGPLOT
+%dir %{perl_sitearch}/auto/PDL/Graphics/PGPLOT/Window
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/Graphics/PGPLOT/Window/*.so
 %{perl_sitearch}/PDL/Graphics/PGPLOT*
 %{perl_sitearch}/PDL/Graphics2D*
 
@@ -395,19 +434,22 @@ rm -rf $RPM_BUILD_ROOT
 %files Graphics-IIS
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics::IIS*
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/Graphics/IIS
+%dir %{perl_sitearch}/auto/PDL/Graphics/IIS
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/Graphics/IIS/*.so
 %{perl_sitearch}/PDL/Graphics/IIS*
 
 %files Graphics-OpenGL
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics::OpenGL*
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/Graphics/OpenGL*
+%dir %{perl_sitearch}/auto/PDL/Graphics/OpenGL*
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/Graphics/OpenGL*/*so
 %{perl_sitearch}/PDL/Graphics/OpenGL*
 
 %files IO-Browser
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::IO::Browser*
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/IO/Browser
+%dir %{perl_sitearch}/auto/PDL/IO/Browser
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/IO/Browser/*.so
 %{perl_sitearch}/PDL/IO/Browser*
 
 %files IO-FastRaw
@@ -432,7 +474,8 @@ rm -rf $RPM_BUILD_ROOT
 %files IO-Pnm
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::IO::Pnm*
-%attr(-,root,root) %{perl_sitearch}/auto/PDL/IO/Pnm
+%dir %{perl_sitearch}/auto/PDL/IO/Pnm
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/IO/Pnm/*.so
 %{perl_sitearch}/PDL/IO/Pnm*
 
 %files Demos
