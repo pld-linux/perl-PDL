@@ -37,7 +37,7 @@ BuildRequires:	perl-Filter
 BuildRequires:	perl-Inline >= 0.43
 BuildRequires:	perl-PGPLOT
 BuildRequires:	perl-Tk
-BuildRequires:	perl-devel >= 5.8.0-0.32
+BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	plplot-devel >= 5.1.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
