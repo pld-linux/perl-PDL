@@ -12,7 +12,7 @@ Patch0:		perl-PDL-conf.patch
 Patch1:		perl-PDL-doc.patch
 Patch2:		perl-PDL-die_where.patch
 Patch3:		perl-PDL-croak.patch
-BuildRequires:	perl >= 5.005_61-0.1
+BuildRequires:	perl >= 5.005_03-10
 BuildRequires:	Mesa-devel
 BuildRequires:	XFree86-devel
 BuildRequires:	ncurses-devel
