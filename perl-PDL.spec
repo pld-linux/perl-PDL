@@ -218,6 +218,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Tests
 
 %files perldl
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/perldl
 %{_mandir}/man1/perldl*
 
@@ -225,6 +226,7 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL/Demos/Screen*
 
 %files Graphics-TriD
+%defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics::TriD.*
 %{_mandir}/man3/PDL::Graphics::TriD::[A-SU-Z]*
 
@@ -235,12 +237,14 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL/Demos/TriD*
 
 %files Graphics-TriD-Tk
+%defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics::TriD::Tk*
 
 %{perl_sitearch}/PDL/Graphics/TriD/Tk*
 %{perl_sitearch}/PDL/Demos/TkTriD*
 
 %files Graphics-PGPLOT
+%defattr(644,root,root,755)
 %{_mandir}/man3/PDL::BAD2_*
 %{_mandir}/man3/PDL::Graphics2D*
 %{_mandir}/man3/PDL::Graphics::PGPLOT*
@@ -252,18 +256,21 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL/Demos/BAD2_*
 
 %files Graphics-IIS
+%defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics::IIS*
 
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Graphics/IIS
 %{perl_sitearch}/PDL/Graphics/IIS*
 
 %files Graphics-OpenGL
+%defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Graphics::OpenGL*
 
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/Graphics/OpenGL*
 %{perl_sitearch}/PDL/Graphics/OpenGL*
 
 %files IO
+%defattr(644,root,root,755)
 %{_mandir}/man3/PDL::IO*
 
 %attr(-,root,root) %{perl_sitearch}/auto/PDL/IO
