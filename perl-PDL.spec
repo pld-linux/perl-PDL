@@ -159,7 +159,6 @@ Additional, supplied by authors, documentation to all PDL::* modules.
 %description docs -l pl
 Dodatkowa, dostarczona przez autorów, dokumentacja do modu³ów PDL::*.
 
-%if %{!?_with_html:0}%{?_with_html:1}
 %package docs-HTML
 Summary:	Supplied extra documentation for PDL::* perl modules in HTML format
 Summary(pl):	Dodatkowo dostarczona dokumentacja w HTML-u do modu³ów perla PDL::*
@@ -174,7 +173,6 @@ PDL::* modules.
 %description docs-HTML -l pl
 Dodatkowa, dostarczona przez autorów, dokumentacja do modu³ów PDL::*,
 w formacie HTML.
-%endif
 
 %package Graphics-PGPLOT
 Summary:	PGPLOT enhanced interface for PDL
@@ -308,6 +306,18 @@ PNM format IO for PDL.
 %description IO-Pnm -l pl
 Wsparcie dla formatu PNM dla PDL.
 
+%package IO-Storable
+Summary:	Helper functions to make PDL usable with Storable
+Summary(pl):	Funkcje pomocnicze pozwalajace u¿ywaæ PDL ze Storable
+Group:		Development/Languages/Perl
+Requires:	%{name} = %{version}
+
+%description IO-Storable
+Helper functions to make PDL usable with Storable.
+
+%description IO-Storable -l pl
+Funkcje pomocnicze pozwalajace u¿ywaæ PDL wraz ze Storable.
+
 %package Slatec
 Summary:	PDL interface to the Slatec numerical programming library
 Summary(pl):	Interfejs PDL do biblioteki numerycznej Slatec
@@ -332,6 +342,18 @@ Scientific Library.
 
 %description GSL -l pl
 Interfejs do funkcji rng i randist z biblioteki GSL.
+
+%package GSLSF
+Summary:	PDL interface to GSL Special Functions
+Summary(pl):	Interfejs PDL do funkcji specjalnych GSL
+Group:		Development/Languages/Perl
+Requires:	%{name} = %{version}
+
+%description GSLSF
+PDL interface to GSL Special Functions.
+
+%description GSLSF -l pl
+Interfejs PDL do funkcji specjalnych GSL.
 
 %package Demos
 Summary:	PDL demos
@@ -390,8 +412,8 @@ mv -f Pdlpp.3pm			Inline::Pdlpp.3pm
 
 # some man pages do not belong to the man1 section
 cd $RPM_BUILD_ROOT%{_mandir}/man1
-for i in PDL::*.1; do
-	mv $i ../man3/`echo $i | sed 's/\.1$/.3/'`
+for i in PDL::*.1*; do
+	mv $i ../man3/`echo $i | sed 's/\.1p\?$/.3/'`
 done
 
 %clean
@@ -460,12 +482,22 @@ if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
+%post IO-Storable
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
 %post Slatec
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %post GSL
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%post GSLSF
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
@@ -535,12 +567,22 @@ if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
+%postun IO-Storable
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
 %postun Slatec
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %postun GSL
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%postun GSLSF
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
@@ -789,6 +831,14 @@ fi
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/IO/Pnm/*.so
 %{perl_sitearch}/PDL/IO/Pnm*
 
+%files IO-Storable
+%defattr(644,root,root,755)
+%{perl_sitearch}/PDL/IO/Storable.pm
+%dir %{perl_sitearch}/auto/PDL/IO/Storable
+%{perl_sitearch}/auto/PDL/IO/Storable/*.bs
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/IO/Storable/*.so
+%{_mandir}/man3/PDL::IO::Storable*
+
 %files Slatec
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::Filter::LinPred*
@@ -811,12 +861,21 @@ fi
 
 %files GSL
 %defattr(644,root,root,755)
-%{_mandir}/man3/PDL::GSL*
 %{perl_sitearch}/PDL/GSL
 %dir %{perl_sitearch}/auto/PDL/GSL
 %dir %{perl_sitearch}/auto/PDL/GSL/RNG
 %{perl_sitearch}/auto/PDL/GSL/RNG/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/GSL/RNG/*.so
+%{_mandir}/man3/PDL::GSL::*
+
+%files GSLSF
+%defattr(644,root,root,755)
+%{perl_sitearch}/PDL/GSLSF
+%dir %{perl_sitearch}/auto/PDL/GSLSF
+%dir %{perl_sitearch}/auto/PDL/GSLSF/*
+%{perl_sitearch}/auto/PDL/GSLSF/*/*.bs
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/GSLSF/*/*.so
+%{_mandir}/man3/PDL::GSLSF::*
 
 %files Demos
 %defattr(644,root,root,755)
