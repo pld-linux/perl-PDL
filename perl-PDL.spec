@@ -11,10 +11,7 @@ Group:		Development/Languages/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
 Source:		ftp://ftp.digital.com/pub/plan/perl/CPAN/modules/by-module/PDL/PDL-%{version}.tar.gz
 Patch0:		perl-PDL-conf.patch
-Patch1:		perl-PDL-doc.patch
-Patch2:		perl-PDL-die_where.patch
-Patch3:		perl-PDL-croak.patch
-Patch4:		perl-PDL-dep.patch
+Patch1:		perl-PDL-dep.patch
 URL:		http://www.perl.com/CPAN//modules/by-module/PDL/PDL-%{version}.readme
 BuildRequires:	rpm-perlprov >= 3.0.3-18
 BuildRequires:	perl >= 5.005_03-14
@@ -41,11 +38,8 @@ i naukowaych.
 
 %prep
 %setup  -q -n PDL-%{version}
-%patch0 -p1
-#%patch1 -p1
-#%patch2 -p1
-#%patch3 -p1
-%patch4 -p1
+%patch0 -p1 
+%patch1 -p1
 
 chmod +x find-*
 
