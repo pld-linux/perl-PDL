@@ -22,7 +22,7 @@ BuildRequires:	perl-Tk
 BuildRequires:	perl-PGPLOT
 %requires_eq	perl
 Requires:	%{perl_sitearch}
-Buildroot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 The perlDL project aims to turn perl into an efficient numerical language for
@@ -30,7 +30,6 @@ scientific computing. The PDL module gives standard perl the ability to
 COMPACTLY store and SPEEDILY manipulate the large N-dimensional data sets which
 are the bread and butter of scientific computing. e.g. C<$a=$b+$c> can add two
 2048x2048 images in only a fraction of a second.
-
 
 %description -l pl
 perlDL rozsze¿a mo¿liwo¶ci perl'a o funkcje do obliczeñ numerycznych 
