@@ -8,8 +8,14 @@ Release:	7
 Epoch:		1
 License:	GPL
 Group:		Development/Languages/Perl
+Group(cs):	Vıvojové prostøedky/Programovací jazyky/Perl
 Group(de):	Entwicklung/Sprachen/Perl
+Group(es):	Desarrollo/Lenguajes/Perl
+Group(fr):	Development/Langues/Perl
+Group(ja):	³«È¯/¸À¸ì/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Group(pt):	Desenvolvimento/Linguagens/Perl
+Group(ru):	òÁÚÒÁÂÏÔËÁ/ñÚÙËÉ/Perl
 Source0:	ftp://ftp.perl.org/pub/CPAN/modules/by-module/PDL/PDL-%{version}.tar.gz
 Patch0:		%{name}-conf.patch
 Patch1:		%{name}-dep.patch
@@ -68,8 +74,14 @@ de segundo.
 Summary:	PDL shell
 Summary(pl):	Pow³oka PDL
 Group:		Development/Languages/Perl
+Group(cs):	Vıvojové prostøedky/Programovací jazyky/Perl
 Group(de):	Entwicklung/Sprachen/Perl
+Group(es):	Desarrollo/Lenguajes/Perl
+Group(fr):	Development/Langues/Perl
+Group(ja):	³«È¯/¸À¸ì/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Group(pt):	Desenvolvimento/Linguagens/Perl
+Group(ru):	òÁÚÒÁÂÏÔËÁ/ñÚÙËÉ/Perl
 Requires:	%{name} = %{version}
 
 %description perldl
@@ -89,8 +101,14 @@ przypadku perldl wspiera mechanizm historii komend.
 Summary:	PDL 3D interface
 Summary(pl):	Interfejs 3D dla PDL
 Group:		Development/Languages/Perl
+Group(cs):	Vıvojové prostøedky/Programovací jazyky/Perl
 Group(de):	Entwicklung/Sprachen/Perl
+Group(es):	Desarrollo/Lenguajes/Perl
+Group(fr):	Development/Langues/Perl
+Group(ja):	³«È¯/¸À¸ì/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Group(pt):	Desenvolvimento/Linguagens/Perl
+Group(ru):	òÁÚÒÁÂÏÔËÁ/ñÚÙËÉ/Perl
 Requires:	%{name} = %{version}
 Requires:	%{name}-Graphics-OpenGL = %{version}
 Requires:	%{name}-IO-Pic = %{version}
@@ -126,8 +144,14 @@ http://vrml.sgi.com/ lub http://www.vrml.org/.
 Summary:	A Tk widget interface to the PDL-Graphics-TriD
 Summary(pl):	Kontrolka interfejsu Tk dla PDL-Graphics-TriD
 Group:		Development/Languages/Perl
+Group(cs):	Vıvojové prostøedky/Programovací jazyky/Perl
 Group(de):	Entwicklung/Sprachen/Perl
+Group(es):	Desarrollo/Lenguajes/Perl
+Group(fr):	Development/Langues/Perl
+Group(ja):	³«È¯/¸À¸ì/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Group(pt):	Desenvolvimento/Linguagens/Perl
+Group(ru):	òÁÚÒÁÂÏÔËÁ/ñÚÙËÉ/Perl
 Requires:	%{name} = %{version}
 Requires:	%{name}-Graphics-OpenGL = %{version}
 Requires:	%{name}-Graphics-TriD = %{version}
@@ -154,8 +178,14 @@ oraz jego rozmiar (przycisk trzeci).
 Summary:	PGPLOT enhanced interface for PDL
 Summary(pl):	Rozszerzony interfejs biblioteki PGPLOT dla PDL
 Group:		Development/Languages/Perl
+Group(cs):	Vıvojové prostøedky/Programovací jazyky/Perl
 Group(de):	Entwicklung/Sprachen/Perl
+Group(es):	Desarrollo/Lenguajes/Perl
+Group(fr):	Development/Langues/Perl
+Group(ja):	³«È¯/¸À¸ì/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Group(pt):	Desenvolvimento/Linguagens/Perl
+Group(ru):	òÁÚÒÁÂÏÔËÁ/ñÚÙËÉ/Perl
 Requires:	%{name} = %{version}
 
 %description Graphics-PGPLOT
@@ -174,8 +204,14 @@ zaimplementowany za pomoc± obiektowo zorientowanego pakietu PGPLOT
 Summary:	Display PDL images on IIS devices (saoimage/ximtool)
 Summary(pl):	Wy¶wietlanie grafiki PDL na urz±dzeniach IIS (saoimage/ximtool)
 Group:		Development/Languages/Perl
+Group(cs):	Vıvojové prostøedky/Programovací jazyky/Perl
 Group(de):	Entwicklung/Sprachen/Perl
+Group(es):	Desarrollo/Lenguajes/Perl
+Group(fr):	Development/Langues/Perl
+Group(ja):	³«È¯/¸À¸ì/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Group(pt):	Desenvolvimento/Linguagens/Perl
+Group(ru):	òÁÚÒÁÂÏÔËÁ/ñÚÙËÉ/Perl
 Requires:	%{name} = %{version}
 
 %description Graphics-IIS
@@ -188,8 +224,14 @@ Wy¶wietlanie grafiki PDL na urz±dzeniach IIS (saoimage/ximtool).
 Summary:	Provides access to a number of look-up tables for PDL
 Summary(pl):	Dostêp do tablic kolorów dla PDL
 Group:		Development/Languages/Perl
+Group(cs):	Vıvojové prostøedky/Programovací jazyky/Perl
 Group(de):	Entwicklung/Sprachen/Perl
+Group(es):	Desarrollo/Lenguajes/Perl
+Group(fr):	Development/Langues/Perl
+Group(ja):	³«È¯/¸À¸ì/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Group(pt):	Desenvolvimento/Linguagens/Perl
+Group(ru):	òÁÚÒÁÂÏÔËÁ/ñÚÙËÉ/Perl
 Requires:	%{name} = %{version}
 
 %description Graphics-LUT
@@ -202,8 +244,14 @@ Modu³ zapewnia dostêp do ró¿nych tablic kolorów (palet) dla PDL.
 Summary:	PDL interface to the OpenGL graphics library
 Summary(pl):	Interfejs OpenGL dla PDL
 Group:		Development/Languages/Perl
+Group(cs):	Vıvojové prostøedky/Programovací jazyky/Perl
 Group(de):	Entwicklung/Sprachen/Perl
+Group(es):	Desarrollo/Lenguajes/Perl
+Group(fr):	Development/Langues/Perl
+Group(ja):	³«È¯/¸À¸ì/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Group(pt):	Desenvolvimento/Linguagens/Perl
+Group(ru):	òÁÚÒÁÂÏÔËÁ/ñÚÙËÉ/Perl
 Requires:	%{name} = %{version}
 
 %description Graphics-OpenGL
@@ -216,8 +264,14 @@ Interfejs OpenGL dla PDL.
 Summary:	2D data browser for PDL
 Summary(pl):	Przegl±darka danych 2D dla PDL
 Group:		Development/Languages/Perl
+Group(cs):	Vıvojové prostøedky/Programovací jazyky/Perl
 Group(de):	Entwicklung/Sprachen/Perl
+Group(es):	Desarrollo/Lenguajes/Perl
+Group(fr):	Development/Langues/Perl
+Group(ja):	³«È¯/¸À¸ì/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Group(pt):	Desenvolvimento/Linguagens/Perl
+Group(ru):	òÁÚÒÁÂÏÔËÁ/ñÚÙËÉ/Perl
 Requires:	%{name} = %{version}
 
 %description IO-Browser
@@ -230,8 +284,14 @@ Przegl±darka danych 2D dla PDL.
 Summary:	A simple, fast and convenient IO format for PDL
 Summary(pl):	Prosty, szybki i wygodny format wej¶cia/wyj¶cia dla PDL
 Group:		Development/Languages/Perl
+Group(cs):	Vıvojové prostøedky/Programovací jazyky/Perl
 Group(de):	Entwicklung/Sprachen/Perl
+Group(es):	Desarrollo/Lenguajes/Perl
+Group(fr):	Development/Langues/Perl
+Group(ja):	³«È¯/¸À¸ì/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Group(pt):	Desenvolvimento/Linguagens/Perl
+Group(ru):	òÁÚÒÁÂÏÔËÁ/ñÚÙËÉ/Perl
 Requires:	%{name} = %{version}
 
 %description IO-FastRaw
@@ -244,8 +304,14 @@ Prosty, szybki i wygodny format wej¶cia/wyj¶cia dla PDL.
 Summary:	A flexible binary IO format for PDL
 Summary(pl):	Elastyczny binarny format wej¶cia/wyj¶cia dla PDL
 Group:		Development/Languages/Perl
+Group(cs):	Vıvojové prostøedky/Programovací jazyky/Perl
 Group(de):	Entwicklung/Sprachen/Perl
+Group(es):	Desarrollo/Lenguajes/Perl
+Group(fr):	Development/Langues/Perl
+Group(ja):	³«È¯/¸À¸ì/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Group(pt):	Desenvolvimento/Linguagens/Perl
+Group(ru):	òÁÚÒÁÂÏÔËÁ/ñÚÙËÉ/Perl
 Requires:	%{name} = %{version}
 
 %description IO-FlexRaw
@@ -258,8 +324,14 @@ Elastyczny binarny format wej¶cia/wyj¶cia dla PDL.
 Summary:	Starlink N-dimensional data structures for PDL
 Summary(pl):	Wsparcie dla n-wymiarowych struktur danych firmy Starlink dla PDL
 Group:		Development/Languages/Perl
+Group(cs):	Vıvojové prostøedky/Programovací jazyky/Perl
 Group(de):	Entwicklung/Sprachen/Perl
+Group(es):	Desarrollo/Lenguajes/Perl
+Group(fr):	Development/Langues/Perl
+Group(ja):	³«È¯/¸À¸ì/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Group(pt):	Desenvolvimento/Linguagens/Perl
+Group(ru):	òÁÚÒÁÂÏÔËÁ/ñÚÙËÉ/Perl
 Requires:	%{name} = %{version}
 
 %description IO-NDF
@@ -272,8 +344,14 @@ Wsparcie dla n-wymiarowych struktur danych firmy Starlink dla PDL.
 Summary:	Image I/O for PDL based on the netpbm package
 Summary(pl):	Obs³uga obrazków dla PDL oparta na pakiecie netpbm
 Group:		Development/Languages/Perl
+Group(cs):	Vıvojové prostøedky/Programovací jazyky/Perl
 Group(de):	Entwicklung/Sprachen/Perl
+Group(es):	Desarrollo/Lenguajes/Perl
+Group(fr):	Development/Langues/Perl
+Group(ja):	³«È¯/¸À¸ì/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Group(pt):	Desenvolvimento/Linguagens/Perl
+Group(ru):	òÁÚÒÁÂÏÔËÁ/ñÚÙËÉ/Perl
 Requires:	netpbm
 Requires:	%{name} = %{version}
 Requires:	%{name}-IO-Pnm = %{version}
@@ -292,8 +370,14 @@ pakietu netpbm.
 Summary:	PNM format IO for PDL
 Summary(pl):	Wsparcie dla formatu PNM dla PDL
 Group:		Development/Languages/Perl
+Group(cs):	Vıvojové prostøedky/Programovací jazyky/Perl
 Group(de):	Entwicklung/Sprachen/Perl
+Group(es):	Desarrollo/Lenguajes/Perl
+Group(fr):	Development/Langues/Perl
+Group(ja):	³«È¯/¸À¸ì/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Group(pt):	Desenvolvimento/Linguagens/Perl
+Group(ru):	òÁÚÒÁÂÏÔËÁ/ñÚÙËÉ/Perl
 Requires:	%{name} = %{version}
 
 %description IO-Pnm
@@ -306,8 +390,14 @@ Wsparcie dla formatu PNM dla PDL.
 Summary:	PDL interface to the Slatec numerical programming library
 Summary(pl):	Interfejs PDL do biblioteki numerycznej Slatec
 Group:		Development/Languages/Perl
+Group(cs):	Vıvojové prostøedky/Programovací jazyky/Perl
 Group(de):	Entwicklung/Sprachen/Perl
+Group(es):	Desarrollo/Lenguajes/Perl
+Group(fr):	Development/Langues/Perl
+Group(ja):	³«È¯/¸À¸ì/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Group(pt):	Desenvolvimento/Linguagens/Perl
+Group(ru):	òÁÚÒÁÂÏÔËÁ/ñÚÙËÉ/Perl
 Requires:	%{name} = %{version}
 
 %description Slatec
@@ -320,8 +410,14 @@ Interfejs PDL do biblioteki numerycznej Slatec.
 Summary:	PDL interface to RNG and randist routines in GSL
 Summary(pl):	Interfejs PDL do funkcji RNG i randist z biblioteki GSL
 Group:		Development/Languages/Perl
+Group(cs):	Vıvojové prostøedky/Programovací jazyky/Perl
 Group(de):	Entwicklung/Sprachen/Perl
+Group(es):	Desarrollo/Lenguajes/Perl
+Group(fr):	Development/Langues/Perl
+Group(ja):	³«È¯/¸À¸ì/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Group(pt):	Desenvolvimento/Linguagens/Perl
+Group(ru):	òÁÚÒÁÂÏÔËÁ/ñÚÙËÉ/Perl
 Requires:	%{name} = %{version}
 
 %description GSL
@@ -335,8 +431,14 @@ Interfejs do funkcji rng i randist z biblioteki GSL.
 Summary:	PDL demos
 Summary(pl):	Przyk³adowe skrypty z u¿yciem PDL
 Group:		Development/Languages/Perl
+Group(cs):	Vıvojové prostøedky/Programovací jazyky/Perl
 Group(de):	Entwicklung/Sprachen/Perl
+Group(es):	Desarrollo/Lenguajes/Perl
+Group(fr):	Development/Langues/Perl
+Group(ja):	³«È¯/¸À¸ì/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
+Group(pt):	Desenvolvimento/Linguagens/Perl
+Group(ru):	òÁÚÒÁÂÏÔËÁ/ñÚÙËÉ/Perl
 Requires:	%{name} = %{version}
 Requires:	%{name}-Graphics-LUT = %{version}
 Requires:	%{name}-Graphics-PGPLOT = %{version}
