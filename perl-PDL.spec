@@ -5,7 +5,7 @@ Summary:	perlDL
 Summary(pl):	perlDL
 Name:		perl-PDL
 Version:	2.1.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Development/Languages/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
