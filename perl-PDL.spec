@@ -3,7 +3,7 @@ Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
 Name:		perl-PDL
 Version:	2.2.1
-Release:	3
+Release:	4
 License:	GPL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
@@ -13,6 +13,7 @@ Patch0:		%{name}-conf.patch
 Patch1:		%{name}-dep.patch
 Patch2:		%{name}-Makefile.PL.patch-dumb
 Patch3:		%{name}-fftw-shared.patch
+Patch4:		%{name}-gsl-shared.patch
 URL:		http://pdl.perl.org/
 BuildRequires:	rpm-perlprov >= 3.0.3-18
 BuildRequires:	perl >= 5.6.1
@@ -23,6 +24,7 @@ BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	perl-Tk
 BuildRequires:	perl-PGPLOT
 BuildRequires:	perl-ExtUtils-F77 >= 1.10
+BuildRequires:	gsl-devel >= 0.4.1
 Provides:	perl(PDL::Lite)
 Provides:	perl(PDL::LiteF)
 Provides:	perl(PDL::PP::CType)
@@ -30,8 +32,6 @@ Provides:	perl(PDL::PP::Dims)
 Provides:	perl(PDL::PP::PDLCode)
 Provides:	perl(PDL::PP::SymTab)
 Provides:	perl(PDL::PP::XS)
-# it's not true (Slatec is not built), but it's in requires...
-Provides:	perl(PDL::Slatec)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define 	_noautoreqdep	libGL.so.1 libGLU.so.1 libGLcore.so.1
@@ -170,7 +170,7 @@ Wy¶wietlanie grafiki PDL na urz±dzeniach IIS (saoimage/ximtool).
 
 %package Graphics-LUT
 Summary:	Provides access to a number of look-up tables for PDL
-Summary(pl):	N/A
+Summary(pl):	Dostêp do tablic kolorów dla PDL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
@@ -180,6 +180,7 @@ Requires:	%{name} = %{version}
 Provides access to a number of look-up tables for PDL.
 
 %description -l pl Graphics-LUT
+Modu³ zapewnia dostêp do ró¿nych tablic kolorów (palet) dla PDL.
 
 %package Graphics-OpenGL
 Summary:	PDL interface to the OpenGL graphics library
@@ -224,7 +225,7 @@ A simple, fast and convenient IO format for PDL.
 Prosty, szybki i wygodny format wej¶cia/wyj¶cia dla PDL.
 
 %package IO-FlexRaw
-Summary:	 A flexible binary IO format for PDL
+Summary:	A flexible binary IO format for PDL
 Summary(pl):	Elastyczny binarny format wej¶cia/wyj¶cia dla PDL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
@@ -252,8 +253,8 @@ Starlink N-dimensional data structures for PDL.
 Wsparcie dla n-wymiarowych struktur danych firmy Starlink dla PDL.
 
 %package IO-Pic
-Summary:	IO-Pic
-Summary(pl):	IO-Pic
+Summary:	Image I/O for PDL based on the netpbm package
+Summary(pl):	Obs³uga obrazków dla PDL oparta na pakiecie netpbm
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
@@ -262,10 +263,14 @@ Requires:	%{name} = %{version}
 Requires:	%{name}-IO-Pnm = %{version}
 
 %description IO-Pic
-IO-Pic.
+This package implements I/O for a number of popular image formats
+by exploiting the xxxtopnm and pnmtoxxx converters from the netpbm
+package.
 
 %description -l pl IO-Pic
-IO-Pic.
+Pakiet daje mo¿liwo¶æ czytania i zapisywania obrazków w wielu formatach
+poprzez wykorzystywanie konwerterów xxxtopnm i pnmtoxxx z pakietu
+netpbm.
 
 %package IO-Pnm
 Summary:	PNM format IO for PDL
@@ -280,6 +285,35 @@ PNM format IO for PDL.
 
 %description -l pl IO-Pnm
 Wsparcie dla formatu PNM dla PDL.
+
+%package Slatec
+Summary:	PDL interface to the Slatec numerical programming library
+Summary(pl):	Interfejs PDL do biblioteki numerycznej Slatec
+Group:		Development/Languages/Perl
+Group(de):	Entwicklung/Sprachen/Perl
+Group(pl):	Programowanie/Jêzyki/Perl
+Requires:	%{name} = %{version}
+
+%description Slatec
+PDL interface to the Slatec numerical programming library.
+
+%description -l pl Slatec
+Interfejs PDL do biblioteki numerycznej Slatec.
+
+%package GSL
+Summary:	PDL interface to RNG and randist routines in GSL
+Summary(pl):	Interfejs PDL do funkcji RNG i randist z biblioteki GSL
+Group:		Development/Languages/Perl
+Group(de):	Entwicklung/Sprachen/Perl
+Group(pl):	Programowanie/Jêzyki/Perl
+Requires:	%{name} = %{version}
+
+%description GSL
+Interface to the rng and randist packages present in the GNU Scientific
+Library.
+
+%description -l pl GSL
+Interfejs do funkcji rng i randist z biblioteki GSL.
 
 %package Demos
 Summary:	PDL demos
@@ -306,6 +340,10 @@ Przyk³adowe skrypty z u¿yciem PDL.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+
+# g77 flags for compiling Slatec:
+perl -pi -e 's@o \$mycflags s@o %{rpmcflags} s@' Lib/Slatec/Makefile.PL
 
 %build
 perl Makefile.PL
@@ -317,6 +355,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+# some manuals have wrong names - this can be fixed in "Makefile.PL"s or here:
+(cd $RPM_BUILD_ROOT%{_mandir}/man3
+mv -f PDL::Dev.3pm		PDL::Core::Dev.3pm
+mv -f PDL::Linear.3pm		PDL::Filter::Linear.3pm
+mv -f PDL::LinPred.3pm		PDL::Filter::LinPred.3pm
+mv -f PDL::Linfit.3pm 		PDL::Fit::Linfit.3pm
+mv -f PDL::LM.3pm		PDL::Fit::LM.3pm
+mv -f PDL::Polynomial.3pm	PDL::Fit::Polynomial.3pm
+)
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -342,10 +390,11 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL/Exporter.pm
 %{perl_sitearch}/PDL/FFT.pm
 %{perl_sitearch}/PDL/FFTW.pm
-%{perl_sitearch}/PDL/Filter
-%{perl_sitearch}/PDL/Fit
+%dir %{perl_sitearch}/PDL/Filter
+%{perl_sitearch}/PDL/Filter/Linear.pm
+%dir %{perl_sitearch}/PDL/Fit
+%{perl_sitearch}/PDL/Fit/Gaussian.pm
 %{perl_sitearch}/PDL/Func.pm
-%{perl_sitearch}/PDL/Gaussian.pm
 %dir %{perl_sitearch}/PDL/Graphics
 %{perl_sitearch}/PDL/Image2D.pm
 %{perl_sitearch}/PDL/ImageND.pm
@@ -356,7 +405,6 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL/Lite.pm
 %{perl_sitearch}/PDL/Lvalue.pm
 %{perl_sitearch}/PDL/Math.pm
-%{perl_sitearch}/PDL/Matrix.pm
 %{perl_sitearch}/PDL/Opt
 %{perl_sitearch}/PDL/Ops.pm
 %{perl_sitearch}/PDL/Options.pm
@@ -439,16 +487,17 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/PDL::C*
 %{_mandir}/man3/PDL::D*
 %{_mandir}/man3/PDL::E*
-%{_mandir}/man3/PDL::F*
-%{_mandir}/man3/PDL::Ga*
+%{_mandir}/man3/PDL::FFT*
+%{_mandir}/man3/PDL::Filter::Linear*
+%{_mandir}/man3/PDL::Fit::Gaussian*
 %{_mandir}/man3/PDL::Im*
 %{_mandir}/man3/PDL::IO::Misc*
 %{_mandir}/man3/PDL::L*
-%{_mandir}/man3/PDL::M*
+%{_mandir}/man3/PDL::Math*
 %{_mandir}/man3/PDL::O*
 %{_mandir}/man3/PDL::P*
 %{_mandir}/man3/PDL::R*
-%{_mandir}/man3/PDL::S*
+%{_mandir}/man3/PDL::Slices*
 %{_mandir}/man3/PDL::T*
 %{_mandir}/man3/PDL::U*
 
@@ -543,6 +592,34 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/auto/PDL/IO/Pnm/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/IO/Pnm/*.so
 %{perl_sitearch}/PDL/IO/Pnm*
+
+%files Slatec
+%defattr(644,root,root,755)
+%{_mandir}/man3/PDL::Filter::LinPred*
+%{_mandir}/man3/PDL::Fit::Linfit*
+%{_mandir}/man3/PDL::Fit::LM*
+%{_mandir}/man3/PDL::Fit::Polynomial*
+%{_mandir}/man3/PDL::Gaussian*
+%{_mandir}/man3/PDL::Matrix*
+%{_mandir}/man3/PDL::Slatec*
+%{perl_sitearch}/PDL/Filter/LinPred.pm
+%{perl_sitearch}/PDL/Fit/Linfit.pm
+%{perl_sitearch}/PDL/Fit/LM.pm
+%{perl_sitearch}/PDL/Fit/Polynomial.pm
+%{perl_sitearch}/PDL/Gaussian.pm
+%{perl_sitearch}/PDL/Matrix.pm
+%dir %{perl_sitearch}/auto/PDL/Slatec
+%{perl_sitearch}/auto/PDL/Slatec/*.bs
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/Slatec/*.so
+
+%files GSL
+%defattr(644,root,root,755)
+%{_mandir}/man3/PDL::GSL*
+%{perl_sitearch}/PDL/GSL
+%dir %{perl_sitearch}/auto/PDL/GSL
+%dir %{perl_sitearch}/auto/PDL/GSL/RNG
+%{perl_sitearch}/auto/PDL/GSL/RNG/*.bs
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/GSL/RNG/*.so
 
 %files Demos
 %defattr(644,root,root,755)
