@@ -5,10 +5,10 @@ Summary:	perlDL
 Summary(pl):	perlDL
 Name:		perl-PDL
 Version:	2.003
-Release:	1
+Release:	2
+License:	GPL
 Group:		Development/Languages/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
-Copyright:	GPL
 Source:		ftp://ftp.digital.com/pub/plan/perl/CPAN/modules/by-module/PDL/PDL-%{version}.tar.gz
 Patch0:		perl-PDL-conf.patch
 Patch1:		perl-PDL-doc.patch
@@ -18,7 +18,7 @@ Patch4:		perl-PDL-dep.patch
 URL:		http://www.perl.com/CPAN//modules/by-module/PDL/PDL-%{version}.readme
 BuildRequires:	rpm-perlprov >= 3.0.3-18
 BuildRequires:	perl >= 5.005_03-14
-BuildRequires:	Mesa-devel
+BuildRequires:	Mesa-devel >= 3.1
 BuildRequires:	XFree86-devel
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	perl-Tk
