@@ -3,8 +3,8 @@
 Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
 Name:		perl-PDL
-Version:	2.2
-Release:	2
+Version:	2.2.1
+Release:	1
 License:	GPL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
@@ -13,10 +13,9 @@ Source0:	ftp://download.sourceforge.net/pub/sourceforge/PDL/PDL-%{version}.tar.g
 Patch0:		%{name}-conf.patch
 Patch1:		%{name}-dep.patch
 Patch2:		%{name}-Makefile.PL.patch-dumb
-Patch3:		%{name}-perl-5.6.1.patch
-URL:		http://www.perl.com/CPAN//modules/by-module/PDL/PDL-%{version}.readme
+URL:		http://pdl.perl.org/
 BuildRequires:	rpm-perlprov >= 3.0.3-18
-BuildRequires:	perl >= 5.6.0-2
+BuildRequires:	perl >= 5.6.1
 BuildRequires:	OpenGL-devel
 BuildRequires:	XFree86-devel
 BuildRequires:	ncurses-devel >= 5.0
@@ -34,7 +33,7 @@ Provides:	perl(PDL::PP::XS)
 Provides:	perl(PDL::Slatec)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define 	_noautoreqdep	libGL.so.1 libGLU.so.1
+%define 	_noautoreqdep	libGL.so.1 libGLU.so.1 libGLcore.so.1
 
 %description
 The perlDL project aims to turn Perl into an efficient numerical language
@@ -304,7 +303,6 @@ Przyk³adowe skrypty z u¿yciem PDL.
 %patch0 -p1 
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 chmod +x find-*
 
