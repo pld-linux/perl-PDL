@@ -9,7 +9,7 @@ Release:	2
 License:	GPL
 Group:		Development/Languages/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
-Source:		ftp://ftp.digital.com/pub/plan/perl/CPAN/modules/by-module/PDL/PDL-%{version}.tar.gz
+Source0:	ftp://ftp.digital.com/pub/plan/perl/CPAN/modules/by-module/PDL/PDL-%{version}.tar.gz
 Patch0:		perl-PDL-conf.patch
 Patch1:		perl-PDL-dep.patch
 URL:		http://www.perl.com/CPAN//modules/by-module/PDL/PDL-%{version}.readme
@@ -25,15 +25,16 @@ Requires:	%{perl_sitearch}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-The perlDL project aims to turn perl into an efficient numerical language for
-scientific computing. The PDL module gives standard perl the ability to
-COMPACTLY store and SPEEDILY manipulate the large N-dimensional data sets which
-are the bread and butter of scientific computing. e.g. C<$a=$b+$c> can add two
-2048x2048 images in only a fraction of a second.
+The perlDL project aims to turn perl into an efficient numerical
+language for scientific computing. The PDL module gives standard perl
+the ability to COMPACTLY store and SPEEDILY manipulate the large
+N-dimensional data sets which are the bread and butter of scientific
+computing. e.g. C<$a=$b+$c> can add two 2048x2048 images in only a
+fraction of a second.
 
 %description -l pl
-perlDL rozsze¿a mo¿liwo¶ci perl'a o funkcje do obliczeñ numerycznych 
-i naukowaych.
+perlDL rozsze¿a mo¿liwo¶ci perl'a o funkcje do obliczeñ numerycznych i
+naukowaych.
 
 %prep
 %setup  -q -n PDL-%{version}
@@ -44,7 +45,7 @@ chmod +x find-*
 
 %build
 perl Makefile.PL
-make OPTIMIZE="$RPM_OPT_FLAGS -I/usr/include/ncurses -DNCURSES -DPERL_POLLUTE" 
+make OPTIMIZE="$RPM_OPT_FLAGS -I%{_includedir}/ncurses -DNCURSES -DPERL_POLLUTE" 
 
 %install
 rm -rf $RPM_BUILD_ROOT
