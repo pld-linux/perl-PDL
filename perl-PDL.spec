@@ -1,5 +1,6 @@
-# conditional build
-#    with_html - generate an extra package with PDL documentation in HTML
+#
+# Conditional build:
+# _with_html - generate an extra package with PDL documentation in HTML
 #
 %include	/usr/lib/rpm/macros.perl
 %define		pdir	PDL
@@ -674,7 +675,7 @@ fi
 %{_mandir}/man3/PDL::FFT*
 %{_mandir}/man3/PDL::Filter::Linear*
 %{_mandir}/man3/PDL::Fit::Gaussian*
-%{_mandir}/man3/PDL::Func.3pm.gz
+%{_mandir}/man3/PDL::Func.3pm*
 %{_mandir}/man3/PDL::Graphics::State.3pm*
 %{_mandir}/man3/PDL::I[mn]*
 %{_mandir}/man3/PDL::IO::Misc*
