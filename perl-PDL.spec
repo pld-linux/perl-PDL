@@ -2,7 +2,7 @@ Summary:	perlDL
 Summary(pl):	perlDL
 Name:		perl-PDL
 Version:	2.0
-Release:	1
+Release:	2
 Group:		Development/Languages/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
 Copyright:	GPL
@@ -48,6 +48,9 @@ make install \
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man{1,3}/*
 
+find $RPM_BUILD_ROOT%{perl_sitearch}/auto/PDL -name \*.so -exec \
+	strip --strip-unneeded {} \;
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -62,6 +65,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(-,root,root) %{perl_sitearch}/auto/PDL
 
 %changelog 
+* Sat May 29 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [2.0-2]
+- added stripping shared libraries.
+
 * Tue May 25 1999 Artur Frysiak <wiget@pld.org.pl>
   [2.0-1]
-- initial version  
+- initial version.
