@@ -5,7 +5,7 @@ Summary:	perlDL
 Summary(pl):	perlDL
 Name:		perl-PDL
 Version:	2.002
-Release:	4
+Release:	5
 Group:		Development/Languages/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
 Copyright:	GPL
@@ -20,7 +20,7 @@ BuildRequires:	rpm-perlprov >= 3.0.3-18
 BuildRequires:	perl >= 5.005_03-14
 BuildRequires:	Mesa-devel
 BuildRequires:	XFree86-devel
-BuildRequires:	ncurses-devel
+BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	perl-Tk
 BuildRequires:	perl-PGPLOT
 %requires_eq	perl
