@@ -52,14 +52,14 @@ The perlDL project aims to turn Perl into an efficient numerical
 language for scientific computing. The PDL module gives standard Perl
 the ability to COMPACTLY store and SPEEDILY manipulate the large
 N-dimensional data sets which are the bread and butter of scientific
-computing, i.e. C<$a=$b+$c> can add two 2048x2048 images in only a
+computing, i.e. $a=$b+$c can add two 2048x2048 images in only a
 fraction of a second.
 
 %description -l pl
 Modu³ perlDL rozszerza mo¿liwo¶ci Perla o funkcje do obliczeñ
 numerycznych. Umo¿liwia przechowywanie oraz szybkie manipulowanie
 du¿ymi n-wymiarowymi zbiorami danych, które s± chlebem powszednim
-naukowych obliczeñ, np.: C<$a=$b+$c> dodaje dwie bitmapy rozmiaru
+naukowych obliczeñ, np.: $a=$b+$c dodaje dwie bitmapy rozmiaru
 2048x2048 w u³amku sekundy.
 
 %description -l pt_BR
@@ -85,9 +85,9 @@ installed. In that case perldl also supports a history mechanism.
 %description perldl -l pl
 Program perldl jest prost± pow³ok± napisan± w Perlu do interaktywnego
 wykonywania funkcji modu³u PDL. Komendy Perla lub PDL mog± byæ w
-prosty sposób wprowadzane, a tak¿e edytowane je¶li masz zainstalowan±
-odpowiedni± wersjê modu³ó ReadLines oraz ReadKeys. W tym ostatnim
-przypadku perldl wspiera mechanizm historii komend.
+prosty sposób wprowadzane, a tak¿e modyfikowane je¶li zainstalowane
+s± odpowiednie wersje modu³ów ReadLines oraz ReadKeys. W tym ostatnim
+przypadku perldl obs³uguje mechanizm historii komend.
 
 %package docs
 Summary:	Supplied extra documentation for PDL::* perl modules
