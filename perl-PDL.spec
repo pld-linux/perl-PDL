@@ -15,6 +15,7 @@ BuildPrereq:	Mesa-devel
 BuildPrereq:	XFree86-devel
 BuildPrereq:	ncurses-devel
 %requires_eq	perl
+Requires:	%{perl_sitearch}
 Buildroot:	/tmp/%{name}-%{version}-root
 
 %description
