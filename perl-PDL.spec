@@ -2,7 +2,8 @@
 # Conditional build:
 %bcond_without  karma	# build package with PDL::Graphics::Karma modules
 %bcond_without  html	# don't generate package with PDL documentation in HTML
-%bcond_without	tests	# do not perform "make test"
+%bcond_with	tests	# perform "make test"
+			# require a valid DISPLAY
 #
 %include	/usr/lib/rpm/macros.perl
 %define		pdir	PDL
