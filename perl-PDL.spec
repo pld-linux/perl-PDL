@@ -396,156 +396,156 @@ done
 rm -rf $RPM_BUILD_ROOT
 
 %post docs
-/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 
 %post Graphics-TriD
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %post Graphics-TriD-Tk
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %post Graphics-PGPLOT
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %post Graphics-IIS
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %post Graphics-LUT
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %post Graphics-OpenGL
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %post IO-Browser
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %post IO-FastRaw
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %post IO-FlexRaw
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %post IO-NDF
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %post IO-Pic
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %post IO-Pnm
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %post Slatec
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %post GSL
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %post Demos
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %postun Graphics-TriD
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %postun Graphics-TriD-Tk
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %postun Graphics-PGPLOT
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %postun Graphics-IIS
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %postun Graphics-LUT
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %postun Graphics-OpenGL
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %postun IO-Browser
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %postun IO-FastRaw
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %postun IO-FlexRaw
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %postun IO-NDF
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %postun IO-Pic
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %postun IO-Pnm
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %postun Slatec
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %postun GSL
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %postun Demos
 if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
-	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+	/usr/bin/perl %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
 fi
 
 %files
