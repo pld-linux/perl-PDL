@@ -23,8 +23,6 @@ BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	perl-Tk
 BuildRequires:	perl-PGPLOT
 BuildRequires:	perl-ExtUtils-F77 >= 1.10
-%requires_eq	perl
-Requires:	%{perl_sitearch}
 Provides:	perl(PDL::Lite)
 Provides:	perl(PDL::LiteF)
 Provides:	perl(PDL::PP::CType)
