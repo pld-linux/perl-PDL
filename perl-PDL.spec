@@ -3,8 +3,8 @@ Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR):	Módulo PDL para perl
 Name:		perl-PDL
-Version:	2.2.1
-Release:	8
+Version:	2.3.3
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Development/Languages/Perl
@@ -13,7 +13,7 @@ Patch0:		%{name}-conf.patch
 Patch1:		%{name}-dep.patch
 Patch2:		%{name}-Makefile.PL.patch-dumb
 Patch3:		%{name}-fftw-shared.patch
-Patch4:		%{name}-gsl-shared.patch
+#Patch4:		%{name}-gsl-shared.patch
 Patch5:		%{name}-c++.patch
 URL:		http://pdl.perl.org/
 BuildRequires:	rpm-perlprov >= 3.0.3-18
@@ -142,6 +142,17 @@ TriD, poniewa¿ obiekt Frame nie jest nigdy wy¶wietlany. Za pomoc±
 przycisków myszki mo¿na kontrolowaæ widok obiektu (przycisk pierwszy)
 oraz jego rozmiar (przycisk trzeci).
 
+%package docs
+Summary:	Supplied extra documentation for PDL::* perl modules.
+Summary(pl):	Dodatkowo dostarczona dokumentacja do modu³ów perla PDL::*.
+Group:		Development/Languages/Perl
+
+%description docs
+Additional, supplied by authors, documentation to all PDL::* modules.
+
+%description -l pl docs
+Dodatkowa, dostarczona przez autorów, dokumentacja do modu³ów PDL::*.
+
 %package Graphics-PGPLOT
 Summary:	PGPLOT enhanced interface for PDL
 Summary(pl):	Rozszerzony interfejs biblioteki PGPLOT dla PDL
@@ -195,18 +206,6 @@ PDL interface to the OpenGL graphics library.
 
 %description -l pl Graphics-OpenGL
 Interfejs OpenGL dla PDL.
-
-%package IO-Browser
-Summary:	2D data browser for PDL
-Summary(pl):	Przegl±darka danych 2D dla PDL
-Group:		Development/Languages/Perl
-Requires:	%{name} = %{version}
-
-%description IO-Browser
-2D data browser for PDL.
-
-%description -l pl IO-Browser
-Przegl±darka danych 2D dla PDL.
 
 %package IO-FastRaw
 Summary:	A simple, fast and convenient IO format for PDL
@@ -322,8 +321,8 @@ Przyk³adowe skrypty z u¿yciem PDL.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p1
+#%patch4 -p1
+#%patch5 -p1
 
 # g77 flags for compiling Slatec:
 perl -pi -e 's@o \$mycflags s@o %{rpmcflags} s@' Lib/Slatec/Makefile.PL
@@ -355,6 +354,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/pdldoc
+%attr(755,root,root) %{_bindir}/pptemplate
 %dir %{perl_sitearch}/PDL
 
 %{perl_sitearch}/PDL.pm
@@ -461,9 +461,19 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/auto/PDL/Tests/*.bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Tests/*.so
 
+%{perl_sitearch}/Inline/Pdlpp.pm
+%{perl_sitearch}/PDL/DiskCache.pm
+%{perl_sitearch}/PDL/Graphics/State.pm
+%{perl_sitearch}/PDL/IO/Dumper.pm
+%{perl_sitearch}/PDL/NiceSlice.pm
+%{perl_sitearch}/PDL/RandVar/Histogram.pm
+%{perl_sitearch}/PDL/RandVar.pm
+%{perl_sitearch}/PDL/RandVar/Sobol.pm
+
+%{_mandir}/man1/pdl*
 %{_mandir}/man1/PDL*
-%{_mandir}/man1/pdl.*
-%{_mandir}/man1/pdldoc.*
+%{_mandir}/man1/pptemplate.1.gz
+%{_mandir}/man3/Inline::Pdlpp.3pm.gz
 %{_mandir}/man3/PDL.*
 %{_mandir}/man3/PDL::A*
 %{_mandir}/man3/PDL::Ba*
@@ -483,6 +493,17 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/PDL::Slices*
 %{_mandir}/man3/PDL::T*
 %{_mandir}/man3/PDL::U*
+%{_mandir}/man3/PDL::Func.3pm.gz
+%{_mandir}/man3/PDL::Histogram.3pm.gz
+%{_mandir}/man3/PDL::NiceSlice.3pm.gz
+%{_mandir}/man3/PDL::pptemplate.3pm.gz
+%{_mandir}/man3/PDL::Sobol.3pm.gz
+%{_mandir}/man3/PDL::State.3pm.gz
+
+%files docs
+%defattr(644,root,root,755)
+%{perl_sitearch}/PDL/HtmlDocs
+%{perl_sitearch}/PDL/*.pod
 
 %files perldl
 %defattr(644,root,root,755)
@@ -540,14 +561,6 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/auto/PDL/Graphics/OpenGL*/*bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Graphics/OpenGL*/*so
 %{perl_sitearch}/PDL/Graphics/OpenGL*
-
-%files IO-Browser
-%defattr(644,root,root,755)
-%{_mandir}/man3/PDL::IO::Browser*
-%dir %{perl_sitearch}/auto/PDL/IO/Browser
-%{perl_sitearch}/auto/PDL/IO/Browser/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/PDL/IO/Browser/*.so
-%{perl_sitearch}/PDL/IO/Browser*
 
 %files IO-FastRaw
 %defattr(644,root,root,755)
