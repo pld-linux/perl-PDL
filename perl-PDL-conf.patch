@@ -1,5 +1,14 @@
---- PDL-2.003/perldl.conf~	Mon Oct 25 18:38:27 1999
-+++ PDL-2.003/perldl.conf	Thu Nov 25 13:45:18 1999
+--- PDL-2.003/perldl.conf.wiget	Mon Oct 25 18:38:27 1999
++++ PDL-2.003/perldl.conf	Wed Jan 19 17:30:28 2000
+@@ -22,7 +22,7 @@
+ #  You can use e.g. '-lMesaGL -lMesaGLU' with the correct -L directory
+ #  to use Mesa.
+ 	OPENGL_LIBS => 
+-             '-L/usr/X11R6/lib -L/usr/lib/mesa -lMesaGL -lMesaGLU -lGL -lGLU -lXext -lX11',
++             '-L/usr/X11R6/lib -L/usr/lib/mesa -lGL -lGLU -lXext -lX11',
+ 	OPENGL_DEFINE => '',
+  	OPENGL_INC => '-I/usr/X11R6/include',
+ 
 @@ -30,13 +30,13 @@
  # Whether or not to build the Karma interface module
  
