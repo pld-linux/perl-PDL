@@ -64,12 +64,3 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL
 %{perl_sitearch}/PDL.pm
 %attr(-,root,root) %{perl_sitearch}/auto/PDL
-
-%changelog 
-* Sat May 29 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [2.0-2]
-- added stripping shared libraries.
-
-* Tue May 25 1999 Artur Frysiak <wiget@pld.org.pl>
-  [2.0-1]
-- initial version.
