@@ -1,9 +1,10 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
+Summary(pt_BR):	Módulo PDL para perl
 Name:		perl-PDL
 Version:	2.2.1
-Release:	4
+Release:	5
 License:	GPL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
@@ -38,17 +39,28 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_noautoreq	"perl(local.perldlrc)"
 
 %description
-The perlDL project aims to turn Perl into an efficient numerical language
-for scientific computing. The PDL module gives standard Perl the ability to
-COMPACTLY store and SPEEDILY manipulate the large N-dimensional data sets
-which are the bread and butter of scientific computing, i.e. C<$a=$b+$c>
-can add two 2048x2048 images in only a fraction of a second.
+The perlDL project aims to turn Perl into an efficient numerical
+language for scientific computing. The PDL module gives standard Perl
+the ability to COMPACTLY store and SPEEDILY manipulate the large
+N-dimensional data sets which are the bread and butter of scientific
+computing, i.e. C<$a=$b+$c> can add two 2048x2048 images in only a
+fraction of a second.
 
 %description -l pl
-Modu³ perlDL rozszerza mo¿liwo¶ci Perla o funkcje do obliczeñ numerycznych.
-Umo¿liwia przechowywanie oraz szybkie manipulowanie du¿ymi n-wymiarowymi
-zbiorami danych, które s± chlebem powszednim naukowych obliczeñ, np.:
-C<$a=$b+$c> dodaje dwie bitmapy rozmiaru 2048x2048 w u³amku sekundy.
+Modu³ perlDL rozszerza mo¿liwo¶ci Perla o funkcje do obliczeñ
+numerycznych. Umo¿liwia przechowywanie oraz szybkie manipulowanie
+du¿ymi n-wymiarowymi zbiorami danych, które s± chlebem powszednim
+naukowych obliczeñ, np.: C<$a=$b+$c> dodaje dwie bitmapy rozmiaru
+2048x2048 w u³amku sekundy.
+
+%description -l pt_BR
+O projeto perlDL pretende tornar perl uma linguagem númerica eficiente
+para computação científica. O módulo PDL dá ao perl a habilidade de
+armazenar de forma compacta e manipular rapidamente grandes conjuntos
+de dados de N dimensões que são muito comuns em computação científica.
+Ex. $a=$b+$c pode adicionar imagens de 2048x2048 em apenas uma fração
+de segundo.
+
 
 %package perldl
 Summary:	PDL shell
@@ -59,17 +71,17 @@ Group(pl):	Programowanie/Jêzyki/Perl
 Requires:	%{name} = %{version}
 
 %description perldl
-The program perldl is a simple shell (written in perl) for interactive use
-of PDL.  perl/PDL commands can simply be typed in - and edited if you have
-appropriate version of the ReadLines and ReadKeys modules installed.  In
-that case perldl also supports a history mechanism.
+The program perldl is a simple shell (written in perl) for interactive
+use of PDL. perl/PDL commands can simply be typed in - and edited if
+you have appropriate version of the ReadLines and ReadKeys modules
+installed. In that case perldl also supports a history mechanism.
 
 %description -l pl perldl
 Program perldl jest prost± pow³ok± napisan± w Perlu do interaktywnego
-wykonywania funkcji modu³u PDL. Komendy Perla lub PDL mog± byæ w prosty
-sposób wprowadzane, a tak¿e edytowane je¶li masz zainstalowan± odpowiedni±
-wersjê modu³ó ReadLines oraz ReadKeys. W tym ostatnim przypadku perldl
-wspiera mechanizm historii komend.
+wykonywania funkcji modu³u PDL. Komendy Perla lub PDL mog± byæ w
+prosty sposób wprowadzane, a tak¿e edytowane je¶li masz zainstalowan±
+odpowiedni± wersjê modu³ó ReadLines oraz ReadKeys. W tym ostatnim
+przypadku perldl wspiera mechanizm historii komend.
 
 %package Graphics-TriD
 Summary:	PDL 3D interface
@@ -85,27 +97,28 @@ Provides:	perl(PDL::Graphics::TriD::TextObjects)
 Provides:	perl(PDL::Graphics::TriD::GL)
 
 %description Graphics-TriD
-This module implements a generic 3D plotting interface for PDL.  Points,
-lines and surfaces (among other objects) are supported.
+This module implements a generic 3D plotting interface for PDL.
+Points, lines and surfaces (among other objects) are supported.
 
-With OpenGL, it is easy to manipulate the resulting 3D objects with the
-mouse in real time - this helps data visualization a lot.
+With OpenGL, it is easy to manipulate the resulting 3D objects with
+the mouse in real time - this helps data visualization a lot.
 
-With VRML, you can generate objects for everyone to see with e.g.  Silicon
-Graphics' Cosmo Player. You can find out more about VRML at
+With VRML, you can generate objects for everyone to see with e.g.
+Silicon Graphics' Cosmo Player. You can find out more about VRML at
 `http://vrml.sgi.com/' or `http://www.vrml.org/'
 
 %description -l pl Graphics-TriD
-Modu³ ten implementuje podstawowy interfejs 3D dla PDL. Dostêpne s± - w¶ród innych
-obiektów - punkty, linie oraz powierzchnie.
+Modu³ ten implementuje podstawowy interfejs 3D dla PDL. Dostêpne s± -
+w¶ród innych obiektów - punkty, linie oraz powierzchnie.
 
-Za pomoc± OpenGL, stworzonymi obiektami 3D mo¿na ³atwo manipulowaæ w czasie
-rzeczywistym za pomoc± myszy, co bardzo wspomaga wizualizacjê danych.
+Za pomoc± OpenGL, stworzonymi obiektami 3D mo¿na ³atwo manipulowaæ w
+czasie rzeczywistym za pomoc± myszy, co bardzo wspomaga wizualizacjê
+danych.
 
 Mo¿esz te¿ generowaæ obiekty w formacie VRML, które mog± byæ ogl±dane
-przez inne osoby za pomoc± np.: programu Cosmo Player firmy Silicon Graphics.
-Wiêcej na temat VRML mo¿esz znale¼æ pod adresami http://vrml.sgi.com/
-lub http://www.vrml.org/.
+przez inne osoby za pomoc± np.: programu Cosmo Player firmy Silicon
+Graphics. Wiêcej na temat VRML mo¿esz znale¼æ pod adresami
+http://vrml.sgi.com/ lub http://www.vrml.org/.
 
 %package Graphics-TriD-Tk
 Summary:	A Tk widget interface to the PDL-Graphics-TriD
@@ -119,20 +132,21 @@ Requires:	%{name}-Graphics-TriD = %{version}
 
 %description Graphics-TriD-Tk
 The widget is composed of a Frame and the Display device of the TriD
-output.  It inherits all of the attributes of a Tk Frame.  All of the
+output. It inherits all of the attributes of a Tk Frame. All of the
 events associated with this window are handled through Tk with the
-exception of the <expose> event which must be handled by TriD because the
-Frame is never exposed.  Default mouse bindings, defined for button1 and
-button3, control TriD object orientation and size respectively.
+exception of the <expose> event which must be handled by TriD because
+the Frame is never exposed. Default mouse bindings, defined for
+button1 and button3, control TriD object orientation and size
+respectively.
 
 %description -l pl Graphics-TriD-Tk
-Kontrolka ta sk³ada siê z obiektu Frame oraz urz±dzenia Display
-modu³u TriD. Dziedziczy ona wszystkie atrybuty obiektu Tk Frame.
-Wszystkie zdarzenia skojarzone z tym oknem kontrolki s± obs³ugiwane
-za pomoc± Tk za wyj±tkiem zdarzenia <expose>, które musi byæ obs³u¿one
-przez modu³ TriD, poniewa¿ obiekt Frame nie jest nigdy wy¶wietlany.
-Za pomoc± przycisków myszki mo¿na kontrolowaæ widok obiektu
-(przycisk pierwszy) oraz jego rozmiar (przycisk trzeci).
+Kontrolka ta sk³ada siê z obiektu Frame oraz urz±dzenia Display modu³u
+TriD. Dziedziczy ona wszystkie atrybuty obiektu Tk Frame. Wszystkie
+zdarzenia skojarzone z tym oknem kontrolki s± obs³ugiwane za pomoc± Tk
+za wyj±tkiem zdarzenia <expose>, które musi byæ obs³u¿one przez modu³
+TriD, poniewa¿ obiekt Frame nie jest nigdy wy¶wietlany. Za pomoc±
+przycisków myszki mo¿na kontrolowaæ widok obiektu (przycisk pierwszy)
+oraz jego rozmiar (przycisk trzeci).
 
 %package Graphics-PGPLOT
 Summary:	PGPLOT enhanced interface for PDL
@@ -143,11 +157,11 @@ Group(pl):	Programowanie/Jêzyki/Perl
 Requires:	%{name} = %{version}
 
 %description Graphics-PGPLOT
-`PDL::Graphics::PGPLOT' is a convenience interface to the PGPLOT commands,
-implemented using the object oriented PGPLOT plotting package in the
-PDL::Graphics::PGPLOT::Window manpage. See the documentation for that
-package for in-depth information about the usage of these commands and the
-options they accept.
+`PDL::Graphics::PGPLOT' is a convenience interface to the PGPLOT
+commands, implemented using the object oriented PGPLOT plotting
+package in the PDL::Graphics::PGPLOT::Window manpage. See the
+documentation for that package for in-depth information about the
+usage of these commands and the options they accept.
 
 %description -l pl Graphics-PGPLOT
 Modu³ ten jest interfejsem do komend biblioteki PGPLOT. Jest ona
@@ -263,14 +277,14 @@ Requires:	%{name} = %{version}
 Requires:	%{name}-IO-Pnm = %{version}
 
 %description IO-Pic
-This package implements I/O for a number of popular image formats
-by exploiting the xxxtopnm and pnmtoxxx converters from the netpbm
+This package implements I/O for a number of popular image formats by
+exploiting the xxxtopnm and pnmtoxxx converters from the netpbm
 package.
 
 %description -l pl IO-Pic
-Pakiet daje mo¿liwo¶æ czytania i zapisywania obrazków w wielu formatach
-poprzez wykorzystywanie konwerterów xxxtopnm i pnmtoxxx z pakietu
-netpbm.
+Pakiet daje mo¿liwo¶æ czytania i zapisywania obrazków w wielu
+formatach poprzez wykorzystywanie konwerterów xxxtopnm i pnmtoxxx z
+pakietu netpbm.
 
 %package IO-Pnm
 Summary:	PNM format IO for PDL
@@ -309,8 +323,8 @@ Group(pl):	Programowanie/Jêzyki/Perl
 Requires:	%{name} = %{version}
 
 %description GSL
-Interface to the rng and randist packages present in the GNU Scientific
-Library.
+Interface to the rng and randist packages present in the GNU
+Scientific Library.
 
 %description -l pl GSL
 Interfejs do funkcji rng i randist z biblioteki GSL.
