@@ -1,11 +1,14 @@
+# conditional build
+#    with_html - generate an extra package with PDL documentation in HTML
+#
 %include	/usr/lib/rpm/macros.perl
-%define	pdir	PDL
+%define		pdir	PDL
 Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR):	Módulo PDL para perl
 Name:		perl-PDL
 Version:	2.3.3
-Release:	2
+Release:	3
 Epoch:		1
 License:	GPL
 Group:		Development/Languages/Perl
@@ -14,6 +17,7 @@ Patch0:		%{name}-conf.patch
 Patch1:		%{name}-dep.patch
 Patch2:		%{name}-Makefile.PL.patch-dumb
 Patch3:		%{name}-fftw-shared.patch
+Patch4:		%{name}-WITH_IO_BROWSER.patch
 URL:		http://pdl.perl.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	XFree86-devel
@@ -88,9 +92,9 @@ Group:		Development/Languages/Perl
 Requires:	%{name} = %{version}
 Requires:	%{name}-Graphics-OpenGL = %{version}
 Requires:	%{name}-IO-Pic = %{version}
+Provides:	perl(PDL::Graphics::TriD::GL)
 Provides:	perl(PDL::Graphics::TriD::Objects)
 Provides:	perl(PDL::Graphics::TriD::TextObjects)
-Provides:	perl(PDL::Graphics::TriD::GL)
 
 %description Graphics-TriD
 This module implements a generic 3D plotting interface for PDL.
@@ -146,12 +150,30 @@ oraz jego rozmiar (przycisk trzeci).
 Summary:	Supplied extra documentation for PDL::* perl modules.
 Summary(pl):	Dodatkowo dostarczona dokumentacja do modu³ów perla PDL::*.
 Group:		Development/Languages/Perl
+Requires:	%{name} = %{version}
 
 %description docs
 Additional, supplied by authors, documentation to all PDL::* modules.
 
 %description docs -l pl
 Dodatkowa, dostarczona przez autorów, dokumentacja do modu³ów PDL::*.
+
+%if %{!?_with_html:0}%{?_with_html:1}
+%package docs-HTML
+Summary:	Supplied extra documentation for PDL::* perl modules in HTML format.
+Summary(pl):	Dodatkowo dostarczona dokumentacja w HTML-u do modu³ów perla PDL::*.
+Group:		Development/Languages/Perl
+# for install dir
+Requires:	%{name}
+
+%description docs-HTML
+Additional, supplied by authors, documentation in HTML format to all
+PDL::* modules.
+
+%description docs-HTML -l pl
+Dodatkowa, dostarczona przez autorów, dokumentacja do modu³ów PDL::*,
+w formacie HTML.
+%endif
 
 %package Graphics-PGPLOT
 Summary:	PGPLOT enhanced interface for PDL
@@ -206,6 +228,18 @@ PDL interface to the OpenGL graphics library.
 
 %description Graphics-OpenGL -l pl
 Interfejs OpenGL dla PDL.
+
+%package IO-Browser
+Summary:	2D data browser for PDL
+Summary(pl):	Przegl±darka danych 2D dla PDL
+Group:		Development/Languages/Perl
+Requires:	%{name} = %{version}
+
+%description IO-Browser
+2D data browser for PDL.
+
+%description -l pl IO-Browser
+Przegl±darka danych 2D dla PDL.
 
 %package IO-FastRaw
 Summary:	A simple, fast and convenient IO format for PDL
@@ -321,6 +355,7 @@ Przyk³adowe skrypty z u¿yciem PDL.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 # g77 flags for compiling Slatec:
 perl -pi -e 's@o \$mycflags s@o %{rpmcflags} s@' Lib/Slatec/Makefile.PL
@@ -336,6 +371,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# perl script to regenerate pdldoc database
+install Doc/scantree.pl $RPM_BUILD_ROOT%{perl_sitearch}/PDL/scantree.pl
+
 # some manuals have wrong names - this can be fixed in "Makefile.PL"s or here:
 cd $RPM_BUILD_ROOT%{_mandir}/man3
 mv -f PDL::Dev.3pm		PDL::Core::Dev.3pm
@@ -348,12 +386,170 @@ mv -f PDL::State.3pm		PDL::Graphics::State.3pm
 mv -f PDL::Histogram.3pm	PDL::RandVar::Histogram.3pm
 mv -f PDL::Sobol.3pm		PDL::RandVar::Sobol.3pm
 
+# some man pages do not belong to the man1 section
+cd $RPM_BUILD_ROOT%{_mandir}/man1
+for i in PDL::*.1; do
+	mv $i ../man3/`echo $i | sed 's/\.1$/.3/'`
+done
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post docs
+/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+
+%post Graphics-TriD
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%post Graphics-TriD-Tk
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%post Graphics-PGPLOT
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%post Graphics-IIS
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%post Graphics-LUT
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%post Graphics-OpenGL
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%post IO-Browser
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%post IO-FastRaw
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%post IO-FlexRaw
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%post IO-NDF
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%post IO-Pic
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%post IO-Pnm
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%post Slatec
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%post GSL
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%post Demos
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%postun Graphics-TriD
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%postun Graphics-TriD-Tk
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%postun Graphics-PGPLOT
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%postun Graphics-IIS
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%postun Graphics-LUT
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%postun Graphics-OpenGL
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%postun IO-Browser
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%postun IO-FastRaw
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%postun IO-FlexRaw
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%postun IO-NDF
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%postun IO-Pic
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%postun IO-Pnm
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%postun Slatec
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%postun GSL
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
+%postun Demos
+if [ -f %{perl_sitearch}/PDL/scantree.pl ]; then
+	/usr/bin/perl -Mblib %{perl_sitearch}/PDL/scantree.pl %{perl_sitearch}
+fi
+
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/pdldoc
 %attr(755,root,root) %{_bindir}/pptemplate
 %dir %{perl_sitearch}/PDL
 
@@ -408,7 +604,6 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/PDL/Ufunc.pm
 %{perl_sitearch}/PDL/Version.pm
 %{perl_sitearch}/PDL/default.perldlrc
-%{perl_sitearch}/PDL/pdl*
 
 %dir %{perl_sitearch}/auto/PDL
 %dir %{perl_sitearch}/auto/PDL/Bad
@@ -469,44 +664,42 @@ rm -rf $RPM_BUILD_ROOT
 
 %{perl_sitearch}/Inline/Pdlpp.pm
 
-%{_mandir}/man1/pdl*
-%{_mandir}/man1/PDL*
+%{_mandir}/man1/pdl.1*
 %{_mandir}/man1/pptemplate.1*
 %{_mandir}/man3/Inline::Pdlpp.3pm*
 %{_mandir}/man3/PDL.*
-%{_mandir}/man3/PDL::A*
+%{_mandir}/man3/PDL::[AC-ELO-RTU]*
 %{_mandir}/man3/PDL::Ba*
-%{_mandir}/man3/PDL::C*
-%{_mandir}/man3/PDL::D*
-%{_mandir}/man3/PDL::E*
+%{_mandir}/man3/PDL::FAQ*
 %{_mandir}/man3/PDL::FFT*
 %{_mandir}/man3/PDL::Filter::Linear*
 %{_mandir}/man3/PDL::Fit::Gaussian*
 %{_mandir}/man3/PDL::Func.3pm.gz
 %{_mandir}/man3/PDL::Graphics::State.3pm*
-%{_mandir}/man3/PDL::Im*
+%{_mandir}/man3/PDL::I[mn]*
 %{_mandir}/man3/PDL::IO::Misc*
-%{_mandir}/man3/PDL::L*
 %{_mandir}/man3/PDL::Math*
 %{_mandir}/man3/PDL::NiceSlice.3pm*
-%{_mandir}/man3/PDL::O*
-%{_mandir}/man3/PDL::P*
-%{_mandir}/man3/PDL::R*
 %{_mandir}/man3/PDL::Slices*
-%{_mandir}/man3/PDL::T*
-%{_mandir}/man3/PDL::U*
 %{_mandir}/man3/PDL::pptemplate.3pm*
 
 %files docs
 %defattr(644,root,root,755)
-%{perl_sitearch}/PDL/HtmlDocs
-%{perl_sitearch}/PDL/*.pod
+%attr(755,root,root) %{_bindir}/pdldoc
+%attr(755,root,root) %{perl_sitearch}/PDL/scantree.pl
+%config %{perl_sitearch}/PDL/pdldoc.db
+%doc %{perl_sitearch}/PDL/*.pod
+%{_mandir}/man1/pdldoc.1*
+
+%if %{!?_with_html:0}%{?_with_html:1}
+%files docs-HTML
+%doc %{perl_sitearch}/PDL/HtmlDocs
+%endif
 
 %files perldl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/perldl
 %{_mandir}/man1/perldl*
-%{perl_sitearch}/PDL/perldl*
 
 %files Graphics-TriD
 %defattr(644,root,root,755)
@@ -558,6 +751,14 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_sitearch}/auto/PDL/Graphics/OpenGL*/*bs
 %attr(755,root,root) %{perl_sitearch}/auto/PDL/Graphics/OpenGL*/*so
 %{perl_sitearch}/PDL/Graphics/OpenGL*
+
+%files IO-Browser
+%defattr(644,root,root,755)
+%{_mandir}/man3/PDL::IO::Browser*
+%dir %{perl_sitearch}/auto/PDL/IO/Browser
+%{perl_sitearch}/auto/PDL/IO/Browser/*.bs
+%attr(755,root,root) %{perl_sitearch}/auto/PDL/IO/Browser/*.so
+%{perl_sitearch}/PDL/IO/Browser*
 
 %files IO-FastRaw
 %defattr(644,root,root,755)
