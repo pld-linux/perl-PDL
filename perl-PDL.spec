@@ -21,6 +21,7 @@ BuildRequires:	XFree86-devel
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	perl-Tk
 BuildRequires:	perl-PGPLOT
+BuildRequires:	perl-ExtUtils-F77 >= 1.10
 %requires_eq	perl
 Requires:	%{perl_sitearch}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
