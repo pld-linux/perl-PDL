@@ -12,7 +12,7 @@ Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR):	Módulo PDL para perl
 Name:		perl-PDL
 Version:	2.4.1
-Release:	1
+Release:	2
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
@@ -39,6 +39,7 @@ BuildRequires:	perl-Inline >= 0.43
 BuildRequires:	perl-PGPLOT
 BuildRequires:	perl-Tk
 BuildRequires:	perl-devel >= 1:5.8.0
+BuildRequires:	perl-perldoc
 BuildRequires:	plplot-devel >= 5.2.1
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -73,7 +74,7 @@ de segundo.
 Summary:	PDL shell
 Summary(pl):	Pow³oka PDL
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description perldl
 The program perldl is a simple shell (written in perl) for interactive
@@ -92,7 +93,7 @@ przypadku perldl wspiera mechanizm historii komend.
 Summary:	Supplied extra documentation for PDL::* perl modules
 Summary(pl):	Dodatkowo dostarczona dokumentacja do modu³ów perla PDL::*
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description docs
 Additional, supplied by authors, documentation to all PDL::* modules.
@@ -105,7 +106,7 @@ Summary:	Supplied extra documentation for PDL::* perl modules in HTML format
 Summary(pl):	Dodatkowo dostarczona dokumentacja w HTML-u do modu³ów perla PDL::*
 Group:		Development/Languages/Perl
 # for install dir
-Requires:	%{name}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description docs-HTML
 Additional, supplied by authors, documentation in HTML format to all
@@ -119,7 +120,7 @@ w formacie HTML.
 Summary:	Display PDL images on IIS devices (saoimage/ximtool)
 Summary(pl):	Wy¶wietlanie grafiki PDL na urz±dzeniach IIS (saoimage/ximtool)
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description Graphics-IIS
 Display PDL images on IIS devices (saoimage/ximtool).
@@ -131,7 +132,7 @@ Wy¶wietlanie grafiki PDL na urz±dzeniach IIS (saoimage/ximtool).
 Summary:	Interface to Karma visualisation applications
 Summary(pl):	Interfejs do aplikacji wizualizuj±cych Karma
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description Graphics-Karma
 PDL::Graphics::Karma is an interface to Karma visualisation
@@ -146,7 +147,7 @@ Mo¿e wysy³aæ dane 2D i 3D do kview, xray, kslice_3d itp.
 Summary:	Provides access to a number of look-up tables for PDL
 Summary(pl):	Dostêp do tablic kolorów dla PDL
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description Graphics-LUT
 Provides access to a number of look-up tables for PDL.
@@ -158,7 +159,7 @@ Modu³ zapewnia dostêp do ró¿nych tablic kolorów (palet) dla PDL.
 Summary:	PDL interface to the OpenGL graphics library
 Summary(pl):	Interfejs OpenGL dla PDL
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description Graphics-OpenGL
 PDL interface to the OpenGL graphics library.
@@ -170,7 +171,7 @@ Interfejs OpenGL dla PDL.
 Summary:	PGPLOT enhanced interface for PDL
 Summary(pl):	Rozszerzony interfejs biblioteki PGPLOT dla PDL
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description Graphics-PGPLOT
 `PDL::Graphics::PGPLOT' is a convenience interface to the PGPLOT
@@ -188,7 +189,7 @@ zaimplementowany za pomoc± obiektowo zorientowanego pakietu PGPLOT
 Summary:	PDL::Graphics::PLplot - interface to the PLplot plotting library
 Summary(pl):	PDL::Graphics::PLplot - interfejs do biblioteki rysuj±cej PLplot
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description Graphics-PLplot
 PDL::Graphics::PLplot is the PDL interface to the PLplot graphics
@@ -204,9 +205,9 @@ perlowatym zorientowanym obiektowo interfejsem.
 Summary:	PDL 3D interface
 Summary(pl):	Interfejs 3D dla PDL
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
-Requires:	%{name}-Graphics-OpenGL = %{epoch}:%{version}
-Requires:	%{name}-IO-Pic = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}-Graphics-OpenGL = %{epoch}:%{version}-%{release}
+Requires:	%{name}-IO-Pic = %{epoch}:%{version}-%{release}
 
 %description Graphics-TriD
 This module implements a generic 3D plotting interface for PDL.
@@ -236,9 +237,9 @@ http://vrml.sgi.com/ lub http://www.vrml.org/.
 Summary:	A Tk widget interface to the PDL-Graphics-TriD
 Summary(pl):	Kontrolka interfejsu Tk dla PDL-Graphics-TriD
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
-Requires:	%{name}-Graphics-OpenGL = %{epoch}:%{version}
-Requires:	%{name}-Graphics-TriD = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}-Graphics-OpenGL = %{epoch}:%{version}-%{release}
+Requires:	%{name}-Graphics-TriD = %{epoch}:%{version}-%{release}
 
 %description Graphics-TriD-Tk
 The widget is composed of a Frame and the Display device of the TriD
@@ -262,7 +263,7 @@ oraz jego rozmiar (przycisk trzeci).
 Summary:	2D data browser for PDL
 Summary(pl):	Przegl±darka danych 2D dla PDL
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description IO-Browser
 2D data browser for PDL.
@@ -274,7 +275,7 @@ Przegl±darka danych 2D dla PDL.
 Summary:	A simple, fast and convenient IO format for PDL
 Summary(pl):	Prosty, szybki i wygodny format wej¶cia/wyj¶cia dla PDL
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description IO-FastRaw
 A simple, fast and convenient IO format for PDL.
@@ -286,7 +287,7 @@ Prosty, szybki i wygodny format wej¶cia/wyj¶cia dla PDL.
 Summary:	A flexible binary IO format for PDL
 Summary(pl):	Elastyczny binarny format wej¶cia/wyj¶cia dla PDL
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description IO-FlexRaw
 A flexible binary IO format for PDL.
@@ -298,7 +299,7 @@ Elastyczny binarny format wej¶cia/wyj¶cia dla PDL.
 Summary:	Starlink N-dimensional data structures for PDL
 Summary(pl):	Wsparcie dla n-wymiarowych struktur danych firmy Starlink dla PDL
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description IO-NDF
 Starlink N-dimensional data structures for PDL.
@@ -311,8 +312,8 @@ Summary:	Image I/O for PDL based on the netpbm package
 Summary(pl):	Obs³uga obrazków dla PDL oparta na pakiecie netpbm
 Group:		Development/Languages/Perl
 Requires:	netpbm
-Requires:	%{name} = %{epoch}:%{version}
-Requires:	%{name}-IO-Pnm = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}-IO-Pnm = %{epoch}:%{version}-%{release}
 
 %description IO-Pic
 This package implements I/O for a number of popular image formats by
@@ -328,7 +329,7 @@ pakietu netpbm.
 Summary:	PNM format IO for PDL
 Summary(pl):	Wsparcie dla formatu PNM dla PDL
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description IO-Pnm
 PNM format IO for PDL.
@@ -340,7 +341,7 @@ Wsparcie dla formatu PNM dla PDL.
 Summary:	Helper functions to make PDL usable with Storable
 Summary(pl):	Funkcje pomocnicze pozwalajace u¿ywaæ PDL ze Storable
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description IO-Storable
 Helper functions to make PDL usable with Storable.
@@ -352,7 +353,7 @@ Funkcje pomocnicze pozwalajace u¿ywaæ PDL wraz ze Storable.
 Summary:	PDL interface to the Slatec numerical programming library
 Summary(pl):	Interfejs PDL do biblioteki numerycznej Slatec
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description Slatec
 PDL interface to the Slatec numerical programming library.
@@ -364,7 +365,7 @@ Interfejs PDL do biblioteki numerycznej Slatec.
 Summary:	PDL interface to RNG and randist routines in GSL
 Summary(pl):	Interfejs PDL do funkcji RNG i randist z biblioteki GSL
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description GSL
 Interface to the rng and randist packages present in the GNU
@@ -377,7 +378,7 @@ Interfejs do funkcji rng i randist z biblioteki GSL.
 Summary:	PDL interface to GSL Special Functions
 Summary(pl):	Interfejs PDL do funkcji specjalnych GSL
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description GSLSF
 PDL interface to GSL Special Functions.
@@ -389,11 +390,11 @@ Interfejs PDL do funkcji specjalnych GSL.
 Summary:	PDL demos
 Summary(pl):	Przyk³adowe skrypty z u¿yciem PDL
 Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}
-Requires:	%{name}-Graphics-LUT = %{epoch}:%{version}
-Requires:	%{name}-Graphics-PGPLOT = %{epoch}:%{version}
-Requires:	%{name}-Graphics-TriD = %{epoch}:%{version}
-Requires:	%{name}-Graphics-TriD-Tk = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}-Graphics-LUT = %{epoch}:%{version}-%{release}
+Requires:	%{name}-Graphics-PGPLOT = %{epoch}:%{version}-%{release}
+Requires:	%{name}-Graphics-TriD = %{epoch}:%{version}-%{release}
+Requires:	%{name}-Graphics-TriD-Tk = %{epoch}:%{version}-%{release}
 
 %description Demos
 PDL demos.
@@ -414,6 +415,11 @@ Przyk³adowe skrypty z u¿yciem PDL.
 %{__perl} -pi -e 's/\b(pdlpp_postamble)\b/$1_int/g' Graphics/PLplot/Makefile.PL
 # g77 flags for compiling Slatec:
 %{__perl} -pi -e 's@\) \$mycflags s@\) %{rpmcflags} -fPIC s@' Lib/Slatec/Makefile.PL
+
+%{__perl} -pi -e "s@(FFTW_LIBS.*)'/lib','/usr/lib','/usr/local/lib'@\$1'/usr/%{_lib}'@" perldl.conf
+%{__perl} -pi -e "s@(OPENGL_LIBS.*)'-L/usr/X11R6/lib@\$1'-L/usr/X11R6/%{_lib}@" perldl.conf
+%{__perl} -pi -e "s@(WHERE_KARMA.*)\"/usr/lib/karma@\$1\"/usr/%{_lib}/karma@" perldl.conf
+%{__perl} -pi -e "s@(WHERE_PLPLOT_LIBS.*)undef@\$1'/usr/%{_lib}'@" perldl.conf
 
 %build
 %{__perl} Makefile.PL \
