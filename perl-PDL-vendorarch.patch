@@ -7,8 +7,8 @@ diff -urN PDL-2.4.0.org/Makefile.PL PDL-2.4.0/Makefile.PL
  
 +doc_vendor_install ::
 +	@echo "doc_vendor_install: Building PDL documentation database ..."
-+	@$(PERL) -Mblib Doc/scantree.pl $(INSTALLVENDORARCH)
-+	@$(PERL) Doc/mkhtmldoc.pl $(INSTALLVENDORARCH)/PDL
++	@$(PERL) -Mblib Doc/scantree.pl $(DESTINSTALLVENDORARCH)
++	@$(PERL) Doc/mkhtmldoc.pl $(DESTINSTALLVENDORARCH)/PDL
 +	
  doc_perl_install ::
  	@echo "doc_perl_install: Building PDL documentation database ..."
