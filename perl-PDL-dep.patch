@@ -6,13 +6,6 @@
  
 -
 +=cut
---- PDL-2.002.old/Doc/Doc.pm	Tue Jun 15 14:24:01 1999
-+++ PDL-2.002/Doc/Doc.pm	Wed Nov 10 19:55:19 1999
-@@ -713,3 +713,4 @@
- distribution. If this file is separated from the PDL distribution,
- the copyright notice should be included in the file.
- 
-+=cut
 --- PDL-2.002.old/find-perl-provides	Thu Jan  1 01:00:00 1970
 +++ PDL-2.002/find-perl-provides	Wed Nov 10 20:29:32 1999
 @@ -0,0 +1,22 @@
