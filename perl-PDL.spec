@@ -2,7 +2,7 @@ Summary:	perlDL
 Summary(pl):	perlDL
 Name:		perl-PDL
 Version:	2.002
-Release:	1
+Release:	2
 Group:		Development/Languages/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
 Copyright:	GPL
@@ -36,8 +36,8 @@ i naukowaych.
 %setup  -q -n PDL-%{version}
 %patch0 -p1
 #%patch1 -p1
-%patch2 -p1
-%patch3 -p1
+#%patch2 -p1
+#%patch3 -p1
 
 %build
 perl Makefile.PL
