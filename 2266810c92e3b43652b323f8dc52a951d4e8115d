@@ -1,0 +1,5 @@
+- updated to 2.2,
+- removed all duplicated in html documentation,
+- fixed permision on shared objects,
+NOTE: still dependences scripts can not find perl(PDL::Config) and
+perl(PDL::Graphics::TriD::GL) (probably something is broken in PDL sources).
