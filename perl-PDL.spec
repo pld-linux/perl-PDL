@@ -1,5 +1,4 @@
 %include	/usr/lib/rpm/macros.perl
-%define		__find_requires %{_builddir}/PDL-%{version}/find-perl-requires
 Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
 Name:		perl-PDL
@@ -35,6 +34,7 @@ Provides:	perl(PDL::Slatec)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define 	_noautoreqdep	libGL.so.1 libGLU.so.1 libGLcore.so.1
+%define		_noautoreq	"perl(local.perldlrc)"
 
 %description
 The perlDL project aims to turn Perl into an efficient numerical language
@@ -304,8 +304,6 @@ Przyk³adowe skrypty z u¿yciem PDL.
 %patch0 -p1 
 %patch1 -p1
 %patch2 -p1
-
-chmod +x find-*
 
 %build
 perl Makefile.PL
