@@ -1,22 +1,11 @@
-diff -ur PDL-2.0.old/perldl.conf PDL-2.0/perldl.conf
---- PDL-2.0.old/perldl.conf	Wed Oct 28 15:56:59 1998
-+++ PDL-2.0/perldl.conf	Tue May 25 08:31:45 1999
-@@ -22,21 +22,21 @@
- #  You can use e.g. '-lMesaGL -lMesaGLU' with the correct -L directory
- #  to use Mesa.
- 	OPENGL_LIBS => 
--             '-L/usr/X11R6/lib -L/usr/lib/mesa -lMesaGL -lMesaGLU -lGL -lGLU -lXext -lX11',
-+             '-L/usr/X11R6/lib -lMesaGL -lMesaGLU -lXext -lX11',
- 	OPENGL_DEFINE => '',
-- 	OPENGL_INC => '-I/usr/X11R6/include',
-+ 	OPENGL_INC => '-I/usr/X11R6/include -I/usr/X11R6/include/GL',
- 
- 
+--- PDL-2.003/perldl.conf~	Mon Oct 25 18:38:27 1999
++++ PDL-2.003/perldl.conf	Thu Nov 25 13:45:18 1999
+@@ -30,13 +30,13 @@
  # Whether or not to build the Karma interface module
  
--        WITH_KARMA => undef,    # Leave it up to PDL to decide
-+        WITH_KARMA => 0,    # Leave it up to PDL to decide
-         WHERE_KARMA => undef,   # Can specific explicit directory location
+         WITH_KARMA => undef,    # Leave it up to PDL to decide
+-        WHERE_KARMA => undef,   # Can specific explicit directory location
++        WHERE_KARMA => 0,   # Can specific explicit directory location
  	
  # Whether or not to build the PDL::Slatec module
  # 0 -> don't use
@@ -24,7 +13,6 @@ diff -ur PDL-2.0.old/perldl.conf PDL-2.0/perldl.conf
  
 -        WITH_SLATEC => undef,    # Leave it up to PDL to decide
 +        WITH_SLATEC => 0,    # Leave it up to PDL to decide
- 	
- );
  
-Only in PDL-2.0: perldl.conf~
+ 
+ # Whether or not to build the PDL::GSL module
