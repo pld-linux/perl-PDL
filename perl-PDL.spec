@@ -1,4 +1,5 @@
 %include	/usr/lib/rpm/macros.perl
+%define	pdir	PDL
 Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR):	Módulo PDL para perl
@@ -8,22 +9,24 @@ Release:	1
 Epoch:		1
 License:	GPL
 Group:		Development/Languages/Perl
-Source0:	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/PDL/PDL-%{version}.tar.gz
+Source0:	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/%{pdir}/%{pdir}-%{version}.tar.gz
 Patch0:		%{name}-conf.patch
 Patch1:		%{name}-dep.patch
 Patch2:		%{name}-Makefile.PL.patch-dumb
 Patch3:		%{name}-fftw-shared.patch
 URL:		http://pdl.perl.org/
-BuildRequires:	rpm-perlprov >= 3.0.3-18
-BuildRequires:	perl >= 5.6.1
 BuildRequires:	OpenGL-devel
 BuildRequires:	XFree86-devel
 BuildRequires:	fftw-devel >= 2.1.3-5
+BuildRequires:	gsl-devel >= 1.0
 BuildRequires:	ncurses-devel >= 5.0
-BuildRequires:	perl-Tk
-BuildRequires:	perl-PGPLOT
+BuildRequires:	perl >= 5.6.1
 BuildRequires:	perl-ExtUtils-F77 >= 1.10
-BuildRequires:	gsl-devel >= 0.4.1
+BuildRequires:	perl-Filter
+BuildRequires:	perl-Inline >= 0.43
+BuildRequires:	perl-PGPLOT
+BuildRequires:	perl-Tk
+BuildRequires:	rpm-perlprov >= 3.0.3-18
 Provides:	perl(PDL::Lite)
 Provides:	perl(PDL::LiteF)
 Provides:	perl(PDL::PP::CType)
@@ -59,7 +62,6 @@ de dados de N dimensões que são muito comuns em computação científica.
 Ex. $a=$b+$c pode adicionar imagens de 2048x2048 em apenas uma fração
 de segundo.
 
-
 %package perldl
 Summary:	PDL shell
 Summary(pl):	Pow³oka PDL
@@ -72,7 +74,7 @@ use of PDL. perl/PDL commands can simply be typed in - and edited if
 you have appropriate version of the ReadLines and ReadKeys modules
 installed. In that case perldl also supports a history mechanism.
 
-%description -l pl perldl
+%description perldl -l pl
 Program perldl jest prost± pow³ok± napisan± w Perlu do interaktywnego
 wykonywania funkcji modu³u PDL. Komendy Perla lub PDL mog± byæ w
 prosty sposób wprowadzane, a tak¿e edytowane je¶li masz zainstalowan±
@@ -101,7 +103,7 @@ With VRML, you can generate objects for everyone to see with e.g.
 Silicon Graphics' Cosmo Player. You can find out more about VRML at
 `http://vrml.sgi.com/' or `http://www.vrml.org/'
 
-%description -l pl Graphics-TriD
+%description Graphics-TriD -l pl
 Modu³ ten implementuje podstawowy interfejs 3D dla PDL. Dostêpne s± -
 w¶ród innych obiektów - punkty, linie oraz powierzchnie.
 
@@ -131,7 +133,7 @@ the Frame is never exposed. Default mouse bindings, defined for
 button1 and button3, control TriD object orientation and size
 respectively.
 
-%description -l pl Graphics-TriD-Tk
+%description Graphics-TriD-Tk -l pl
 Kontrolka ta sk³ada siê z obiektu Frame oraz urz±dzenia Display modu³u
 TriD. Dziedziczy ona wszystkie atrybuty obiektu Tk Frame. Wszystkie
 zdarzenia skojarzone z tym oknem kontrolki s± obs³ugiwane za pomoc± Tk
@@ -148,7 +150,7 @@ Group:		Development/Languages/Perl
 %description docs
 Additional, supplied by authors, documentation to all PDL::* modules.
 
-%description -l pl docs
+%description docs -l pl
 Dodatkowa, dostarczona przez autorów, dokumentacja do modu³ów PDL::*.
 
 %package Graphics-PGPLOT
@@ -164,7 +166,7 @@ package in the PDL::Graphics::PGPLOT::Window manpage. See the
 documentation for that package for in-depth information about the
 usage of these commands and the options they accept.
 
-%description -l pl Graphics-PGPLOT
+%description Graphics-PGPLOT -l pl
 Modu³ ten jest interfejsem do komend biblioteki PGPLOT. Jest ona
 zaimplementowany za pomoc± obiektowo zorientowanego pakietu PGPLOT
 (spójrz do manuala modu³u PDL::Graphics::PGPLOT::Window).
@@ -178,7 +180,7 @@ Requires:	%{name} = %{version}
 %description Graphics-IIS
 Display PDL images on IIS devices (saoimage/ximtool).
 
-%description -l pl Graphics-IIS
+%description Graphics-IIS -l pl
 Wy¶wietlanie grafiki PDL na urz±dzeniach IIS (saoimage/ximtool).
 
 %package Graphics-LUT
@@ -190,7 +192,7 @@ Requires:	%{name} = %{version}
 %description Graphics-LUT
 Provides access to a number of look-up tables for PDL.
 
-%description -l pl Graphics-LUT
+%description Graphics-LUT -l pl
 Modu³ zapewnia dostêp do ró¿nych tablic kolorów (palet) dla PDL.
 
 %package Graphics-OpenGL
@@ -202,7 +204,7 @@ Requires:	%{name} = %{version}
 %description Graphics-OpenGL
 PDL interface to the OpenGL graphics library.
 
-%description -l pl Graphics-OpenGL
+%description Graphics-OpenGL -l pl
 Interfejs OpenGL dla PDL.
 
 %package IO-FastRaw
@@ -214,7 +216,7 @@ Requires:	%{name} = %{version}
 %description IO-FastRaw
 A simple, fast and convenient IO format for PDL.
 
-%description -l pl IO-FastRaw
+%description IO-FastRaw -l pl
 Prosty, szybki i wygodny format wej¶cia/wyj¶cia dla PDL.
 
 %package IO-FlexRaw
@@ -226,7 +228,7 @@ Requires:	%{name} = %{version}
 %description IO-FlexRaw
 A flexible binary IO format for PDL.
 
-%description -l pl IO-FlexRaw
+%description IO-FlexRaw -l pl
 Elastyczny binarny format wej¶cia/wyj¶cia dla PDL.
 
 %package IO-NDF
@@ -238,7 +240,7 @@ Requires:	%{name} = %{version}
 %description IO-NDF
 Starlink N-dimensional data structures for PDL.
 
-%description -l pl IO-NDF
+%description IO-NDF -l pl
 Wsparcie dla n-wymiarowych struktur danych firmy Starlink dla PDL.
 
 %package IO-Pic
@@ -254,7 +256,7 @@ This package implements I/O for a number of popular image formats by
 exploiting the xxxtopnm and pnmtoxxx converters from the netpbm
 package.
 
-%description -l pl IO-Pic
+%description IO-Pic -l pl
 Pakiet daje mo¿liwo¶æ czytania i zapisywania obrazków w wielu
 formatach poprzez wykorzystywanie konwerterów xxxtopnm i pnmtoxxx z
 pakietu netpbm.
@@ -268,7 +270,7 @@ Requires:	%{name} = %{version}
 %description IO-Pnm
 PNM format IO for PDL.
 
-%description -l pl IO-Pnm
+%description IO-Pnm -l pl
 Wsparcie dla formatu PNM dla PDL.
 
 %package Slatec
@@ -280,7 +282,7 @@ Requires:	%{name} = %{version}
 %description Slatec
 PDL interface to the Slatec numerical programming library.
 
-%description -l pl Slatec
+%description Slatec -l pl
 Interfejs PDL do biblioteki numerycznej Slatec.
 
 %package GSL
@@ -293,7 +295,7 @@ Requires:	%{name} = %{version}
 Interface to the rng and randist packages present in the GNU
 Scientific Library.
 
-%description -l pl GSL
+%description GSL -l pl
 Interfejs do funkcji rng i randist z biblioteki GSL.
 
 %package Demos
@@ -310,11 +312,11 @@ Provides:	perl(PDL::Demos::Screen)
 %description Demos
 PDL demos.
 
-%description -l pl Demos
+%description Demos -l pl
 Przyk³adowe skrypty z u¿yciem PDL.
 
 %prep
-%setup  -q -n PDL-%{version}
+%setup -q -n %{pdir}-%{version}
 %patch0 -p1 
 %patch1 -p1
 %patch2 -p1
@@ -335,14 +337,13 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 # some manuals have wrong names - this can be fixed in "Makefile.PL"s or here:
-(cd $RPM_BUILD_ROOT%{_mandir}/man3
+cd $RPM_BUILD_ROOT%{_mandir}/man3
 mv -f PDL::Dev.3pm		PDL::Core::Dev.3pm
 mv -f PDL::Linear.3pm		PDL::Filter::Linear.3pm
 mv -f PDL::LinPred.3pm		PDL::Filter::LinPred.3pm
 mv -f PDL::Linfit.3pm 		PDL::Fit::Linfit.3pm
 mv -f PDL::LM.3pm		PDL::Fit::LM.3pm
 mv -f PDL::Polynomial.3pm	PDL::Fit::Polynomial.3pm
-)
 
 %clean
 rm -rf $RPM_BUILD_ROOT
