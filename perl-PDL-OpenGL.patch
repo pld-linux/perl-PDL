@@ -1,0 +1,17 @@
+diff -Naur PDL-2.005.orig/Graphics/TriD/OpenGL/OpenGL.xs PDL-2.005/Graphics/TriD/OpenGL/OpenGL.xs
+--- PDL-2.005.orig/Graphics/TriD/OpenGL/OpenGL.xs	Wed Jan 26 07:05:07 2000
++++ PDL-2.005/Graphics/TriD/OpenGL/OpenGL.xs	Thu Aug  3 12:13:20 2000
+@@ -5,6 +5,13 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ 
++/*
++ * This is necessary with Mesa-3.3 to get the function needed here!
++ */
++#ifndef GL_GLEXT_LEGACY
++#define GL_GLEXT_LEGACY
++#endif
++
+ #include <GL/gl.h>
+ #include <GL/glx.h>
+ #include <GL/glu.h>
