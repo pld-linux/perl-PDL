@@ -18,7 +18,6 @@ URL:		http://www.perl.com/CPAN//modules/by-module/PDL/PDL-%{version}.readme
 BuildRequires:	rpm-perlprov >= 3.0.3-18
 BuildRequires:	perl >= 5.005_03-14
 BuildRequires:	OpenGL-devel
-BuildRequires:	OpenGL-static
 BuildRequires:	XFree86-devel
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	perl-Tk
