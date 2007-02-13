@@ -8,8 +8,8 @@
 %include	/usr/lib/rpm/macros.perl
 %define		pdir	PDL
 Summary:	perlDL - efficient numerical computing for Perl
-Summary(pl.UTF-8):   perlDL - wydajne obliczenia numeryczne w Perlu
-Summary(pt_BR.UTF-8):   Módulo PDL para perl
+Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
+Summary(pt_BR.UTF-8):	Módulo PDL para perl
 Name:		perl-PDL
 Version:	2.4.1
 Release:	2
@@ -72,7 +72,7 @@ de segundo.
 
 %package perldl
 Summary:	PDL shell
-Summary(pl.UTF-8):   Powłoka PDL
+Summary(pl.UTF-8):	Powłoka PDL
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -91,7 +91,7 @@ przypadku perldl obsługuje mechanizm historii komend.
 
 %package docs
 Summary:	Supplied extra documentation for PDL::* perl modules
-Summary(pl.UTF-8):   Dodatkowo dostarczona dokumentacja do modułów perla PDL::*
+Summary(pl.UTF-8):	Dodatkowo dostarczona dokumentacja do modułów perla PDL::*
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -103,7 +103,7 @@ Dodatkowa, dostarczona przez autorów, dokumentacja do modułów PDL::*.
 
 %package docs-HTML
 Summary:	Supplied extra documentation for PDL::* perl modules in HTML format
-Summary(pl.UTF-8):   Dodatkowo dostarczona dokumentacja w HTML-u do modułów perla PDL::*
+Summary(pl.UTF-8):	Dodatkowo dostarczona dokumentacja w HTML-u do modułów perla PDL::*
 Group:		Development/Languages/Perl
 # for install dir
 Requires:	%{name} = %{epoch}:%{version}-%{release}
@@ -118,7 +118,7 @@ w formacie HTML.
 
 %package Graphics-IIS
 Summary:	Display PDL images on IIS devices (saoimage/ximtool)
-Summary(pl.UTF-8):   Wyświetlanie grafiki PDL na urządzeniach IIS (saoimage/ximtool)
+Summary(pl.UTF-8):	Wyświetlanie grafiki PDL na urządzeniach IIS (saoimage/ximtool)
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -130,7 +130,7 @@ Wyświetlanie grafiki PDL na urządzeniach IIS (saoimage/ximtool).
 
 %package Graphics-Karma
 Summary:	Interface to Karma visualisation applications
-Summary(pl.UTF-8):   Interfejs do aplikacji wizualizujących Karma
+Summary(pl.UTF-8):	Interfejs do aplikacji wizualizujących Karma
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -145,7 +145,7 @@ Może wysyłać dane 2D i 3D do kview, xray, kslice_3d itp.
 
 %package Graphics-LUT
 Summary:	Provides access to a number of look-up tables for PDL
-Summary(pl.UTF-8):   Dostęp do tablic kolorów dla PDL
+Summary(pl.UTF-8):	Dostęp do tablic kolorów dla PDL
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -157,7 +157,7 @@ Moduł zapewnia dostęp do różnych tablic kolorów (palet) dla PDL.
 
 %package Graphics-OpenGL
 Summary:	PDL interface to the OpenGL graphics library
-Summary(pl.UTF-8):   Interfejs OpenGL dla PDL
+Summary(pl.UTF-8):	Interfejs OpenGL dla PDL
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -169,7 +169,7 @@ Interfejs OpenGL dla PDL.
 
 %package Graphics-PGPLOT
 Summary:	PGPLOT enhanced interface for PDL
-Summary(pl.UTF-8):   Rozszerzony interfejs biblioteki PGPLOT dla PDL
+Summary(pl.UTF-8):	Rozszerzony interfejs biblioteki PGPLOT dla PDL
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -187,7 +187,7 @@ zaimplementowany za pomocą obiektowo zorientowanego pakietu PGPLOT
 
 %package Graphics-PLplot
 Summary:	PDL::Graphics::PLplot - interface to the PLplot plotting library
-Summary(pl.UTF-8):   PDL::Graphics::PLplot - interfejs do biblioteki rysującej PLplot
+Summary(pl.UTF-8):	PDL::Graphics::PLplot - interfejs do biblioteki rysującej PLplot
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -203,7 +203,7 @@ perlowatym zorientowanym obiektowo interfejsem.
 
 %package Graphics-TriD
 Summary:	PDL 3D interface
-Summary(pl.UTF-8):   Interfejs 3D dla PDL
+Summary(pl.UTF-8):	Interfejs 3D dla PDL
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-Graphics-OpenGL = %{epoch}:%{version}-%{release}
@@ -235,7 +235,7 @@ http://vrml.sgi.com/ lub http://www.vrml.org/.
 
 %package Graphics-TriD-Tk
 Summary:	A Tk widget interface to the PDL-Graphics-TriD
-Summary(pl.UTF-8):   Kontrolka interfejsu Tk dla PDL-Graphics-TriD
+Summary(pl.UTF-8):	Kontrolka interfejsu Tk dla PDL-Graphics-TriD
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-Graphics-OpenGL = %{epoch}:%{version}-%{release}
@@ -261,7 +261,7 @@ oraz jego rozmiar (przycisk trzeci).
 
 %package IO-Browser
 Summary:	2D data browser for PDL
-Summary(pl.UTF-8):   Przeglądarka danych 2D dla PDL
+Summary(pl.UTF-8):	Przeglądarka danych 2D dla PDL
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -273,7 +273,7 @@ Przeglądarka danych 2D dla PDL.
 
 %package IO-FastRaw
 Summary:	A simple, fast and convenient IO format for PDL
-Summary(pl.UTF-8):   Prosty, szybki i wygodny format wejścia/wyjścia dla PDL
+Summary(pl.UTF-8):	Prosty, szybki i wygodny format wejścia/wyjścia dla PDL
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -285,7 +285,7 @@ Prosty, szybki i wygodny format wejścia/wyjścia dla PDL.
 
 %package IO-FlexRaw
 Summary:	A flexible binary IO format for PDL
-Summary(pl.UTF-8):   Elastyczny binarny format wejścia/wyjścia dla PDL
+Summary(pl.UTF-8):	Elastyczny binarny format wejścia/wyjścia dla PDL
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -297,7 +297,7 @@ Elastyczny binarny format wejścia/wyjścia dla PDL.
 
 %package IO-NDF
 Summary:	Starlink N-dimensional data structures for PDL
-Summary(pl.UTF-8):   Wsparcie dla n-wymiarowych struktur danych firmy Starlink dla PDL
+Summary(pl.UTF-8):	Wsparcie dla n-wymiarowych struktur danych firmy Starlink dla PDL
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -309,7 +309,7 @@ Wsparcie dla n-wymiarowych struktur danych firmy Starlink dla PDL.
 
 %package IO-Pic
 Summary:	Image I/O for PDL based on the netpbm package
-Summary(pl.UTF-8):   Obsługa obrazków dla PDL oparta na pakiecie netpbm
+Summary(pl.UTF-8):	Obsługa obrazków dla PDL oparta na pakiecie netpbm
 Group:		Development/Languages/Perl
 Requires:	netpbm
 Requires:	%{name} = %{epoch}:%{version}-%{release}
@@ -327,7 +327,7 @@ pakietu netpbm.
 
 %package IO-Pnm
 Summary:	PNM format IO for PDL
-Summary(pl.UTF-8):   Wsparcie dla formatu PNM dla PDL
+Summary(pl.UTF-8):	Wsparcie dla formatu PNM dla PDL
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -339,7 +339,7 @@ Wsparcie dla formatu PNM dla PDL.
 
 %package IO-Storable
 Summary:	Helper functions to make PDL usable with Storable
-Summary(pl.UTF-8):   Funkcje pomocnicze pozwalajace używać PDL ze Storable
+Summary(pl.UTF-8):	Funkcje pomocnicze pozwalajace używać PDL ze Storable
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -351,7 +351,7 @@ Funkcje pomocnicze pozwalajace używać PDL wraz ze Storable.
 
 %package Slatec
 Summary:	PDL interface to the Slatec numerical programming library
-Summary(pl.UTF-8):   Interfejs PDL do biblioteki numerycznej Slatec
+Summary(pl.UTF-8):	Interfejs PDL do biblioteki numerycznej Slatec
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -363,7 +363,7 @@ Interfejs PDL do biblioteki numerycznej Slatec.
 
 %package GSL
 Summary:	PDL interface to RNG and randist routines in GSL
-Summary(pl.UTF-8):   Interfejs PDL do funkcji RNG i randist z biblioteki GSL
+Summary(pl.UTF-8):	Interfejs PDL do funkcji RNG i randist z biblioteki GSL
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -376,7 +376,7 @@ Interfejs do funkcji rng i randist z biblioteki GSL.
 
 %package GSLSF
 Summary:	PDL interface to GSL Special Functions
-Summary(pl.UTF-8):   Interfejs PDL do funkcji specjalnych GSL
+Summary(pl.UTF-8):	Interfejs PDL do funkcji specjalnych GSL
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -388,7 +388,7 @@ Interfejs PDL do funkcji specjalnych GSL.
 
 %package Demos
 Summary:	PDL demos
-Summary(pl.UTF-8):   Przykładowe skrypty z użyciem PDL
+Summary(pl.UTF-8):	Przykładowe skrypty z użyciem PDL
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-Graphics-LUT = %{epoch}:%{version}-%{release}
