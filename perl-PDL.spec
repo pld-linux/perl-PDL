@@ -425,6 +425,7 @@ Przykładowe skrypty z użyciem PDL.
 %{__perl} Makefile.PL \
 	INSTALLDIRS=vendor
 %{__make} \
+	CC="%{__cc}" \
 	OPTIMIZE="%{rpmcflags} -I/usr/include/ncurses -DNCURSES -DPERL_POLLUTE"
 
 %{?with_tests:%{__make} test}
