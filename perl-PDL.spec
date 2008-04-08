@@ -11,14 +11,14 @@ Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR.UTF-8):	Módulo PDL para perl
 Name:		perl-PDL
-Version:	2.4.1
-Release:	3
+Version:	2.4.3
+Release:	1
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{version}.tar.gz
-# Source0-md5:	0d57eb5ccb4d9e63103622e1e1144793
+# Source0-md5:	8fa453a4ac90d5c0382020d5635ad90a
 Patch0:		%{name}-conf.patch
 Patch1:		%{name}-dep.patch
 Patch2:		%{name}-Makefile.PL.patch-dumb
@@ -26,10 +26,11 @@ Patch3:		%{name}-fftw-shared.patch
 Patch4:		%{name}-WITH_IO_BROWSER.patch
 Patch5:		%{name}-karma.patch
 Patch6:		%{name}-vendorarch.patch
+Patch7:		%{name}-gsl-check.patch
 URL:		http://pdl.perl.org/
 BuildRequires:	OpenGL-devel
-BuildRequires:	XFree86-devel
 BuildRequires:	fftw-devel >= 2.1.3-5
+BuildRequires:	gd-devel
 BuildRequires:	gsl-devel >= 1.3
 %{?with_karma:BuildRequires:	karma-devel}
 BuildRequires:	ncurses-devel >= 5.0
@@ -42,6 +43,9 @@ BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	perl-perldoc
 BuildRequires:	plplot-devel >= 5.2.1
 BuildRequires:	rpm-perlprov >= 4.1-13
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xorg-lib-libXt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define 	_noautoreqdep	libGL.so.1 libGLU.so.1 libGLcore.so.1
@@ -154,6 +158,18 @@ Provides access to a number of look-up tables for PDL.
 
 %description Graphics-LUT -l pl.UTF-8
 Moduł zapewnia dostęp do różnych tablic kolorów (palet) dla PDL.
+
+%package Graphics-Limits
+Summary:	Derive limits for display purposes
+Summary(pl.UTF-8):	Oblicza zakresy dla danych w celu wizualizacji
+Group:		Development/Languages/Perl
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description Graphics-Limits
+Functions to derive limits for data for display purposes.
+
+%description Graphics-Limits -l pl.UTF-8
+Funkcje obliczające zakresy dla danych w celu wizualizacji.
 
 %package Graphics-OpenGL
 Summary:	PDL interface to the OpenGL graphics library
@@ -295,6 +311,18 @@ A flexible binary IO format for PDL.
 %description IO-FlexRaw -l pl.UTF-8
 Elastyczny binarny format wejścia/wyjścia dla PDL.
 
+%package IO-GD
+Summary:	PDL interface to the GD c library
+Summary(pl.UTF-8):	Interfejs PLD do biblioteki GD
+Group:		Development/Languages/Perl
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description IO-GD
+PDL interface to the GD c library.
+
+%description IO-GD -l pl.UTF-8
+Interfejs PLD do biblioteki GD.
+
 %package IO-NDF
 Summary:	Starlink N-dimensional data structures for PDL
 Summary(pl.UTF-8):	Wsparcie dla n-wymiarowych struktur danych firmy Starlink dla PDL
@@ -411,6 +439,7 @@ Przykładowe skrypty z użyciem PDL.
 %patch4 -p1
 %{?with_karma:%patch5 -p1}
 %patch6 -p1
+%patch7 -p1
 
 %{__perl} -pi -e 's/\b(pdlpp_postamble)\b/$1_int/g' Graphics/PLplot/Makefile.PL
 # g77 flags for compiling Slatec:
@@ -477,6 +506,11 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
+%post Graphics-Limits
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
 %post Graphics-OpenGL
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
@@ -513,6 +547,11 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 fi
 
 %post IO-FlexRaw
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
+%post IO-GD
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
@@ -572,6 +611,11 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
+%postun Graphics-Limits
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
 %postun Graphics-OpenGL
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
@@ -608,6 +652,11 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 fi
 
 %postun IO-FlexRaw
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
+%postun IO-GD
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
@@ -654,6 +703,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/pdl
 %attr(755,root,root) %{_bindir}/pptemplate
 %dir %{perl_vendorarch}/PDL
 
@@ -775,6 +825,7 @@ fi
 %{perl_vendorarch}/auto/PDL/Transform/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Transform/*.so
 
+%{perl_vendorarch}/Inline/MakePdlppInstallable.pm
 %{perl_vendorarch}/Inline/Pdlpp.pm
 
 %{_mandir}/man1/pdl.1*
@@ -840,6 +891,11 @@ fi
 %{perl_vendorarch}/PDL/Graphics/LUT*
 %{_mandir}/man3/PDL::Graphics::LUT*
 
+%files Graphics-Limits
+%defattr(644,root,root,755)
+%{perl_vendorarch}/PDL/Graphics/Limits*
+%{_mandir}/man3/PDL::Graphics::Limits*
+
 %files Graphics-OpenGL
 %defattr(644,root,root,755)
 %{perl_vendorarch}/PDL/Graphics/OpenGL*
@@ -904,6 +960,13 @@ fi
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::IO::FlexRaw*
 %{perl_vendorarch}/PDL/IO/FlexRaw*
+
+%files IO-GD
+%defattr(644,root,root,755)
+%{_mandir}/man3/PDL::IO::GD*
+%{perl_vendorarch}/PDL/IO/GD*
+%{perl_vendorarch}/auto/PDL/IO/GD/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/GD/*.so
 
 %files IO-NDF
 %defattr(644,root,root,755)
