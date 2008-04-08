@@ -12,7 +12,7 @@ Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR.UTF-8):	Módulo PDL para perl
 Name:		perl-PDL
 Version:	2.4.3
-Release:	1
+Release:	2
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
@@ -42,6 +42,7 @@ BuildRequires:	perl-Tk
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	perl-perldoc
 BuildRequires:	plplot-devel >= 5.2.1
+BuildRequires:	proj-devel
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
@@ -414,6 +415,23 @@ PDL interface to GSL Special Functions.
 %description GSLSF -l pl.UTF-8
 Interfejs PDL do funkcji specjalnych GSL.
 
+%package Transform
+Summary:	Coordinate transforms, image warping, and N-D functions
+Summary(pl.UTF-8):	Transformacje współrzędnych, warpowaie obrazów i funkcje N-D
+Group:		Development/Languages/Perl
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description Transform
+PDL::Transform is a convenient way to represent coordinate
+transformations and resample images.  It embodies functions mapping
+R^N -> R^M, both with and without inverses.  Provision exists for
+parametrizing functions, and for composing them.  You can use this
+part of the Transform object to keep track of arbitrary functions
+mapping R^N -> R^M with or without inverses.
+
+%description Transform -l pl.UTF-8
+Transformacje współrzędnych, warpowaie obrazów i funkcje N-D
+
 %package Demos
 Summary:	PDL demos
 Summary(pl.UTF-8):	Przykładowe skrypty z użyciem PDL
@@ -591,6 +609,11 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
+%post Transform
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
 %post Demos
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
@@ -696,6 +719,11 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
+%postun Transform
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
 %postun Demos
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
@@ -754,9 +782,6 @@ fi
 %{perl_vendorarch}/PDL/Reduce.pm
 %{perl_vendorarch}/PDL/Slices.pm
 %{perl_vendorarch}/PDL/Tests.pm
-# maybe separate PDL::Transform? (~500kB)
-%{perl_vendorarch}/PDL/Transform.pm
-%{perl_vendorarch}/PDL/Transform
 %{perl_vendorarch}/PDL/Types.pm
 %{perl_vendorarch}/PDL/Ufunc.pm
 %{perl_vendorarch}/PDL/Version.pm
@@ -821,9 +846,6 @@ fi
 %dir %{perl_vendorarch}/auto/PDL/Tests
 %{perl_vendorarch}/auto/PDL/Tests/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Tests/*.so
-%dir %{perl_vendorarch}/auto/PDL/Transform
-%{perl_vendorarch}/auto/PDL/Transform/*.bs
-%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Transform/*.so
 
 %{perl_vendorarch}/Inline/MakePdlppInstallable.pm
 %{perl_vendorarch}/Inline/Pdlpp.pm
@@ -1039,6 +1061,24 @@ fi
 %{perl_vendorarch}/auto/PDL/GSLSF/*/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSLSF/*/*.so
 %{_mandir}/man3/PDL::GSLSF::*
+
+%files Transform
+%defattr(644,root,root,755)
+%dir %{perl_vendorarch}/PDL/GIS
+%{perl_vendorarch}/PDL/GIS/Proj.pm
+%{perl_vendorarch}/PDL/Transform.pm
+%{perl_vendorarch}/PDL/Transform
+%dir %{perl_vendorarch}/auto/PDL/GIS
+%dir %{perl_vendorarch}/auto/PDL/GIS/Proj
+%{perl_vendorarch}/auto/PDL/GIS/Proj/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/GIS/Proj/*.so
+%dir %{perl_vendorarch}/auto/PDL/Transform
+%{perl_vendorarch}/auto/PDL/Transform/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Transform/*.so
+%dir %{perl_vendorarch}/auto/PDL/Transform/Proj4
+%{perl_vendorarch}/auto/PDL/Transform/Proj4/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Transform/Proj4/*.so
+%{_mandir}/man3/PDL::GIS::*
 
 %files Demos
 %defattr(644,root,root,755)
