@@ -12,13 +12,13 @@ diff -urN PDL-2.4.0.org/perldl.conf PDL-2.4.0/perldl.conf
  #  For Mesa 3.2
  #
  #	OPENGL_LIBS => '-L/usr/local/Mesa/lib -lGL -lGLU -lXext -lX11',
-+	OPENGL_LIBS => '-L/usr/X11R6/lib -lGL -lGLU -lXext -lX11',
++	OPENGL_LIBS => '-L/usr/lib -lGL -lGLU -lXext -lX11',
  #  Mesa need -DGL_GLEXT_LEGACY for glPolygonOffsetEXT amoung others
  #
  #	OPENGL_DEFINE => '-DGL_GLEXT_LEGACY',
  # 	OPENGL_INC => '-I/usr/include/GL/',
 +	OPENGL_DEFINE => '-DGL_GLEXT_LEGACY',
-+	OPENGL_INC => '-I/usr/X11R6/include',
++	OPENGL_INC => '-I/usr/include',
  #
  # 
  # For SGI GL
