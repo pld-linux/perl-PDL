@@ -12,7 +12,7 @@ Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR.UTF-8):	Módulo PDL para perl
 Name:		perl-PDL
 Version:	2.4.3
-Release:	3
+Release:	4
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
@@ -464,6 +464,7 @@ Przykładowe skrypty z użyciem PDL.
 %{__perl} -pi -e 's@\) \$mycflags s@\) %{rpmcflags} -fPIC s@' Lib/Slatec/Makefile.PL
 
 %{__perl} -pi -e "s@(FFTW_LIBS.*)'/lib','/usr/lib','/usr/local/lib'@\$1'/usr/%{_lib}'@" perldl.conf
+%{__perl} -pi -e "s@(OPENGL_LIBS.*)'-L/usr/lib@\$1'-L/usr/%{_lib}@" perldl.conf
 %{__perl} -pi -e "s@(WHERE_KARMA.*)\"/usr/lib/karma@\$1\"/usr/%{_lib}/karma@" perldl.conf
 %{__perl} -pi -e "s@(WHERE_PLPLOT_LIBS.*)undef@\$1'/usr/%{_lib}'@" perldl.conf
 
