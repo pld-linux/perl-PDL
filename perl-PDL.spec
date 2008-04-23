@@ -12,7 +12,7 @@ Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR.UTF-8):	Módulo PDL para perl
 Name:		perl-PDL
 Version:	2.4.3
-Release:	4
+Release:	4.1
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
@@ -29,6 +29,7 @@ Patch6:		%{name}-vendorarch.patch
 Patch7:		%{name}-gsl-check.patch
 URL:		http://pdl.perl.org/
 BuildRequires:	OpenGL-devel
+BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	fftw-devel >= 2.1.3-5
 BuildRequires:	gd-devel
 BuildRequires:	gsl-devel >= 1.3
