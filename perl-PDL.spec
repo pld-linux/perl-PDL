@@ -12,7 +12,7 @@ Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR.UTF-8):	Módulo PDL para perl
 Name:		perl-PDL
 Version:	2.4.3
-Release:	2
+Release:	3
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
@@ -986,6 +986,7 @@ fi
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::IO::GD*
 %{perl_vendorarch}/PDL/IO/GD*
+%dir %{perl_vendorarch}/auto/PDL/IO/GD
 %{perl_vendorarch}/auto/PDL/IO/GD/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/GD/*.so
 
