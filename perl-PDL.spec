@@ -2,6 +2,7 @@
 # Conditional build:
 %bcond_without	karma	# build package with PDL::Graphics::Karma modules
 %bcond_without	html	# don't generate package with PDL documentation in HTML
+%bcond_with	plplot	# don't build / link with plplot (currently broken)
 %bcond_with	tests	# perform "make test"
 			# require a valid DISPLAY
 #
@@ -12,7 +13,7 @@ Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR.UTF-8):	Módulo PDL para perl
 Name:		perl-PDL
 Version:	2.4.3
-Release:	4.1
+Release:	4.2
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
@@ -42,7 +43,7 @@ BuildRequires:	perl-PGPLOT
 BuildRequires:	perl-Tk
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	perl-perldoc
-BuildRequires:	plplot-devel >= 5.2.1
+%{?with_plplot:BuildRequires:	plplot-devel >= 5.2.1}
 BuildRequires:	proj-devel
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRequires:	xorg-lib-libX11-devel
@@ -938,6 +939,7 @@ fi
 %{_mandir}/man3/PDL::Graphics2D*
 %{_mandir}/man3/PDL::Graphics::PGPLOT*
 
+%if %{with plplot}
 %files Graphics-PLplot
 %defattr(644,root,root,755)
 %doc Graphics/PLplot/{Changes,README}
@@ -946,6 +948,7 @@ fi
 %{perl_vendorarch}/auto/PDL/Graphics/PLplot/PLplot.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/PLplot/PLplot.so
 %{_mandir}/man3/PDL::Graphics::PLplot.3pm*
+%endif
 
 %files Graphics-TriD
 %defattr(644,root,root,755)
