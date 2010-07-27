@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_without	karma	# build package with PDL::Graphics::Karma modules
 %bcond_without	html	# don't generate package with PDL documentation in HTML
-%bcond_with	plplot	# don't build / link with plplot (currently broken)
+%bcond_without	plplot	# don't build / link with plplot (currently broken)
 %bcond_with	tests	# perform "make test"
 			# require a valid DISPLAY
 #
@@ -12,14 +12,14 @@ Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR.UTF-8):	Módulo PDL para perl
 Name:		perl-PDL
-Version:	2.4.3
-Release:	4.2
+Version:	2.4.6
+Release:	0.1
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/PDL/%{pdir}-%{version}.tar.gz
-# Source0-md5:	8fa453a4ac90d5c0382020d5635ad90a
+# Source0-md5:	a4aa5f3fd7363824e8f555d0245c4ac7
 Patch0:		%{name}-conf.patch
 Patch1:		%{name}-dep.patch
 Patch2:		%{name}-Makefile.PL.patch-dumb
