@@ -25,3 +25,12 @@ diff -urN PDL-2.4.0.org/perldl.conf PDL-2.4.0/perldl.conf
  
  #
  ## Whether or not to build the PLplot interface module
+@@ -110,7 +110,7 @@
+ #    about curses to fix it 
+ #  - 1 builds, 0 or undef does not build
+ #
+-        WITH_IO_BROWSER => 0,
++        WITH_IO_BROWSER => 1,
+ 
+ # Quiet Astro::FITS::Header warnings for PDL build process by default
+ # Eventually would be better to set undef by default, and have the
