@@ -18,7 +18,7 @@ Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-module/PDL/%{pdir}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/pdl/%{pdir}-%{version}.tar.gz
 # Source0-md5:	a4aa5f3fd7363824e8f555d0245c4ac7
 Patch0:		%{name}-conf.patch
 Patch1:		%{name}-dep.patch
@@ -27,10 +27,7 @@ Patch3:		%{name}-fftw-shared.patch
 Patch4:		%{name}-WITH_IO_BROWSER.patch
 Patch5:		%{name}-karma.patch
 Patch6:		%{name}-vendorarch.patch
-Patch7:		%{name}-gsl-check.patch
 URL:		http://pdl.perl.org/
-BuildRequires:	OpenGL-devel
-BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	fftw-devel >= 2.1.3-5
 BuildRequires:	gd-devel
 BuildRequires:	gsl-devel >= 1.3
@@ -39,6 +36,7 @@ BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	perl-ExtUtils-F77 >= 1.10
 BuildRequires:	perl-Filter
 BuildRequires:	perl-Inline >= 0.43
+BuildRequires:	perl-OpenGL >= 0.62
 BuildRequires:	perl-PGPLOT
 BuildRequires:	perl-Tk
 BuildRequires:	perl-devel >= 1:5.8.0
@@ -459,7 +457,6 @@ Przykładowe skrypty z użyciem PDL.
 %patch4 -p1
 %{?with_karma:%patch5 -p1}
 %patch6 -p1
-%patch7 -p1
 
 %{__perl} -pi -e 's/\b(pdlpp_postamble)\b/$1_int/g' Graphics/PLplot/Makefile.PL
 # g77 flags for compiling Slatec:
