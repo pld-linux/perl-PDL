@@ -13,7 +13,7 @@ Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR.UTF-8):	Módulo PDL para perl
 Name:		perl-PDL
 Version:	2.4.6
-Release:	0.1
+Release:	1
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
@@ -32,6 +32,7 @@ BuildRequires:	fftw-devel >= 2.1.3-5
 BuildRequires:	gd-devel
 BuildRequires:	gsl-devel >= 1.3
 %{?with_karma:BuildRequires:	karma-devel}
+BuildRequires:	libgfortran-static
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	perl-ExtUtils-F77 >= 1.10
 BuildRequires:	perl-Filter
@@ -288,6 +289,26 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 %description IO-Browser -l pl.UTF-8
 Przeglądarka danych 2D dla PDL.
 
+%package IO-Dicom
+Summary:	Module for reading DICOM images
+Summary(pl.UTF-8):	Moduł służący do czytania obrazów w formacie DICOM
+Group:		Development/Languages/Perl
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description IO-Dicom
+The PDL::IO::Dicom module enables reading 16-bit gray level Dicom
+images into PDL. As Dicom is an extremely complex format, this module
+can unfortunately not handle all different image types included in the
+DICOM standard. One common format that is currently not supported is
+the Papyrus format.
+
+%description IO-Dicom -l pl.UTF-8
+Moduł PDL::IO::Dicom umożliwia czytanie obrazów w 16-bitowej skali
+szarości w formacie DICOM. Ponieważ DICOM jest niezwykle
+skomplikowanym formatem, ten moduł nie jest w stanie przeczytać
+wszystkich rodzajów obrazów zdefiniowanych w standardzie DICOM.
+Np. format Papyrus jest obecnie nie obsługiwany.
+
 %package IO-FastRaw
 Summary:	A simple, fast and convenient IO format for PDL
 Summary(pl.UTF-8):	Prosty, szybki i wygodny format wejścia/wyjścia dla PDL
@@ -415,6 +436,21 @@ PDL interface to GSL Special Functions.
 %description GSLSF -l pl.UTF-8
 Interfejs PDL do funkcji specjalnych GSL.
 
+%package Minuit
+Summary:	PDL interface to the Minuit library
+Summary(pl.UTF-8):	Interfejs PDL do biblioteki Minuit
+Group:		Development/Languages/Perl
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description Minuit
+This package implements an interface to the Minuit minimization
+routines (part of the CERN Library,
+http://wwwasdoc.web.cern.ch/wwwasdoc/minuit/minmain.html)
+
+%description Minuit -l pl.UTF-8
+Ten pakiet udostępnia interfejs do funkcji minimizujących Minuit
+(http://wwwasdoc.web.cern.ch/wwwasdoc/minuit/minmain.html).
+
 %package Transform
 Summary:	Coordinate transforms, image warping, and N-D functions
 Summary(pl.UTF-8):	Transformacje współrzędnych, warpowaie obrazów i funkcje N-D
@@ -470,6 +506,7 @@ Przykładowe skrypty z użyciem PDL.
 %build
 %{__perl} Makefile.PL \
 	INSTALLDIRS=vendor
+
 %{__make} \
 	CC="%{__cc}" \
 	OPTIMIZE="%{rpmcflags} -I/usr/include/ncurses -DNCURSES -DPERL_POLLUTE"
@@ -479,7 +516,7 @@ Przykładowe skrypty z użyciem PDL.
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 # perl script to regenerate pdldoc database
@@ -558,6 +595,11 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
+%post IO-Dicom
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
 %post IO-FastRaw
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
@@ -604,6 +646,11 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 fi
 
 %post GSLSF
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
+%post Minuit
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
@@ -668,6 +715,11 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
+%postun IO-Dicom
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
 %postun IO-FastRaw
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
@@ -714,6 +766,11 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 fi
 
 %postun GSLSF
+if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
+	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
+fi
+
+%postun Minuit
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
@@ -974,6 +1031,11 @@ fi
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/Browser/*.so
 %{perl_vendorarch}/PDL/IO/Browser*
 
+%files IO-Dicom
+%defattr(644,root,root,755)
+%{_mandir}/man3/PDL::IO::Dicom*
+%{perl_vendorarch}/PDL/IO/Dicom*
+
 %files IO-FastRaw
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::IO::FastRaw*
@@ -1023,14 +1085,12 @@ fi
 %{_mandir}/man3/PDL::Fit::Linfit*
 %{_mandir}/man3/PDL::Fit::LM*
 %{_mandir}/man3/PDL::Fit::Polynomial*
-%{_mandir}/man3/PDL::Gaussian*
 %{_mandir}/man3/PDL::Matrix.3pm*
 %{_mandir}/man3/PDL::Slatec*
 %{perl_vendorarch}/PDL/Filter/LinPred.pm
 %{perl_vendorarch}/PDL/Fit/Linfit.pm
 %{perl_vendorarch}/PDL/Fit/LM.pm
 %{perl_vendorarch}/PDL/Fit/Polynomial.pm
-%{perl_vendorarch}/PDL/Gaussian.pm
 %{perl_vendorarch}/PDL/Matrix.pm
 %{perl_vendorarch}/PDL/Slatec.pm
 %dir %{perl_vendorarch}/auto/PDL/Slatec
@@ -1050,6 +1110,9 @@ fi
 %dir %{perl_vendorarch}/auto/PDL/GSL/INTERP
 %{perl_vendorarch}/auto/PDL/GSL/INTERP/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSL/INTERP/*.so
+%dir %{perl_vendorarch}/auto/PDL/GSL/MROOT
+%{perl_vendorarch}/auto/PDL/GSL/MROOT/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSL/MROOT/*.so
 %dir %{perl_vendorarch}/auto/PDL/GSL/RNG
 %{perl_vendorarch}/auto/PDL/GSL/RNG/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSL/RNG/*.so
@@ -1063,6 +1126,14 @@ fi
 %{perl_vendorarch}/auto/PDL/GSLSF/*/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSLSF/*/*.so
 %{_mandir}/man3/PDL::GSLSF::*
+
+%files Minuit
+%defattr(644,root,root,755)
+%{perl_vendorarch}/PDL/Minuit.pm
+%dir %{perl_vendorarch}/auto/PDL/Minuit
+%{perl_vendorarch}/auto/PDL/Minuit/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Minuit/*.so
+%{_mandir}/man3/PDL::Minuit*
 
 %files Transform
 %defattr(644,root,root,755)

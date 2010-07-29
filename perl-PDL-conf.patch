@@ -1,27 +1,21 @@
 diff -urN PDL-2.4.0.org/perldl.conf PDL-2.4.0/perldl.conf
 --- PDL-2.4.0.org/perldl.conf	2003-12-30 14:54:25.663910257 +0100
 +++ PDL-2.4.0/perldl.conf	2003-12-30 15:14:41.363631658 +0100
-@@ -58,16 +58,19 @@
+@@ -58,12 +58,12 @@
  # There are problems with the build on OS-X, so we turn it off by default
  # for such systems
  #
--	WITH_3D => $^O eq "darwin" ? 0 : undef,
-+	WITH_3D => 1,
+-        WITH_3D => undef,
++        WITH_3D => 1,
  
- #
- #  For Mesa 3.2
- #
- #	OPENGL_LIBS => '-L/usr/local/Mesa/lib -lGL -lGLU -lXext -lX11',
-+	OPENGL_LIBS => '-lGL -lGLU -lXext -lX11',
- #  Mesa need -DGL_GLEXT_LEGACY for glPolygonOffsetEXT amoung others
- #
- #	OPENGL_DEFINE => '-DGL_GLEXT_LEGACY',
- # 	OPENGL_INC => '-I/usr/include/GL/',
-+	OPENGL_DEFINE => '-DGL_GLEXT_LEGACY',
-+	OPENGL_INC => '-I/usr/include',
- #
  # 
- # For SGI GL
+ # Build Graphics/TriD using Perl OpenGL (experimental)
+ #
+-        USE_POGL => undef,
++        USE_POGL => 1,
+ #       USE_POGL => 0,
+ #
+         POGL_VERSION => 0.62,           # minimum compatible OpenGL version
 @@ -76,7 +79,7 @@
  # Whether or not to build the Karma interface module
  

@@ -7,6 +7,6 @@ diff -urN PDL-2.4.0.org/Makefile.PL PDL-2.4.0/Makefile.PL
  #  'perl Makefile.PL'!!!
 -package PDL;
 +package PDL::Config;
+ use File::Spec;
  \%PDL::Config = (\n";
    for(keys %PDL_CONFIG) {
-     $fh->print( "\t$_\t=>\t" );
