@@ -13,7 +13,7 @@ Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR.UTF-8):	Módulo PDL para perl
 Name:		perl-PDL
 Version:	2.4.6
-Release:	1
+Release:	2
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
@@ -505,7 +505,7 @@ Przykładowe skrypty z użyciem PDL.
 %{__perl} Makefile.PL \
 	INSTALLDIRS=vendor
 
-%{__make} \
+%{__make} -j1 \
 	CC="%{__cc}" \
 	OPTIMIZE="%{rpmcflags} -I/usr/include/ncurses -DNCURSES -DPERL_POLLUTE"
 
