@@ -12,7 +12,7 @@ Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR.UTF-8):	Módulo PDL para perl
 Name:		perl-PDL
 Version:	2.4.9
-Release:	1
+Release:	2
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
@@ -46,7 +46,7 @@ BuildRequires:	xorg-lib-libXt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define 	_noautoreqdep	libGL.so.1 libGLU.so.1 libGLcore.so.1
-%define		_noautoreq	'perl(local.perldlrc)'
+%define		_noautoreq	'perl(local.perldlrc)' 'perl(PDL::Graphics::TriD::GObject)'
 
 %description
 The perlDL project aims to turn Perl into an efficient numerical
