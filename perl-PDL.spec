@@ -35,7 +35,6 @@ BuildRequires:	perl-Filter
 BuildRequires:	perl-Inline >= 0.43
 BuildRequires:	perl-OpenGL >= 0.63
 BuildRequires:	perl-PGPLOT
-BuildRequires:	perl-Tk
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	perl-perldoc
 %{?with_plplot:BuildRequires:	plplot-devel >= 5.2.1}
@@ -231,32 +230,6 @@ Możesz też generować obiekty w formacie VRML, które mogą być oglądane
 przez inne osoby za pomocą np.: programu Cosmo Player firmy Silicon
 Graphics. Więcej na temat VRML możesz znaleźć pod adresami
 http://vrml.sgi.com/ lub http://www.vrml.org/.
-
-%package Graphics-TriD-Tk
-Summary:	A Tk widget interface to the PDL-Graphics-TriD
-Summary(pl.UTF-8):	Kontrolka interfejsu Tk dla PDL-Graphics-TriD
-Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-Graphics-OpenGL = %{epoch}:%{version}-%{release}
-Requires:	%{name}-Graphics-TriD = %{epoch}:%{version}-%{release}
-
-%description Graphics-TriD-Tk
-The widget is composed of a Frame and the Display device of the TriD
-output. It inherits all of the attributes of a Tk Frame. All of the
-events associated with this window are handled through Tk with the
-exception of the <expose> event which must be handled by TriD because
-the Frame is never exposed. Default mouse bindings, defined for
-button1 and button3, control TriD object orientation and size
-respectively.
-
-%description Graphics-TriD-Tk -l pl.UTF-8
-Kontrolka ta składa się z obiektu Frame oraz urządzenia Display modułu
-TriD. Dziedziczy ona wszystkie atrybuty obiektu Tk Frame. Wszystkie
-zdarzenia skojarzone z tym oknem kontrolki są obsługiwane za pomocą Tk
-za wyjątkiem zdarzenia <expose>, które musi być obsłużone przez moduł
-TriD, ponieważ obiekt Frame nie jest nigdy wyświetlany. Za pomocą
-przycisków myszki można kontrolować widok obiektu (przycisk pierwszy)
-oraz jego rozmiar (przycisk trzeci).
 
 %package IO-Browser
 Summary:	2D data browser for PDL
@@ -457,7 +430,6 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-Graphics-LUT = %{epoch}:%{version}-%{release}
 Requires:	%{name}-Graphics-PGPLOT = %{epoch}:%{version}-%{release}
 Requires:	%{name}-Graphics-TriD = %{epoch}:%{version}-%{release}
-Requires:	%{name}-Graphics-TriD-Tk = %{epoch}:%{version}-%{release}
 
 %description Demos
 PDL demos.
@@ -511,6 +483,8 @@ mv -f PDL::Polynomial.3pm	PDL::Fit::Polynomial.3pm
 mv -f PDL::State.3pm		PDL::Graphics::State.3pm
 mv -f Pdlpp.3pm			Inline::Pdlpp.3pm
 
+echo '.so PDL.3' >$RPM_BUILD_ROOT%{_mandir}/man1/pdl.1
+
 # some man pages do not belong to the man1 section
 cd $RPM_BUILD_ROOT%{_mandir}/man1
 for i in PDL::*.1*; do
@@ -554,11 +528,6 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 fi
 
 %post Graphics-TriD
-if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
-fi
-
-%post Graphics-TriD-Tk
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
@@ -669,11 +638,6 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 fi
 
 %postun Graphics-TriD
-if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
-fi
-
-%postun Graphics-TriD-Tk
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
@@ -975,11 +939,6 @@ fi
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/TriD/Rout/*.so
 %{_mandir}/man3/PDL::Graphics::TriD.*
 %{_mandir}/man3/PDL::Graphics::TriD::[A-SU-Z]*
-
-%files Graphics-TriD-Tk
-%defattr(644,root,root,755)
-%{perl_vendorarch}/PDL/Graphics/TriD/Tk*
-%{_mandir}/man3/PDL::Graphics::TriD::Tk*
 
 %files IO-Browser
 %defattr(644,root,root,755)
