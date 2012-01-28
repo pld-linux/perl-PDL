@@ -880,7 +880,7 @@ fi
 %{_mandir}/man3/PDL::IO::Misc*
 %{_mandir}/man3/PDL::Math*
 %{_mandir}/man3/PDL::MatrixOps.3pm*
-%{_mandir}/man3/PDL::Modules.3pm*
+%{_mandir}/man3/PDL::Modules.3*
 %{_mandir}/man3/PDL::NiceSlice.3pm*
 %{_mandir}/man3/PDL::Slices*
 %{_mandir}/man3/PDL::pptemplate.3pm*
@@ -906,7 +906,7 @@ fi
 
 %files perldl2
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/perldl2
+%attr(755,root,root) %{_bindir}/pdl2
 %{perl_vendorarch}/PDL/Perldl2
 %{_mandir}/man1/pdl2*
 
