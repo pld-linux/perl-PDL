@@ -1,6 +1,5 @@
 #
 # Conditional build:
-%bcond_without	karma	# build package with PDL::Graphics::Karma modules
 %bcond_without	html	# don't generate package with PDL documentation in HTML
 %bcond_without	plplot	# don't build / link with plplot (currently broken)
 %bcond_with	tests	# perform "make test"
@@ -12,31 +11,29 @@ Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR.UTF-8):	Módulo PDL para perl
 Name:		perl-PDL
-Version:	2.4.6
-Release:	4
+Version:	2.4.9
+Release:	0.1
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://dl.sourceforge.net/pdl/%{pdir}-%{version}.tar.gz
-# Source0-md5:	a4aa5f3fd7363824e8f555d0245c4ac7
+# Source0-md5:	459e127d3ad7d80a95d6006373b1da6c
 Patch0:		%{name}-conf.patch
 Patch1:		%{name}-dep.patch
 Patch2:		%{name}-Makefile.PL.patch-dumb
 Patch3:		%{name}-fftw-shared.patch
-Patch4:		%{name}-karma.patch
 Patch5:		%{name}-vendorarch.patch
 URL:		http://pdl.perl.org/
 BuildRequires:	fftw-devel >= 2.1.3-5
 BuildRequires:	gd-devel
 BuildRequires:	gsl-devel >= 1.3
-%{?with_karma:BuildRequires:	karma-devel}
 BuildRequires:	libgfortran-static
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	perl-ExtUtils-F77 >= 1.10
 BuildRequires:	perl-Filter
 BuildRequires:	perl-Inline >= 0.43
-BuildRequires:	perl-OpenGL >= 0.62
+BuildRequires:	perl-OpenGL >= 0.63
 BuildRequires:	perl-PGPLOT
 BuildRequires:	perl-Tk
 BuildRequires:	perl-devel >= 1:5.8.0
@@ -132,21 +129,6 @@ Display PDL images on IIS devices (saoimage/ximtool).
 
 %description Graphics-IIS -l pl.UTF-8
 Wyświetlanie grafiki PDL na urządzeniach IIS (saoimage/ximtool).
-
-%package Graphics-Karma
-Summary:	Interface to Karma visualisation applications
-Summary(pl.UTF-8):	Interfejs do aplikacji wizualizujących Karma
-Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description Graphics-Karma
-PDL::Graphics::Karma is an interface to Karma visualisation
-applications. It can send PDL 2D/3D data to kview, xray, kslice_3d,
-etc.
-
-%description Graphics-Karma -l pl.UTF-8
-PDL::Graphics::Karma to interfejs do aplikacji wizualizujących Karma.
-Może wysyłać dane 2D i 3D do kview, xray, kslice_3d itp.
 
 %package Graphics-LUT
 Summary:	Provides access to a number of look-up tables for PDL
@@ -489,7 +471,6 @@ Przykładowe skrypty z użyciem PDL.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%{?with_karma:%patch4 -p1}
 %patch5 -p1
 
 %{__perl} -pi -e 's/\b(pdlpp_postamble)\b/$1_int/g' Graphics/PLplot/Makefile.PL
@@ -498,7 +479,6 @@ Przykładowe skrypty z użyciem PDL.
 
 %{__perl} -pi -e "s@(FFTW_LIBS.*)'/lib','/usr/lib','/usr/local/lib'@\$1'/usr/%{_lib}'@" perldl.conf
 %{__perl} -pi -e "s@(OPENGL_LIBS.*)'-L/usr/lib@\$1'-L/usr/%{_lib}@" perldl.conf
-%{__perl} -pi -e "s@(WHERE_KARMA.*)\"/usr/lib/karma@\$1\"/usr/%{_lib}/karma@" perldl.conf
 %{__perl} -pi -e "s@(WHERE_PLPLOT_LIBS.*)undef@\$1'/usr/%{_lib}'@" perldl.conf
 
 %build
@@ -544,11 +524,6 @@ rm -rf $RPM_BUILD_ROOT
 /usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 
 %post Graphics-IIS
-if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
-fi
-
-%post Graphics-Karma
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
@@ -664,11 +639,6 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 fi
 
 %postun Graphics-IIS
-if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
-fi
-
-%postun Graphics-Karma
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
@@ -951,16 +921,6 @@ fi
 %{perl_vendorarch}/auto/PDL/Graphics/IIS/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/IIS/*.so
 %{_mandir}/man3/PDL::Graphics::IIS*
-
-%if %{with karma}
-%files Graphics-Karma
-%defattr(644,root,root,755)
-%{perl_vendorarch}/PDL/Graphics/Karma.pm
-%dir %{perl_vendorarch}/auto/PDL/Graphics/Karma
-%{perl_vendorarch}/auto/PDL/Graphics/Karma/*.bs
-%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/Karma/*.so
-%{_mandir}/man3/PDL::Graphics::Karma*
-%endif
 
 %files Graphics-LUT
 %defattr(644,root,root,755)
