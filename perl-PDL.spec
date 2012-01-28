@@ -90,6 +90,25 @@ prosty sposób wprowadzane, a także modyfikowane jeśli zainstalowane
 są odpowiednie wersje modułów ReadLines oraz ReadKeys. W tym ostatnim
 przypadku perldl obsługuje mechanizm historii komend.
 
+%package perldl2
+Summary:	New and improved PDL shell
+Summary(pl.UTF-8):	Nowa i usprawniona powłoka PDL
+Group:		Development/Languages/Perl
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description perldl2
+The program perldl2 is a simple shell (written in perl) for interactive
+use of PDL. perl/PDL commands can simply be typed in - and edited if
+you have appropriate version of the ReadLines and ReadKeys modules
+installed. In that case perldl2 also supports a history mechanism.
+
+%description perldl2 -l pl.UTF-8
+Program perldl2 jest prostą powłoką napisaną w Perlu do interaktywnego
+wykonywania funkcji modułu PDL. Komendy Perla lub PDL mogą być w
+prosty sposób wprowadzane, a także modyfikowane jeśli zainstalowane
+są odpowiednie wersje modułów ReadLines oraz ReadKeys. W tym ostatnim
+przypadku perldl2 obsługuje mechanizm historii komend.
+
 %package docs
 Summary:	Supplied extra documentation for PDL::* perl modules
 Summary(pl.UTF-8):	Dodatkowo dostarczona dokumentacja do modułów perla PDL::*
@@ -730,7 +749,9 @@ fi
 %{perl_vendorarch}/PDL/CallExt.pm
 %{perl_vendorarch}/PDL/Char.pm
 %{perl_vendorarch}/PDL/Complex.pm
+%{perl_vendorarch}/PDL/Compression.pm
 %{perl_vendorarch}/PDL/Config.pm
+%{perl_vendorarch}/PDL/Constants.pm
 %{perl_vendorarch}/PDL/Core
 %{perl_vendorarch}/PDL/Core.pm
 %{perl_vendorarch}/PDL/Dbg.pm
@@ -782,6 +803,9 @@ fi
 %dir %{perl_vendorarch}/auto/PDL/Complex
 %{perl_vendorarch}/auto/PDL/Complex/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Complex/*.so
+%dir %{perl_vendorarch}/auto/PDL/Compression
+%{perl_vendorarch}/auto/PDL/Compression/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Compression/*.so
 %dir %{perl_vendorarch}/auto/PDL/FFT
 %{perl_vendorarch}/auto/PDL/FFT/*bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/FFT/*so
@@ -851,10 +875,12 @@ fi
 %{_mandir}/man3/PDL::Func.3pm*
 %{_mandir}/man3/PDL::Graphics::State.3pm*
 %{_mandir}/man3/PDL::I[mn]*
+%{_mandir}/man3/PDL::IO.3pm*
 %{_mandir}/man3/PDL::IO::FITS.3pm*
 %{_mandir}/man3/PDL::IO::Misc*
 %{_mandir}/man3/PDL::Math*
 %{_mandir}/man3/PDL::MatrixOps.3pm*
+%{_mandir}/man3/PDL::Modules.3pm*
 %{_mandir}/man3/PDL::NiceSlice.3pm*
 %{_mandir}/man3/PDL::Slices*
 %{_mandir}/man3/PDL::pptemplate.3pm*
@@ -877,6 +903,12 @@ fi
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/perldl
 %{_mandir}/man1/perldl*
+
+%files perldl2
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/perldl2
+%{perl_vendorarch}/PDL/Perldl2
+%{_mandir}/man1/pdl2*
 
 %files Graphics-IIS
 %defattr(644,root,root,755)
