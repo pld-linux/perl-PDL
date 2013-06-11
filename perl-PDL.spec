@@ -25,6 +25,7 @@ Patch2:		%{name}-Makefile.PL.patch-dumb
 Patch3:		%{name}-fftw-shared.patch
 Patch4:		%{name}-vendorarch.patch
 Patch5:		PDL-Disable-PDL-GIS-Proj.patch
+Patch6:		format-security.patch
 URL:		http://pdl.perl.org/
 BuildRequires:	fftw-devel >= 2.1.3-5
 BuildRequires:	gd-devel
@@ -465,6 +466,7 @@ Przykładowe skrypty z użyciem PDL.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %{__perl} -pi -e 's/\b(pdlpp_postamble)\b/$1_int/g' Graphics/PLplot/Makefile.PL
 # g77 flags for compiling Slatec:
