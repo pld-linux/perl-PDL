@@ -1,0 +1,30 @@
+From 97c73a81b7ad606f4089b4788ec58a51ccf77714 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Petr=20P=C3=ADsa=C5=99?= <ppisar@redhat.com>
+Date: Tue, 4 Sep 2012 14:20:30 +0200
+Subject: [PATCH] Disable PDL::GIS::Proj
+
+The proj-4.8.0 stopped providing access to list of projections. We
+cannot support it anymore.
+
+<http://sourceforge.net/tracker/index.php?func=detail&aid=3515759&group_id=612&atid=100612>
+<https://bugzilla.redhat.com/show_bug.cgi?id=839651>
+---
+ perldl.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/perldl.conf b/perldl.conf
+index 18e9de0..a11e8f0 100755
+--- a/perldl.conf
++++ b/perldl.conf
+@@ -203,7 +203,7 @@
+ # false -> don't use
+ # true -> force use
+ #
+-        WITH_PROJ => undef,    # Leave it up to PDL to decide
++        WITH_PROJ => 0,        # Leave it up to PDL to decide
+         PROJ_LIBS => undef,
+         PROJ_INC => undef,
+ 
+-- 
+1.7.11.4
+

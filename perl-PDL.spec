@@ -11,19 +11,20 @@ Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR.UTF-8):	Módulo PDL para perl
 Name:		perl-PDL
-Version:	2.4.9
-Release:	4
+Version:	2.4.11
+Release:	1
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://dl.sourceforge.net/pdl/%{pdir}-%{version}.tar.gz
-# Source0-md5:	459e127d3ad7d80a95d6006373b1da6c
+# Source0-md5:	761a524f6f823ecc2dc668b83ecd8299
 Patch0:		%{name}-conf.patch
 Patch1:		%{name}-dep.patch
 Patch2:		%{name}-Makefile.PL.patch-dumb
 Patch3:		%{name}-fftw-shared.patch
-Patch5:		%{name}-vendorarch.patch
+Patch4:		%{name}-vendorarch.patch
+Patch5:		PDL-Disable-PDL-GIS-Proj.patch
 URL:		http://pdl.perl.org/
 BuildRequires:	fftw-devel >= 2.1.3-5
 BuildRequires:	gd-devel
@@ -45,7 +46,7 @@ BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define 	_noautoreqdep	libGL.so.1 libGLU.so.1 libGLcore.so.1
+%define		_noautoreqdep	libGL.so.1 libGLU.so.1 libGLcore.so.1
 %define		_noautoreq	'perl(local.perldlrc)' 'perl(PDL::Graphics::TriD::GObject)'
 
 %description
@@ -462,6 +463,7 @@ Przykładowe skrypty z użyciem PDL.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 %patch5 -p1
 
 %{__perl} -pi -e 's/\b(pdlpp_postamble)\b/$1_int/g' Graphics/PLplot/Makefile.PL
@@ -471,6 +473,8 @@ Przykładowe skrypty z użyciem PDL.
 %{__perl} -pi -e "s@(FFTW_LIBS.*)'/lib','/usr/lib','/usr/local/lib'@\$1'/usr/%{_lib}'@" perldl.conf
 %{__perl} -pi -e "s@(OPENGL_LIBS.*)'-L/usr/lib@\$1'-L/usr/%{_lib}@" perldl.conf
 %{__perl} -pi -e "s@(WHERE_PLPLOT_LIBS.*)undef@\$1'/usr/%{_lib}'@" perldl.conf
+
+ln -s Basic PDL
 
 %build
 %{__perl} Makefile.PL \
@@ -501,8 +505,6 @@ mv -f PDL::Linfit.3pm 		PDL::Fit::Linfit.3pm
 mv -f PDL::Polynomial.3pm	PDL::Fit::Polynomial.3pm
 mv -f PDL::State.3pm		PDL::Graphics::State.3pm
 mv -f Pdlpp.3pm			Inline::Pdlpp.3pm
-
-echo '.so PDL.3' >$RPM_BUILD_ROOT%{_mandir}/man1/pdl.1
 
 # some man pages do not belong to the man1 section
 cd $RPM_BUILD_ROOT%{_mandir}/man1
@@ -781,6 +783,9 @@ fi
 %{perl_vendorarch}/PDL/Math.pm
 %{perl_vendorarch}/PDL/MatrixOps.pm
 %{perl_vendorarch}/PDL/NiceSlice.pm
+%dir %{perl_vendorarch}/PDL/NiceSlice
+%{perl_vendorarch}/PDL/NiceSlice/FilterSimple.pm
+%{perl_vendorarch}/PDL/NiceSlice/FilterUtilCall.pm
 %{perl_vendorarch}/PDL/Opt
 %{perl_vendorarch}/PDL/Ops.pm
 %{perl_vendorarch}/PDL/Options.pm
@@ -862,7 +867,6 @@ fi
 %{perl_vendorarch}/Inline/MakePdlppInstallable.pm
 %{perl_vendorarch}/Inline/Pdlpp.pm
 
-%{_mandir}/man1/pdl.1*
 %{_mandir}/man1/pptemplate.1*
 %{_mandir}/man3/Inline::Pdlpp.3pm*
 %{_mandir}/man3/PDL.*
@@ -1086,21 +1090,11 @@ fi
 
 %files Transform
 %defattr(644,root,root,755)
-%dir %{perl_vendorarch}/PDL/GIS
-%{perl_vendorarch}/PDL/GIS/Proj.pm
 %{perl_vendorarch}/PDL/Transform.pm
 %{perl_vendorarch}/PDL/Transform
-%dir %{perl_vendorarch}/auto/PDL/GIS
-%dir %{perl_vendorarch}/auto/PDL/GIS/Proj
-%{perl_vendorarch}/auto/PDL/GIS/Proj/*.bs
-%attr(755,root,root) %{perl_vendorarch}/auto/PDL/GIS/Proj/*.so
 %dir %{perl_vendorarch}/auto/PDL/Transform
 %{perl_vendorarch}/auto/PDL/Transform/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Transform/*.so
-%dir %{perl_vendorarch}/auto/PDL/Transform/Proj4
-%{perl_vendorarch}/auto/PDL/Transform/Proj4/*.bs
-%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Transform/Proj4/*.so
-%{_mandir}/man3/PDL::GIS::*
 
 %files Demos
 %defattr(644,root,root,755)
