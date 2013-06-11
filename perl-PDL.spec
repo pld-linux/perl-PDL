@@ -17,7 +17,7 @@ Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
-Source0:	http://dl.sourceforge.net/pdl/%{pdir}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/pdl/%{pdir}-%{version}.tar.gz
 # Source0-md5:	761a524f6f823ecc2dc668b83ecd8299
 Patch0:		%{name}-conf.patch
 Patch1:		%{name}-dep.patch
