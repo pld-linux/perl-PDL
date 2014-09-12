@@ -805,13 +805,10 @@ fi
 
 %dir %{perl_vendorarch}/auto/PDL
 %dir %{perl_vendorarch}/auto/PDL/Bad
-%{perl_vendorarch}/auto/PDL/Bad/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Bad/*.so
 %dir %{perl_vendorarch}/auto/PDL/Complex
-%{perl_vendorarch}/auto/PDL/Complex/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Complex/*.so
 %dir %{perl_vendorarch}/auto/PDL/Compression
-%{perl_vendorarch}/auto/PDL/Compression/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Compression/*.so
 %dir %{perl_vendorarch}/auto/PDL/FFT
 %{perl_vendorarch}/auto/PDL/FFT/*bs
@@ -823,47 +820,33 @@ fi
 %dir %{perl_vendorarch}/auto/PDL/IO
 
 %dir %{perl_vendorarch}/auto/PDL/Image2D
-%{perl_vendorarch}/auto/PDL/Image2D/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Image2D/*.so
 %dir %{perl_vendorarch}/auto/PDL/ImageRGB
-%{perl_vendorarch}/auto/PDL/ImageRGB/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/ImageRGB/*.so
 %dir %{perl_vendorarch}/auto/PDL/Ops
-%{perl_vendorarch}/auto/PDL/Ops/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Ops/*.so
 %dir %{perl_vendorarch}/auto/PDL/Slices
-%{perl_vendorarch}/auto/PDL/Slices/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Slices/*.so
 %dir %{perl_vendorarch}/auto/PDL/Ufunc
-%{perl_vendorarch}/auto/PDL/Ufunc/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Ufunc/*.so
 %dir %{perl_vendorarch}/auto/PDL/CallExt
-%{perl_vendorarch}/auto/PDL/CallExt/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/CallExt/*.so
 %dir %{perl_vendorarch}/auto/PDL/Core
-%{perl_vendorarch}/auto/PDL/Core/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Core/*.so
 %dir %{perl_vendorarch}/auto/PDL/Fit
 %dir %{perl_vendorarch}/auto/PDL/Fit/Gaussian
-%{perl_vendorarch}/auto/PDL/Fit/Gaussian/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Fit/Gaussian/*.so
 %dir %{perl_vendorarch}/auto/PDL/ImageND
-%{perl_vendorarch}/auto/PDL/ImageND/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/ImageND/*.so
 %dir %{perl_vendorarch}/auto/PDL/IO/Misc
-%{perl_vendorarch}/auto/PDL/IO/Misc/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/Misc/*.so
 %dir %{perl_vendorarch}/auto/PDL/Math
-%{perl_vendorarch}/auto/PDL/Math/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Math/*.so
 %dir %{perl_vendorarch}/auto/PDL/MatrixOps
-%{perl_vendorarch}/auto/PDL/MatrixOps/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/MatrixOps/*.so
 %dir %{perl_vendorarch}/auto/PDL/Primitive
-%{perl_vendorarch}/auto/PDL/Primitive/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Primitive/*.so
 %dir %{perl_vendorarch}/auto/PDL/Tests
-%{perl_vendorarch}/auto/PDL/Tests/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Tests/*.so
 
 %{perl_vendorarch}/Inline/MakePdlppInstallable.pm
@@ -920,7 +903,6 @@ fi
 %defattr(644,root,root,755)
 %{perl_vendorarch}/PDL/Graphics/IIS*
 %dir %{perl_vendorarch}/auto/PDL/Graphics/IIS
-%{perl_vendorarch}/auto/PDL/Graphics/IIS/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/IIS/*.so
 %{_mandir}/man3/PDL::Graphics::IIS*
 
@@ -948,7 +930,6 @@ fi
 %{perl_vendorarch}/PDL/Graphics2D*
 %dir %{perl_vendorarch}/auto/PDL/Graphics/PGPLOT
 %dir %{perl_vendorarch}/auto/PDL/Graphics/PGPLOT/Window
-%{perl_vendorarch}/auto/PDL/Graphics/PGPLOT/Window/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/PGPLOT/Window/*.so
 %{_mandir}/man3/PDL::Graphics2D*
 %{_mandir}/man3/PDL::Graphics::PGPLOT*
@@ -959,7 +940,6 @@ fi
 %doc Graphics/PLplot/{Changes,README}
 %{perl_vendorarch}/PDL/Graphics/PLplot.pm
 %dir %{perl_vendorarch}/auto/PDL/Graphics/PLplot
-%{perl_vendorarch}/auto/PDL/Graphics/PLplot/PLplot.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/PLplot/PLplot.so
 %{_mandir}/man3/PDL::Graphics::PLplot.3pm*
 %endif
@@ -973,7 +953,6 @@ fi
 %{perl_vendorarch}/PDL/Graphics/TriD.pm
 %dir %{perl_vendorarch}/auto/PDL/Graphics/TriD
 %dir %{perl_vendorarch}/auto/PDL/Graphics/TriD/Rout
-%{perl_vendorarch}/auto/PDL/Graphics/TriD/Rout/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/TriD/Rout/*.so
 %{_mandir}/man3/PDL::Graphics::TriD.*
 %{_mandir}/man3/PDL::Graphics::TriD::[A-SU-Z]*
@@ -982,7 +961,6 @@ fi
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::IO::Browser*
 %dir %{perl_vendorarch}/auto/PDL/IO/Browser
-%{perl_vendorarch}/auto/PDL/IO/Browser/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/Browser/*.so
 %{perl_vendorarch}/PDL/IO/Browser*
 
@@ -1006,7 +984,6 @@ fi
 %{_mandir}/man3/PDL::IO::GD*
 %{perl_vendorarch}/PDL/IO/GD*
 %dir %{perl_vendorarch}/auto/PDL/IO/GD
-%{perl_vendorarch}/auto/PDL/IO/GD/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/GD/*.so
 
 %files IO-NDF
@@ -1022,7 +999,6 @@ fi
 %defattr(644,root,root,755)
 %{_mandir}/man3/PDL::IO::Pnm*
 %dir %{perl_vendorarch}/auto/PDL/IO/Pnm
-%{perl_vendorarch}/auto/PDL/IO/Pnm/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/Pnm/*.so
 %{perl_vendorarch}/PDL/IO/Pnm*
 
@@ -1030,7 +1006,6 @@ fi
 %defattr(644,root,root,755)
 %{perl_vendorarch}/PDL/IO/Storable.pm
 %dir %{perl_vendorarch}/auto/PDL/IO/Storable
-%{perl_vendorarch}/auto/PDL/IO/Storable/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/Storable/*.so
 %{_mandir}/man3/PDL::IO::Storable*
 
@@ -1049,7 +1024,6 @@ fi
 %{perl_vendorarch}/PDL/Matrix.pm
 %{perl_vendorarch}/PDL/Slatec.pm
 %dir %{perl_vendorarch}/auto/PDL/Slatec
-%{perl_vendorarch}/auto/PDL/Slatec/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Slatec/*.so
 
 %files GSL
@@ -1057,19 +1031,14 @@ fi
 %{perl_vendorarch}/PDL/GSL
 %dir %{perl_vendorarch}/auto/PDL/GSL
 %dir %{perl_vendorarch}/auto/PDL/GSL/DIFF
-%{perl_vendorarch}/auto/PDL/GSL/DIFF/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSL/DIFF/*.so
 %dir %{perl_vendorarch}/auto/PDL/GSL/INTEG
-%{perl_vendorarch}/auto/PDL/GSL/INTEG/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSL/INTEG/*.so
 %dir %{perl_vendorarch}/auto/PDL/GSL/INTERP
-%{perl_vendorarch}/auto/PDL/GSL/INTERP/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSL/INTERP/*.so
 %dir %{perl_vendorarch}/auto/PDL/GSL/MROOT
-%{perl_vendorarch}/auto/PDL/GSL/MROOT/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSL/MROOT/*.so
 %dir %{perl_vendorarch}/auto/PDL/GSL/RNG
-%{perl_vendorarch}/auto/PDL/GSL/RNG/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSL/RNG/*.so
 %{_mandir}/man3/PDL::GSL::*
 
@@ -1078,7 +1047,6 @@ fi
 %{perl_vendorarch}/PDL/GSLSF
 %dir %{perl_vendorarch}/auto/PDL/GSLSF
 %dir %{perl_vendorarch}/auto/PDL/GSLSF/*
-%{perl_vendorarch}/auto/PDL/GSLSF/*/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSLSF/*/*.so
 %{_mandir}/man3/PDL::GSLSF::*
 
@@ -1086,7 +1054,6 @@ fi
 %defattr(644,root,root,755)
 %{perl_vendorarch}/PDL/Minuit.pm
 %dir %{perl_vendorarch}/auto/PDL/Minuit
-%{perl_vendorarch}/auto/PDL/Minuit/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Minuit/*.so
 %{_mandir}/man3/PDL::Minuit*
 
@@ -1095,7 +1062,6 @@ fi
 %{perl_vendorarch}/PDL/Transform.pm
 %{perl_vendorarch}/PDL/Transform
 %dir %{perl_vendorarch}/auto/PDL/Transform
-%{perl_vendorarch}/auto/PDL/Transform/*.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Transform/*.so
 
 %files Demos
