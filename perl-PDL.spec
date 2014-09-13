@@ -12,7 +12,7 @@ Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR.UTF-8):	Módulo PDL para perl
 Name:		perl-PDL
 Version:	2.4.11
-Release:	7
+Release:	8
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
@@ -811,10 +811,8 @@ fi
 %dir %{perl_vendorarch}/auto/PDL/Compression
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Compression/*.so
 %dir %{perl_vendorarch}/auto/PDL/FFT
-%{perl_vendorarch}/auto/PDL/FFT/*bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/FFT/*so
 %dir %{perl_vendorarch}/auto/PDL/FFTW
-%{perl_vendorarch}/auto/PDL/FFTW/*bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/FFTW/*so
 %dir %{perl_vendorarch}/auto/PDL/Graphics
 %dir %{perl_vendorarch}/auto/PDL/IO
@@ -920,7 +918,6 @@ fi
 %defattr(644,root,root,755)
 %{perl_vendorarch}/PDL/Graphics/OpenGL*
 %dir %{perl_vendorarch}/auto/PDL/Graphics/OpenGL*
-%{perl_vendorarch}/auto/PDL/Graphics/OpenGL*/*bs
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/OpenGL*/*so
 %{_mandir}/man3/PDL::Graphics::OpenGL*
 
