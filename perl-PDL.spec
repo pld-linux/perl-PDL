@@ -1,7 +1,6 @@
 #
 # Conditional build:
-%bcond_without	html	# don't generate package with PDL documentation in HTML
-%bcond_without	plplot	# don't build / link with plplot (currently broken)
+%bcond_with	html	# generate package with PDL documentation in HTML
 %bcond_with	tests	# perform "make test"
 			# require a valid DISPLAY
 #
@@ -11,35 +10,33 @@ Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR.UTF-8):	Módulo PDL para perl
 Name:		perl-PDL
-Version:	2.4.11
-Release:	12
+Version:	2.015
+Release:	1
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://downloads.sourceforge.net/pdl/%{pdir}-%{version}.tar.gz
-# Source0-md5:	761a524f6f823ecc2dc668b83ecd8299
+# Source0-md5:	fe2da41811efce2fdf874c64842c6a43
 Patch0:		%{name}-conf.patch
 Patch1:		%{name}-dep.patch
 Patch2:		%{name}-Makefile.PL.patch-dumb
-Patch3:		%{name}-fftw-shared.patch
 Patch4:		%{name}-vendorarch.patch
 Patch5:		PDL-Disable-PDL-GIS-Proj.patch
-Patch6:		format-security.patch
+Patch7:		%{name}-gsl.patch
 URL:		http://pdl.perl.org/
-BuildRequires:	fftw-devel >= 2.1.3-5
 BuildRequires:	gd-devel
 BuildRequires:	gsl-devel >= 1.3
 BuildRequires:	libgfortran-static
 BuildRequires:	ncurses-devel >= 5.0
+BuildRequires:	perl-Devel-CheckLib
 BuildRequires:	perl-ExtUtils-F77 >= 1.10
 BuildRequires:	perl-Filter
 BuildRequires:	perl-Inline >= 0.43
-BuildRequires:	perl-OpenGL >= 0.63
+BuildRequires:	perl-OpenGL >= 0.6702
 BuildRequires:	perl-PGPLOT
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	perl-perldoc
-%{?with_plplot:BuildRequires:	plplot-devel >= 5.2.1}
 BuildRequires:	proj-devel
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRequires:	xorg-lib-libX11-devel
@@ -204,22 +201,6 @@ Moduł ten jest interfejsem do komend biblioteki PGPLOT. Jest ona
 zaimplementowany za pomocą obiektowo zorientowanego pakietu PGPLOT
 (spójrz do manuala modułu PDL::Graphics::PGPLOT::Window).
 
-%package Graphics-PLplot
-Summary:	PDL::Graphics::PLplot - interface to the PLplot plotting library
-Summary(pl.UTF-8):	PDL::Graphics::PLplot - interfejs do biblioteki rysującej PLplot
-Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description Graphics-PLplot
-PDL::Graphics::PLplot is the PDL interface to the PLplot graphics
-library. It is designed to be simple and light weight with a familiar
-'perlish' Object Oriented interface.
-
-%description Graphics-PLplot -l pl.UTF-8
-PDL::Graphics::PLplot to interfejs PLD do biblioteki graficznej
-PLplot. Jest zaprojektowany tak, aby był prosty i lekki ze znajomym
-perlowatym zorientowanym obiektowo interfejsem.
-
 %package Graphics-TriD
 Summary:	PDL 3D interface
 Summary(pl.UTF-8):	Interfejs 3D dla PDL
@@ -319,18 +300,6 @@ PDL interface to the GD c library.
 
 %description IO-GD -l pl.UTF-8
 Interfejs PLD do biblioteki GD.
-
-%package IO-NDF
-Summary:	Starlink N-dimensional data structures for PDL
-Summary(pl.UTF-8):	Wsparcie dla n-wymiarowych struktur danych firmy Starlink dla PDL
-Group:		Development/Languages/Perl
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description IO-NDF
-Starlink N-dimensional data structures for PDL.
-
-%description IO-NDF -l pl.UTF-8
-Wsparcie dla n-wymiarowych struktur danych firmy Starlink dla PDL.
 
 %package IO-Pic
 Summary:	Image I/O for PDL based on the netpbm package
@@ -463,18 +432,14 @@ Przykładowe skrypty z użyciem PDL.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
+%patch7 -p1
 
-%{__perl} -pi -e 's/\b(pdlpp_postamble)\b/$1_int/g' Graphics/PLplot/Makefile.PL
 # g77 flags for compiling Slatec:
 %{__perl} -pi -e 's@\) \$mycflags s@\) %{rpmcflags} -fPIC s@' Lib/Slatec/Makefile.PL
 
-%{__perl} -pi -e "s@(FFTW_LIBS.*)'/lib','/usr/lib','/usr/local/lib'@\$1'/usr/%{_lib}'@" perldl.conf
 %{__perl} -pi -e "s@(OPENGL_LIBS.*)'-L/usr/lib@\$1'-L/usr/%{_lib}@" perldl.conf
-%{__perl} -pi -e "s@(WHERE_PLPLOT_LIBS.*)undef@\$1'/usr/%{_lib}'@" perldl.conf
 
 ln -s Basic PDL
 
@@ -491,27 +456,30 @@ ln -s Basic PDL
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} -j1 install \
+%{__make} -j1 pure_install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+perl -Mblib Doc/scantree.pl $RPM_BUILD_ROOT%{perl_vendorarch}
+perl -pi -e "s|$RPM_BUILD_ROOT/|/|g" $RPM_BUILD_ROOT%{perl_vendorarch}/PDL/pdldoc.db
 
 # perl script to regenerate pdldoc database
 install Doc/scantree.pl $RPM_BUILD_ROOT%{perl_vendorarch}/PDL/scantree.pl
 
 # some manuals have wrong names - this can be fixed in "Makefile.PL"s or here:
 cd $RPM_BUILD_ROOT%{_mandir}/man3
-mv -f PDL::Dev.3pm		PDL::Core::Dev.3pm
-mv -f PDL::Linear.3pm		PDL::Filter::Linear.3pm
-mv -f PDL::LinPred.3pm		PDL::Filter::LinPred.3pm
-mv -f PDL::LM.3pm		PDL::Fit::LM.3pm
-mv -f PDL::Linfit.3pm 		PDL::Fit::Linfit.3pm
-mv -f PDL::Polynomial.3pm	PDL::Fit::Polynomial.3pm
-mv -f PDL::State.3pm		PDL::Graphics::State.3pm
-mv -f Pdlpp.3pm			Inline::Pdlpp.3pm
+%{__mv} PDL::Dev.3pm		PDL::Core::Dev.3pm
+%{__mv} PDL::Linear.3pm		PDL::Filter::Linear.3pm
+%{__mv} PDL::LinPred.3pm	PDL::Filter::LinPred.3pm
+%{__mv} PDL::LM.3pm		PDL::Fit::LM.3pm
+%{__mv} PDL::Linfit.3pm 	PDL::Fit::Linfit.3pm
+%{__mv} PDL::Polynomial.3pm	PDL::Fit::Polynomial.3pm
+%{__mv} PDL::State.3pm		PDL::Graphics::State.3pm
+%{__mv} Pdlpp.3pm		Inline::Pdlpp.3pm
 
 # some man pages do not belong to the man1 section
 cd $RPM_BUILD_ROOT%{_mandir}/man1
 for i in PDL::*.1*; do
-	mv $i ../man3/`echo $i | sed 's/\.1p\?$/.3/'`
+	%{__mv} $i ../man3/`echo $i | sed 's/\.1p\?$/.3/'`
 done
 
 %clean
@@ -545,11 +513,6 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
-%post Graphics-PLplot
-if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
-fi
-
 %post Graphics-TriD
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
@@ -576,11 +539,6 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 fi
 
 %post IO-GD
-if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
-fi
-
-%post IO-NDF
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
@@ -655,11 +613,6 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
 
-%postun Graphics-PLplot
-if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
-fi
-
 %postun Graphics-TriD
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
@@ -686,11 +639,6 @@ if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 fi
 
 %postun IO-GD
-if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
-	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
-fi
-
-%postun IO-NDF
 if [ -f %{perl_vendorarch}/PDL/scantree.pl ]; then
 	/usr/bin/perl %{perl_vendorarch}/PDL/scantree.pl %{perl_vendorarch}
 fi
@@ -764,7 +712,6 @@ fi
 %{perl_vendorarch}/PDL/Doc.pm
 %{perl_vendorarch}/PDL/Exporter.pm
 %{perl_vendorarch}/PDL/FFT.pm
-%{perl_vendorarch}/PDL/FFTW.pm
 %dir %{perl_vendorarch}/PDL/Filter
 %{perl_vendorarch}/PDL/Filter/Linear.pm
 %dir %{perl_vendorarch}/PDL/Fit
@@ -775,9 +722,12 @@ fi
 %{perl_vendorarch}/PDL/Image2D.pm
 %{perl_vendorarch}/PDL/ImageND.pm
 %{perl_vendorarch}/PDL/ImageRGB.pm
+%dir %{perl_vendorarch}/PDL/Install
+%{perl_vendorarch}/PDL/Install/Files.pm
 %dir %{perl_vendorarch}/PDL/IO
 %{perl_vendorarch}/PDL/IO/Dumper.pm
 %{perl_vendorarch}/PDL/IO/FITS.pm
+%{perl_vendorarch}/PDL/IO/IDL.pm
 %{perl_vendorarch}/PDL/IO/Misc.pm
 %{perl_vendorarch}/PDL/LiteF.pm
 %{perl_vendorarch}/PDL/Lite.pm
@@ -788,16 +738,15 @@ fi
 %dir %{perl_vendorarch}/PDL/NiceSlice
 %{perl_vendorarch}/PDL/NiceSlice/FilterSimple.pm
 %{perl_vendorarch}/PDL/NiceSlice/FilterUtilCall.pm
+%{perl_vendorarch}/PDL/NiceSlice/ModuleCompile.pm
 %{perl_vendorarch}/PDL/Opt
 %{perl_vendorarch}/PDL/Ops.pm
 %{perl_vendorarch}/PDL/Options.pm
 %{perl_vendorarch}/PDL/PP
 %{perl_vendorarch}/PDL/PP.pm
 %{perl_vendorarch}/PDL/Primitive.pm
-%{perl_vendorarch}/PDL/Pod
 %{perl_vendorarch}/PDL/Reduce.pm
 %{perl_vendorarch}/PDL/Slices.pm
-%{perl_vendorarch}/PDL/Tests.pm
 %{perl_vendorarch}/PDL/Types.pm
 %{perl_vendorarch}/PDL/Ufunc.pm
 %{perl_vendorarch}/PDL/Version.pm
@@ -812,8 +761,6 @@ fi
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Compression/*.so
 %dir %{perl_vendorarch}/auto/PDL/FFT
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/FFT/*so
-%dir %{perl_vendorarch}/auto/PDL/FFTW
-%attr(755,root,root) %{perl_vendorarch}/auto/PDL/FFTW/*so
 %dir %{perl_vendorarch}/auto/PDL/Graphics
 %dir %{perl_vendorarch}/auto/PDL/IO
 
@@ -844,8 +791,6 @@ fi
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/MatrixOps/*.so
 %dir %{perl_vendorarch}/auto/PDL/Primitive
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Primitive/*.so
-%dir %{perl_vendorarch}/auto/PDL/Tests
-%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Tests/*.so
 
 %{perl_vendorarch}/Inline/MakePdlppInstallable.pm
 %{perl_vendorarch}/Inline/Pdlpp.pm
@@ -855,21 +800,25 @@ fi
 %{_mandir}/man3/PDL.*
 %{_mandir}/man3/PDL::[AC-ELO-RTU]*
 %{_mandir}/man3/PDL::Ba*
+%{_mandir}/man3/PDL::Bugs.3*
 %{_mandir}/man3/PDL::FAQ*
 %{_mandir}/man3/PDL::FFT*
 %{_mandir}/man3/PDL::Filter::Linear*
 %{_mandir}/man3/PDL::Fit::Gaussian*
 %{_mandir}/man3/PDL::Func.3pm*
 %{_mandir}/man3/PDL::Graphics::State.3pm*
+%{_mandir}/man3/PDL::IFiles.3pm*
 %{_mandir}/man3/PDL::I[mn]*
 %{_mandir}/man3/PDL::IO.3pm*
 %{_mandir}/man3/PDL::IO::FITS.3pm*
+%{_mandir}/man3/PDL::IO::IDL.3pm*
 %{_mandir}/man3/PDL::IO::Misc*
 %{_mandir}/man3/PDL::Math*
 %{_mandir}/man3/PDL::MatrixOps.3pm*
 %{_mandir}/man3/PDL::Modules.3*
 %{_mandir}/man3/PDL::NiceSlice.3pm*
 %{_mandir}/man3/PDL::Slices*
+%{_mandir}/man3/PDL::pdl2.3pm*
 %{_mandir}/man3/PDL::pptemplate.3pm*
 
 %files docs
@@ -931,16 +880,6 @@ fi
 %{_mandir}/man3/PDL::Graphics2D*
 %{_mandir}/man3/PDL::Graphics::PGPLOT*
 
-%if %{with plplot}
-%files Graphics-PLplot
-%defattr(644,root,root,755)
-%doc Graphics/PLplot/{Changes,README}
-%{perl_vendorarch}/PDL/Graphics/PLplot.pm
-%dir %{perl_vendorarch}/auto/PDL/Graphics/PLplot
-%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/PLplot/PLplot.so
-%{_mandir}/man3/PDL::Graphics::PLplot.3pm*
-%endif
-
 %files Graphics-TriD
 %defattr(644,root,root,755)
 %dir %{perl_vendorarch}/PDL/Graphics/TriD
@@ -982,11 +921,6 @@ fi
 %{perl_vendorarch}/PDL/IO/GD*
 %dir %{perl_vendorarch}/auto/PDL/IO/GD
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/GD/*.so
-
-%files IO-NDF
-%defattr(644,root,root,755)
-%{_mandir}/man3/PDL::IO::NDF*
-%{perl_vendorarch}/PDL/IO/NDF*
 
 %files IO-Pic
 %defattr(644,root,root,755)
