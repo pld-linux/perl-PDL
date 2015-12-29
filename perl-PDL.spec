@@ -11,7 +11,7 @@ Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR.UTF-8):	Módulo PDL para perl
 Name:		perl-PDL
 Version:	2.015
-Release:	1
+Release:	2
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
@@ -481,6 +481,9 @@ cd $RPM_BUILD_ROOT%{_mandir}/man1
 for i in PDL::*.1*; do
 	%{__mv} $i ../man3/`echo $i | sed 's/\.1p\?$/.3/'`
 done
+
+# Remove demos fo rexternal packages
+%{__rm} $RPM_BUILD_ROOT%{perl_vendorarch}/PDL/Demos/{Gnuplot_demo,Prima}.pm
 
 %clean
 rm -rf $RPM_BUILD_ROOT
