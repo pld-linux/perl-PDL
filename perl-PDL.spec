@@ -10,20 +10,19 @@ Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR.UTF-8):	Módulo PDL para perl
 Name:		perl-PDL
-Version:	2.015
-Release:	5
+Version:	2.018
+Release:	1
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://downloads.sourceforge.net/pdl/%{pdir}-%{version}.tar.gz
-# Source0-md5:	fe2da41811efce2fdf874c64842c6a43
+# Source0-md5:	4974da8767f635806c9c18d9849e61b8
 Patch0:		%{name}-conf.patch
 Patch1:		%{name}-dep.patch
 Patch2:		%{name}-Makefile.PL.patch-dumb
 Patch4:		%{name}-vendorarch.patch
 Patch5:		PDL-Disable-PDL-GIS-Proj.patch
-Patch7:		%{name}-gsl.patch
 URL:		http://pdl.perl.org/
 BuildRequires:	gd-devel
 BuildRequires:	gsl-devel >= 1.3
@@ -434,7 +433,6 @@ Przykładowe skrypty z użyciem PDL.
 %patch2 -p1
 %patch4 -p1
 %patch5 -p1
-%patch7 -p1
 
 # g77 flags for compiling Slatec:
 %{__perl} -pi -e 's@\) \$mycflags s@\) %{rpmcflags} -fPIC s@' Lib/Slatec/Makefile.PL
