@@ -4,7 +4,6 @@
 %bcond_with	tests	# perform "make test"
 			# require a valid DISPLAY
 #
-%include	/usr/lib/rpm/macros.perl
 %define		pdir	PDL
 Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
