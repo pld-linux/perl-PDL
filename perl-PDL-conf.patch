@@ -1,7 +1,7 @@
-diff -urN PDL-2.4.0.org/perldl.conf PDL-2.4.0/perldl.conf
---- PDL-2.4.0.org/perldl.conf	2003-12-30 14:54:25.663910257 +0100
-+++ PDL-2.4.0/perldl.conf	2003-12-30 15:14:41.363631658 +0100
-@@ -58,15 +58,15 @@
+diff -urNp -x '*.orig' PDL-2.018.org/perldl.conf PDL-2.018/perldl.conf
+--- PDL-2.018.org/perldl.conf	2017-01-14 22:13:33.000000000 +0100
++++ PDL-2.018/perldl.conf	2021-05-09 00:22:58.271774104 +0200
+@@ -107,7 +107,7 @@
  # false -> skip build of PDL::Graphics:::TriD
  # undef -> let PDL build decide based on dependencies present
  #
@@ -10,7 +10,7 @@ diff -urN PDL-2.4.0.org/perldl.conf PDL-2.4.0/perldl.conf
  
  # Build Graphics/TriD using Perl OpenGL
  #
- # true -> use new Perl OpenGL bindings
+@@ -115,7 +115,7 @@
  # false -> use legacy, deprecated X11 only bindings
  # undef -> let PDL build decide (check if Perl OpenGL is present)
  #
@@ -18,10 +18,10 @@ diff -urN PDL-2.4.0.org/perldl.conf PDL-2.4.0/perldl.conf
 +        USE_POGL => 1,
  #       USE_POGL => 0,
  #
-         POGL_VERSION => 0.63,           # minimum compatible OpenGL version
-@@ -110,7 +110,7 @@
- #    about curses to fix it 
- #  - 1 builds, 0 or undef does not build
+         POGL_VERSION => 0.6702,           # minimum compatible OpenGL version
+@@ -189,7 +189,7 @@
+ # Do we build PDL::IO::Browser?
+ # default -> do not build
  #
 -        WITH_IO_BROWSER => 0,
 +        WITH_IO_BROWSER => 1,

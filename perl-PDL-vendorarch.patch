@@ -1,9 +1,9 @@
-diff -urN PDL-2.4.0.org/Makefile.PL PDL-2.4.0/Makefile.PL
---- PDL-2.4.0.org/Makefile.PL	2003-12-30 15:48:05.287018839 +0100
-+++ PDL-2.4.0/Makefile.PL	2003-12-30 16:29:53.451383052 +0100
-@@ -313,6 +313,11 @@
- 	@$(PERL) -Mblib Doc/scantree.pl $(INSTALLSITEARCH)
- 	@$(PERL) Doc/mkhtmldoc.pl $(INSTALLSITEARCH)/PDL
+diff -urNp -x '*.orig' PDL-2.018.org/Makefile.PL PDL-2.018/Makefile.PL
+--- PDL-2.018.org/Makefile.PL	2021-05-09 00:22:58.841780681 +0200
++++ PDL-2.018/Makefile.PL	2021-05-09 00:22:58.928448347 +0200
+@@ -557,6 +557,11 @@ doc_vendor_install ::
+ %HTML%	$(NOECHO) $(ECHO) "doc_vendor_install: Building PDL documentation web pages ..."
+ %HTML%	$(NOECHO) $(PERL) Doc$(DFSEP)mkhtmldoc.pl "$(DESTDIR)$(INSTALLVENDORARCH)$(DFSEP)PDL"
  
 +doc_vendor_install ::
 +	@echo "doc_vendor_install: Building PDL documentation database ..."
@@ -11,5 +11,5 @@ diff -urN PDL-2.4.0.org/Makefile.PL PDL-2.4.0/Makefile.PL
 +	@$(PERL) Doc/mkhtmldoc.pl $(DESTINSTALLVENDORARCH)/PDL
 +	
  doc_perl_install ::
- 	@echo "doc_perl_install: Building PDL documentation database ..."
- 	@$(PERL) -Mblib Doc/scantree.pl $(INSTALLARCHLIB)
+ 	$(NOECHO) $(ECHO) "doc_perl_install: Building PDL documentation database ..."
+ 	$(NOECHO) $(PERLRUNINST) Doc$(DFSEP)scantree.pl "$(DESTDIR)$(INSTALLARCHLIB)"
