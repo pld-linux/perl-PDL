@@ -23,16 +23,19 @@ Patch2:		%{name}-Makefile.PL.patch-dumb
 Patch4:		%{name}-vendorarch.patch
 Patch5:		PDL-Disable-PDL-GIS-Proj.patch
 URL:		http://pdl.perl.org/
+BuildRequires:	OpenGL-devel
 BuildRequires:	gd-devel
 BuildRequires:	gsl-devel >= 1.3
 BuildRequires:	libgfortran-static
 BuildRequires:	ncurses-devel >= 5.0
+BuildRequires:	perl-Astro-FITS-Header
 BuildRequires:	perl-Devel-CheckLib
 BuildRequires:	perl-ExtUtils-F77 >= 1.10
 BuildRequires:	perl-Filter
 BuildRequires:	perl-Inline >= 0.43
 BuildRequires:	perl-OpenGL >= 0.6702
 BuildRequires:	perl-PGPLOT
+BuildRequires:	perl-Pod-Parser
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	perl-perldoc
 BuildRequires:	proj-devel
@@ -437,6 +440,9 @@ Przykładowe skrypty z użyciem PDL.
 %{__perl} -pi -e 's@\) \$mycflags s@\) %{rpmcflags} -fPIC s@' Lib/Slatec/Makefile.PL
 
 %{__perl} -pi -e "s@(OPENGL_LIBS.*)'-L/usr/lib@\$1'-L/usr/%{_lib}@" perldl.conf
+
+%{__sed} -E -i -e '1s,#!\s*/usr/bin/env\s+perl(\s|$),#!%{__perl}\1,' \
+      Perldl2/pdl2
 
 ln -s Basic PDL
 
