@@ -25,6 +25,7 @@ Patch5:		PDL-Disable-PDL-GIS-Proj.patch
 URL:		http://pdl.perl.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	OpenGL-GLU-devel
+BuildRequires:	OpenGL-glut-devel
 BuildRequires:	gd-devel
 BuildRequires:	gsl-devel >= 1.3
 BuildRequires:	libgfortran-static
@@ -43,6 +44,7 @@ BuildRequires:	proj-devel
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xorg-lib-libXmu-devel
 BuildRequires:	xorg-lib-libXt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
