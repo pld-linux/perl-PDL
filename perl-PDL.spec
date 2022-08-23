@@ -9,14 +9,14 @@ Summary:	perlDL - efficient numerical computing for Perl
 Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR.UTF-8):	Módulo PDL para perl
 Name:		perl-PDL
-Version:	2.018
-Release:	11
+Version:	2.029
+Release:	1
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
-Source0:	http://downloads.sourceforge.net/pdl/%{pdir}-%{version}.tar.gz
-# Source0-md5:	4974da8767f635806c9c18d9849e61b8
+Source0:	https://cpan.metacpan.org/authors/id/E/ET/ETJ/%{pdir}-%{version}.tar.gz
+# Source0-md5:	3edbe535c36ac195e020dcb0c7d84581
 Patch0:		%{name}-conf.patch
 Patch1:		%{name}-dep.patch
 Patch2:		%{name}-Makefile.PL.patch-dumb
@@ -809,7 +809,6 @@ fi
 %{_mandir}/man3/PDL.*
 %{_mandir}/man3/PDL::[AC-ELO-RTU]*
 %{_mandir}/man3/PDL::Ba*
-%{_mandir}/man3/PDL::Bugs.3*
 %{_mandir}/man3/PDL::FAQ*
 %{_mandir}/man3/PDL::FFT*
 %{_mandir}/man3/PDL::Filter::Linear*
