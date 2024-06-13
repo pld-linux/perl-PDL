@@ -1,8 +1,7 @@
 #
 # Conditional build:
 %bcond_with	html	# generate package with PDL documentation in HTML
-%bcond_with	tests	# perform "make test"
-			# require a valid DISPLAY
+%bcond_with	tests	# functional tests (require valid DISPLAY)
 #
 %define		pdir	PDL
 Summary:	perlDL - efficient numerical computing for Perl
@@ -15,20 +14,21 @@ Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
-Source0:	https://cpan.metacpan.org/authors/id/E/ET/ETJ/%{pdir}-%{version}.tar.gz
+Source0:	https://www.cpan.org/modules/by-authors/id/E/ET/ETJ/%{pdir}-%{version}.tar.gz
 # Source0-md5:	3edbe535c36ac195e020dcb0c7d84581
 Patch0:		%{name}-conf.patch
 Patch1:		%{name}-dep.patch
 Patch2:		%{name}-Makefile.PL.patch-dumb
 Patch4:		%{name}-vendorarch.patch
 Patch5:		PDL-Disable-PDL-GIS-Proj.patch
-URL:		http://pdl.perl.org/
+# defunct as of 2024-06-13
+#URL:		https://pdl.perl.org/
+URL:		https://metacpan.org/dist/PDL
 BuildRequires:	OpenGL-devel
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	OpenGL-glut-devel
 BuildRequires:	gd-devel
 BuildRequires:	gsl-devel >= 1.3
-BuildRequires:	libgfortran-static
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	perl-Astro-FITS-Header
 BuildRequires:	perl-Devel-CheckLib
@@ -42,13 +42,13 @@ BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	perl-perldoc
 BuildRequires:	proj-devel
 BuildRequires:	rpm-perlprov >= 4.1-13
+BuildRequires:	rpmbuild(macros) >= 1.745
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXmu-devel
 BuildRequires:	xorg-lib-libXt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_noautoreqdep	libGL.so.1 libGLU.so.1 libGLcore.so.1
 %define		_noautoreq_perl	local.perldlrc PDL::Graphics::TriD::GObject
 
 %description
@@ -222,7 +222,7 @@ the mouse in real time - this helps data visualization a lot.
 
 With VRML, you can generate objects for everyone to see with e.g.
 Silicon Graphics' Cosmo Player. You can find out more about VRML at
-`http://vrml.sgi.com/' or `http://www.vrml.org/'
+<http://vrml.sgi.com/> or <http://www.vrml.org/>.
 
 %description Graphics-TriD -l pl.UTF-8
 Moduł ten implementuje podstawowy interfejs 3D dla PDL. Dostępne są -
@@ -232,10 +232,10 @@ Za pomocą OpenGL, stworzonymi obiektami 3D można łatwo manipulować w
 czasie rzeczywistym za pomocą myszy, co bardzo wspomaga wizualizację
 danych.
 
-Możesz też generować obiekty w formacie VRML, które mogą być oglądane
+Można też generować obiekty w formacie VRML, które mogą być oglądane
 przez inne osoby za pomocą np.: programu Cosmo Player firmy Silicon
-Graphics. Więcej na temat VRML możesz znaleźć pod adresami
-http://vrml.sgi.com/ lub http://www.vrml.org/.
+Graphics. Więcej na temat VRML można znaleźć pod adresami
+<http://vrml.sgi.com/> lub <http://www.vrml.org/>.
 
 %package IO-Browser
 Summary:	2D data browser for PDL
@@ -295,7 +295,7 @@ Elastyczny binarny format wejścia/wyjścia dla PDL.
 
 %package IO-GD
 Summary:	PDL interface to the GD c library
-Summary(pl.UTF-8):	Interfejs PLD do biblioteki GD
+Summary(pl.UTF-8):	Interfejs PDL do biblioteki GD
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -303,7 +303,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 PDL interface to the GD c library.
 
 %description IO-GD -l pl.UTF-8
-Interfejs PLD do biblioteki GD.
+Interfejs PDL do biblioteki GD.
 
 %package IO-Pic
 Summary:	Image I/O for PDL based on the netpbm package
@@ -465,14 +465,15 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -j1 pure_install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-perl -Mblib Doc/scantree.pl $RPM_BUILD_ROOT%{perl_vendorarch}
-perl -pi -e "s|$RPM_BUILD_ROOT/|/|g" $RPM_BUILD_ROOT%{perl_vendorarch}/PDL/pdldoc.db
+%{__perl} -Mblib Doc/scantree.pl $RPM_BUILD_ROOT%{perl_vendorarch}
+%{__perl} -pi -e "s|$RPM_BUILD_ROOT/|/|g" $RPM_BUILD_ROOT%{perl_vendorarch}/PDL/pdldoc.db
 
 # perl script to regenerate pdldoc database
 install Doc/scantree.pl $RPM_BUILD_ROOT%{perl_vendorarch}/PDL/scantree.pl
 
 # some manuals have wrong names - this can be fixed in "Makefile.PL"s or here:
 cd $RPM_BUILD_ROOT%{_mandir}/man3
+%{__mv} Bugs.3pm		PDL::Bugs.3pm
 %{__mv} PDL::Dev.3pm		PDL::Core::Dev.3pm
 %{__mv} PDL::Linear.3pm		PDL::Filter::Linear.3pm
 %{__mv} PDL::LinPred.3pm	PDL::Filter::LinPred.3pm
@@ -804,28 +805,74 @@ fi
 %{perl_vendorarch}/Inline/MakePdlppInstallable.pm
 %{perl_vendorarch}/Inline/Pdlpp.pm
 
+%{_mandir}/man1/pdl.1p*
 %{_mandir}/man1/pptemplate.1*
 %{_mandir}/man3/Inline::Pdlpp.3pm*
-%{_mandir}/man3/PDL.*
-%{_mandir}/man3/PDL::[AC-ELO-RTU]*
-%{_mandir}/man3/PDL::Ba*
-%{_mandir}/man3/PDL::FAQ*
-%{_mandir}/man3/PDL::FFT*
-%{_mandir}/man3/PDL::Filter::Linear*
-%{_mandir}/man3/PDL::Fit::Gaussian*
+%{_mandir}/man3/PDL.3pm*
+%{_mandir}/man3/PDL::API.3*
+%{_mandir}/man3/PDL::AutoLoader.3pm*
+%{_mandir}/man3/PDL::Bad.3pm*
+%{_mandir}/man3/PDL::BadValues.3*
+%{_mandir}/man3/PDL::Basic.3pm*
+%{_mandir}/man3/PDL::Bugs.3pm*
+%{_mandir}/man3/PDL::CallExt.3pm*
+%{_mandir}/man3/PDL::Char.3pm*
+%{_mandir}/man3/PDL::Complex.3pm*
+%{_mandir}/man3/PDL::Compression.3pm*
+%{_mandir}/man3/PDL::Config.3pm*
+%{_mandir}/man3/PDL::Constants.3pm*
+%{_mandir}/man3/PDL::Core*.3pm*
+%{_mandir}/man3/PDL::Course.3*
+%{_mandir}/man3/PDL::Dataflow.3*
+%{_mandir}/man3/PDL::Dbg.3pm*
+%{_mandir}/man3/PDL::Delta.3*
+%{_mandir}/man3/PDL::DiskCache.3pm*
+%{_mandir}/man3/PDL::Doc*.3pm*
+%{_mandir}/man3/PDL::Dumper.3pm*
+%{_mandir}/man3/PDL::Exporter.3pm*
+%{_mandir}/man3/PDL::FAQ.3*
+%{_mandir}/man3/PDL::FFT.3pm*
+%{_mandir}/man3/PDL::Filter::Linear.3pm*
+%{_mandir}/man3/PDL::Fit::Gaussian.3pm*
 %{_mandir}/man3/PDL::Func.3pm*
 %{_mandir}/man3/PDL::Graphics::State.3pm*
 %{_mandir}/man3/PDL::IFiles.3pm*
-%{_mandir}/man3/PDL::I[mn]*
 %{_mandir}/man3/PDL::IO.3pm*
 %{_mandir}/man3/PDL::IO::FITS.3pm*
 %{_mandir}/man3/PDL::IO::IDL.3pm*
-%{_mandir}/man3/PDL::IO::Misc*
-%{_mandir}/man3/PDL::Math*
+%{_mandir}/man3/PDL::IO::Misc.3pm*
+%{_mandir}/man3/PDL::Image*.3pm*
+%{_mandir}/man3/PDL::Indexing.3*
+%{_mandir}/man3/PDL::Internals.3*
+%{_mandir}/man3/PDL::Lite*.3pm*
+%{_mandir}/man3/PDL::Lvalue.3pm*
+%{_mandir}/man3/PDL::MATLAB.3*
+%{_mandir}/man3/PDL::Math.3pm*
 %{_mandir}/man3/PDL::MatrixOps.3pm*
 %{_mandir}/man3/PDL::Modules.3*
 %{_mandir}/man3/PDL::NiceSlice.3pm*
-%{_mandir}/man3/PDL::Slices*
+%{_mandir}/man3/PDL::Objects.3*
+%{_mandir}/man3/PDL::Ops.3pm*
+%{_mandir}/man3/PDL::Opt::Simplex.3pm*
+%{_mandir}/man3/PDL::Options.3pm*
+%{_mandir}/man3/PDL::PP.3*
+%{_mandir}/man3/PDL::PP-Inline.3*
+%{_mandir}/man3/PDL::PP::*.3*
+%{_mandir}/man3/PDL::ParallelCPU.3*
+%{_mandir}/man3/PDL::Perldl2::*.3pm*
+%{_mandir}/man3/PDL::Philosophy.3*
+%{_mandir}/man3/PDL::Prima.3pm*
+%{_mandir}/man3/PDL::Primitive.3pm*
+%{_mandir}/man3/PDL::QuickStart.3*
+%{_mandir}/man3/PDL::Reduce.3pm*
+%{_mandir}/man3/PDL::Scilab.3*
+%{_mandir}/man3/PDL::Slices.3pm*
+%{_mandir}/man3/PDL::Threading.3*
+%{_mandir}/man3/PDL::Tips.3*
+%{_mandir}/man3/PDL::Transform*.3pm*
+%{_mandir}/man3/PDL::Tutorials.3*
+%{_mandir}/man3/PDL::Types.3pm*
+%{_mandir}/man3/PDL::Ufunc.3pm*
 %{_mandir}/man3/PDL::pdl2.3pm*
 %{_mandir}/man3/PDL::pptemplate.3pm*
 
@@ -846,124 +893,127 @@ fi
 %files perldl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/perldl
-%{_mandir}/man1/perldl*
+%{_mandir}/man1/perldl.1p*
 
 %files perldl2
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/pdl2
 %{perl_vendorarch}/PDL/Perldl2
-%{_mandir}/man1/pdl2*
+%{_mandir}/man1/pdl2.1p*
 
 %files Graphics-IIS
 %defattr(644,root,root,755)
-%{perl_vendorarch}/PDL/Graphics/IIS*
+%{perl_vendorarch}/PDL/Graphics/IIS.pm
 %dir %{perl_vendorarch}/auto/PDL/Graphics/IIS
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/IIS/*.so
-%{_mandir}/man3/PDL::Graphics::IIS*
+%{_mandir}/man3/PDL::Graphics::IIS.3pm*
 
 %files Graphics-LUT
 %defattr(644,root,root,755)
-%{perl_vendorarch}/PDL/Graphics/LUT*
-%{_mandir}/man3/PDL::Graphics::LUT*
+%{perl_vendorarch}/PDL/Graphics/LUT
+%{perl_vendorarch}/PDL/Graphics/LUT.pm
+%{_mandir}/man3/PDL::Graphics::LUT.3pm*
 
 %files Graphics-Limits
 %defattr(644,root,root,755)
-%{perl_vendorarch}/PDL/Graphics/Limits*
-%{_mandir}/man3/PDL::Graphics::Limits*
+%{perl_vendorarch}/PDL/Graphics/Limits.pm
+%{_mandir}/man3/PDL::Graphics::Limits.3pm*
 
 %files Graphics-OpenGL
 %defattr(644,root,root,755)
-%{perl_vendorarch}/PDL/Graphics/OpenGL*
-%dir %{perl_vendorarch}/auto/PDL/Graphics/OpenGL*
-%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/OpenGL*/*so
-%{_mandir}/man3/PDL::Graphics::OpenGL*
+%{perl_vendorarch}/PDL/Graphics/OpenGL
+%{perl_vendorarch}/PDL/Graphics/OpenGLQ.pm
+%dir %{perl_vendorarch}/auto/PDL/Graphics/OpenGLQ
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/OpenGLQ/*.so
+%{_mandir}/man3/PDL::Graphics::OpenGL::Perl::OpenGL.3pm*
+%{_mandir}/man3/PDL::Graphics::OpenGLQ.3pm*
 
 %files Graphics-PGPLOT
 %defattr(644,root,root,755)
-%{perl_vendorarch}/PDL/Graphics/PGPLOT*
-%{perl_vendorarch}/PDL/Graphics2D*
+%{perl_vendorarch}/PDL/Graphics/PGPLOT
+%{perl_vendorarch}/PDL/Graphics/PGPLOT.pm
+%{perl_vendorarch}/PDL/Graphics/PGPLOTOptions.pm
+%{perl_vendorarch}/PDL/Graphics2D.pm
 %dir %{perl_vendorarch}/auto/PDL/Graphics/PGPLOT
 %dir %{perl_vendorarch}/auto/PDL/Graphics/PGPLOT/Window
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/PGPLOT/Window/*.so
-%{_mandir}/man3/PDL::Graphics2D*
-%{_mandir}/man3/PDL::Graphics::PGPLOT*
+%{_mandir}/man3/PDL::Graphics2D.3pm*
+%{_mandir}/man3/PDL::Graphics::PGPLOT*.3pm*
 
 %files Graphics-TriD
 %defattr(644,root,root,755)
-%dir %{perl_vendorarch}/PDL/Graphics/TriD
-%{perl_vendorarch}/PDL/Graphics/TriD/[A-SU-Z]*
-%{perl_vendorarch}/PDL/Graphics/TriD/Te*
-%{perl_vendorarch}/PDL/Graphics/VRML*
+%{perl_vendorarch}/PDL/Graphics/TriD
 %{perl_vendorarch}/PDL/Graphics/TriD.pm
+%{perl_vendorarch}/PDL/Graphics/VRML
+%{perl_vendorarch}/PDL/Graphics/VRML.pm
 %dir %{perl_vendorarch}/auto/PDL/Graphics/TriD
 %dir %{perl_vendorarch}/auto/PDL/Graphics/TriD/Rout
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Graphics/TriD/Rout/*.so
-%{_mandir}/man3/PDL::Graphics::TriD.*
-%{_mandir}/man3/PDL::Graphics::TriD::[A-SU-Z]*
+%{_mandir}/man3/PDL::Graphics::TriD*.3pm*
 
 %files IO-Browser
 %defattr(644,root,root,755)
-%{_mandir}/man3/PDL::IO::Browser*
+%{perl_vendorarch}/PDL/IO/Browser.pm
 %dir %{perl_vendorarch}/auto/PDL/IO/Browser
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/Browser/*.so
-%{perl_vendorarch}/PDL/IO/Browser*
+%{_mandir}/man3/PDL::IO::Browser.3pm*
 
 %files IO-Dicom
 %defattr(644,root,root,755)
-%{_mandir}/man3/PDL::IO::Dicom*
-%{perl_vendorarch}/PDL/IO/Dicom*
+%{perl_vendorarch}/PDL/IO/Dicom.pm
+%{_mandir}/man3/PDL::IO::Dicom.3pm*
 
 %files IO-FastRaw
 %defattr(644,root,root,755)
-%{_mandir}/man3/PDL::IO::FastRaw*
-%{perl_vendorarch}/PDL/IO/FastRaw*
+%{perl_vendorarch}/PDL/IO/FastRaw.pm
+%{_mandir}/man3/PDL::IO::FastRaw.3pm*
 
 %files IO-FlexRaw
 %defattr(644,root,root,755)
-%{_mandir}/man3/PDL::IO::FlexRaw*
-%{perl_vendorarch}/PDL/IO/FlexRaw*
+%{perl_vendorarch}/PDL/IO/FlexRaw.pm
+%{_mandir}/man3/PDL::IO::FlexRaw.3pm*
 
 %files IO-GD
 %defattr(644,root,root,755)
-%{_mandir}/man3/PDL::IO::GD*
-%{perl_vendorarch}/PDL/IO/GD*
+%{perl_vendorarch}/PDL/IO/GD.pm
 %dir %{perl_vendorarch}/auto/PDL/IO/GD
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/GD/*.so
+%{_mandir}/man3/PDL::IO::GD.3pm*
 
 %files IO-Pic
 %defattr(644,root,root,755)
-%{perl_vendorarch}/PDL/IO/Pic*
+%{perl_vendorarch}/PDL/IO/Pic.pm*
 
 %files IO-Pnm
 %defattr(644,root,root,755)
-%{_mandir}/man3/PDL::IO::Pnm*
+%{perl_vendorarch}/PDL/IO/Pnm.pm
 %dir %{perl_vendorarch}/auto/PDL/IO/Pnm
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/Pnm/*.so
-%{perl_vendorarch}/PDL/IO/Pnm*
+%{_mandir}/man3/PDL::IO::Pnm.3pm*
 
 %files IO-Storable
 %defattr(644,root,root,755)
 %{perl_vendorarch}/PDL/IO/Storable.pm
 %dir %{perl_vendorarch}/auto/PDL/IO/Storable
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/Storable/*.so
-%{_mandir}/man3/PDL::IO::Storable*
+%{_mandir}/man3/PDL::IO::Storable.3pm*
 
 %files Slatec
 %defattr(644,root,root,755)
-%{_mandir}/man3/PDL::Filter::LinPred*
-%{_mandir}/man3/PDL::Fit::Linfit*
-%{_mandir}/man3/PDL::Fit::LM*
-%{_mandir}/man3/PDL::Fit::Polynomial*
-%{_mandir}/man3/PDL::Matrix.3pm*
-%{_mandir}/man3/PDL::Slatec*
 %{perl_vendorarch}/PDL/Filter/LinPred.pm
-%{perl_vendorarch}/PDL/Fit/Linfit.pm
 %{perl_vendorarch}/PDL/Fit/LM.pm
+%{perl_vendorarch}/PDL/Fit/Linfit.pm
 %{perl_vendorarch}/PDL/Fit/Polynomial.pm
 %{perl_vendorarch}/PDL/Matrix.pm
 %{perl_vendorarch}/PDL/Slatec.pm
 %dir %{perl_vendorarch}/auto/PDL/Slatec
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Slatec/*.so
+%{_mandir}/man3/PDL::Filter::LinPred.3pm*
+%{_mandir}/man3/PDL::Fit::LM.3pm*
+%{_mandir}/man3/PDL::Fit::Linfit.3pm*
+%{_mandir}/man3/PDL::Fit::Polynomial.3pm*
+%{_mandir}/man3/PDL::Matrix.3pm*
+%{_mandir}/man3/PDL::Slatec.3pm*
 
 %files GSL
 %defattr(644,root,root,755)
@@ -979,7 +1029,7 @@ fi
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSL/MROOT/*.so
 %dir %{perl_vendorarch}/auto/PDL/GSL/RNG
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSL/RNG/*.so
-%{_mandir}/man3/PDL::GSL::*
+%{_mandir}/man3/PDL::GSL::*.3pm*
 
 %files GSLSF
 %defattr(644,root,root,755)
@@ -987,14 +1037,14 @@ fi
 %dir %{perl_vendorarch}/auto/PDL/GSLSF
 %dir %{perl_vendorarch}/auto/PDL/GSLSF/*
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/GSLSF/*/*.so
-%{_mandir}/man3/PDL::GSLSF::*
+%{_mandir}/man3/PDL::GSLSF::*.3pm*
 
 %files Minuit
 %defattr(644,root,root,755)
 %{perl_vendorarch}/PDL/Minuit.pm
 %dir %{perl_vendorarch}/auto/PDL/Minuit
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/Minuit/*.so
-%{_mandir}/man3/PDL::Minuit*
+%{_mandir}/man3/PDL::Minuit.3pm*
 
 %files Transform
 %defattr(644,root,root,755)
@@ -1005,5 +1055,5 @@ fi
 
 %files Demos
 %defattr(644,root,root,755)
-%{_mandir}/man3/PDL::BAD*
 %{perl_vendorarch}/PDL/Demos
+%{_mandir}/man3/PDL::BAD*_demo.3pm*
