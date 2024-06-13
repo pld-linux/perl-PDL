@@ -47,6 +47,9 @@ BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXmu-devel
 BuildRequires:	xorg-lib-libXt-devel
+Obsoletes:	perl-PDL-Graphics-Karma < 1:2.4.9
+Obsoletes:	perl-PDL-Graphics-PLplot < 1:2.015
+Obsoletes:	perl-PDL-IO-NDF < 1:2.015
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreq_perl	local.perldlrc PDL::Graphics::TriD::GObject
@@ -212,6 +215,7 @@ Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-Graphics-OpenGL = %{epoch}:%{version}-%{release}
 Requires:	%{name}-IO-Pic = %{epoch}:%{version}-%{release}
+Obsoletes:	perl-PDL-Graphics-TriD-Tk < 1:2.4.9
 
 %description Graphics-TriD
 This module implements a generic 3D plotting interface for PDL.
