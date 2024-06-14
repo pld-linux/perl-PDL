@@ -30,6 +30,7 @@ BuildRequires:	OpenGL-glut-devel
 BuildRequires:	gd-devel
 BuildRequires:	gsl-devel >= 1.3
 BuildRequires:	ncurses-devel >= 5.0
+BuildRequires:	perl-Alien-HDF4
 BuildRequires:	perl-Astro-FITS-Header
 BuildRequires:	perl-Devel-CheckLib
 BuildRequires:	perl-ExtUtils-F77 >= 1.10
@@ -298,16 +299,30 @@ A flexible binary IO format for PDL.
 Elastyczny binarny format wejścia/wyjścia dla PDL.
 
 %package IO-GD
-Summary:	PDL interface to the GD c library
-Summary(pl.UTF-8):	Interfejs PDL do biblioteki GD
+Summary:	PDL interface to the GD image library
+Summary(pl.UTF-8):	Interfejs PDL do biblioteki obrazów GD
 Group:		Development/Languages/Perl
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description IO-GD
-PDL interface to the GD c library.
+PDL interface to the GD image library.
 
 %description IO-GD -l pl.UTF-8
-Interfejs PDL do biblioteki GD.
+Interfejs PDL do biblioteki obrazów GD.
+
+%package IO-HDF
+Summary:	PDL interface to the HDF4 library
+Summary(pl.UTF-8):	Interfejs PDL do biblioteki HDF4
+Group:		Development/Languages/Perl
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description IO-HDF
+This library provides functions to manipulate HDF files with the
+SD, VS, and V HDF interfaces.
+
+%description IO-HDF -l pl.UTF-8
+Ta biblioteka zapewnia funkcje do operowania na plikacj HDF z
+interfejsami SD, VS oraz V.
 
 %package IO-Pic
 Summary:	Image I/O for PDL based on the netpbm package
@@ -983,6 +998,19 @@ fi
 %dir %{perl_vendorarch}/auto/PDL/IO/GD
 %attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/GD/*.so
 %{_mandir}/man3/PDL::IO::GD.3pm*
+
+%files IO-HDF
+%defattr(644,root,root,755)
+%{perl_vendorarch}/PDL/IO/HDF.pm
+%{perl_vendorarch}/PDL/IO/HDF
+%dir %{perl_vendorarch}/auto/PDL/IO/HDF
+%dir %{perl_vendorarch}/auto/PDL/IO/HDF/SD
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/HDF/SD/SD.so
+%dir %{perl_vendorarch}/auto/PDL/IO/HDF/VS
+%attr(755,root,root) %{perl_vendorarch}/auto/PDL/IO/HDF/VS/VS.so
+%{_mandir}/man3/PDL::IO::HDF.3pm*
+%{_mandir}/man3/PDL::IO::HDF::SD.3pm*
+%{_mandir}/man3/PDL::IO::HDF::VS.3pm*
 
 %files IO-Pic
 %defattr(644,root,root,755)
