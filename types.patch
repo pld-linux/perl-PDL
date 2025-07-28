@@ -32,3 +32,23 @@
  
  use PDL::Types;
  
+--- PDL-2.029/Libtmp/GSL/INTEG/Makefile.PL.orig	2021-03-07 06:32:08.000000000 +0100
++++ PDL-2.029/Libtmp/GSL/INTEG/Makefile.PL	2025-07-28 19:54:42.977189103 +0200
+@@ -16,6 +16,7 @@
+     trylink('gsl numerical integration libraries',
+       << 'EOI',
+ #include <math.h>
++#include <stddef.h>
+ #include <gsl/gsl_math.h>
+ #include <gsl/gsl_errno.h>
+ #include <gsl/gsl_integration.h>
+@@ -29,7 +30,8 @@
+ 	<< 'EOB', $lib, $inc);
+   gsl_function F;
+   double result, abserr;
+-  int ierr, neval;
++  int ierr;
++  size_t neval;
+ 
+   F.function = &f;
+   F.params = 0;
