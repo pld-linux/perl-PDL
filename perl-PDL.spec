@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	perlDL - wydajne obliczenia numeryczne w Perlu
 Summary(pt_BR.UTF-8):	Módulo PDL para perl
 Name:		perl-PDL
 Version:	2.029
-Release:	4
+Release:	5
 Epoch:		1
 # same as perl
 License:	GPL v1+ or Artistic
