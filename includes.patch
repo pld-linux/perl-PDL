@@ -1,0 +1,16 @@
+--- PDL-2.029/IO/Browser/browse.c.orig	2021-02-15 12:22:30.000000000 +0100
++++ PDL-2.029/IO/Browser/browse.c	2025-07-28 18:08:13.081220079 +0200
+@@ -1,3 +1,4 @@
++#include <ctype.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ 
+@@ -16,7 +17,7 @@
+ #include <string.h>
+ 
+ #include "EXTERN.h"
+-// #include "perl.h"
++#include "perl.h"
+ // #include "XSUB.h"
+ 
+ #include "pdl.h"

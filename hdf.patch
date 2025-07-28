@@ -1,0 +1,31 @@
+--- PDL-2.029/IO/HDF/SD/SD.pd.orig	2021-02-20 02:22:59.000000000 +0100
++++ PDL-2.029/IO/HDF/SD/SD.pd	2025-07-28 17:49:36.821050955 +0200
+@@ -283,7 +283,7 @@
+             int i;
+             size_t size;
+             int status;
+-            origin = HDgetspace( sizeof( int ) * rank );
++            origin = malloc( sizeof( int ) * rank );
+             for( i = 0; i < rank; i++ )
+                 origin[i] = 0;
+             /* Just use the largest datatype here: */
+@@ -293,7 +293,7 @@
+                 for( i = 1; i < rank; i++ )
+                     size *= chunk_lengths[i];
+             }
+-            data = HDgetspace( size );
++            data = malloc( size );
+             status = SDwritechunk(sds_id, origin, data);
+             if( status == FAIL )
+             {
+@@ -300,8 +300,8 @@
+                 fprintf(stderr, "_SDinitchunk(): return status = %d\n", status);
+                 HEprint(stderr, 0);
+             }
+-            HDfreespace( data );
+-            HDfreespace( origin );
++            free( data );
++            free( origin );
+             RETVAL = status;
+         OUTPUT:
+             RETVAL  

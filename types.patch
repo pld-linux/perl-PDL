@@ -1,0 +1,34 @@
+--- PDL-2.029/IO/Browser/browse.c.orig	2025-07-28 18:08:13.081220079 +0200
++++ PDL-2.029/IO/Browser/browse.c	2025-07-28 18:16:50.277724147 +0200
+@@ -61,7 +61,7 @@
+     sprintf(str,format[type],*(((double *)data)+y*nx+x));
+     break;
+   default:
+-    Perl_croak("type (val=%d) not implemented",type);
++    Perl_croak_nocontext("type (val=%d) not implemented",type);
+     break;
+   }
+   return str;
+@@ -93,7 +93,7 @@
+     *(((PDL_Double *)data)+y*nx+x) = atof(str);
+     break;
+   default:
+-    Perl_croak("type (val=%d) not implemented",type);
++    Perl_croak_nocontext("type (val=%d) not implemented",type);
+     break;
+   }
+   return;
+--- PDL-2.029/IO/Browser/browser.pd.orig	2019-04-22 02:30:51.000000000 +0200
++++ PDL-2.029/IO/Browser/browser.pd	2025-07-28 18:58:27.666379525 +0200
+@@ -16,6 +16,11 @@
+ 
+ 
+ EOD
++pp_addhdr(<<'EOH');
++
++void browse(int type, int nc, int nr, void *in);
++
++EOH
+ 
+ use PDL::Types;
+ 

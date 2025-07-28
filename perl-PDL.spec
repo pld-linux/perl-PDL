@@ -21,6 +21,9 @@ Patch1:		%{name}-dep.patch
 Patch2:		%{name}-Makefile.PL.patch-dumb
 Patch4:		%{name}-vendorarch.patch
 Patch5:		PDL-Disable-PDL-GIS-Proj.patch
+Patch6:		hdf.patch
+Patch7:		includes.patch
+Patch8:		types.patch
 # defunct as of 2024-06-13
 #URL:		https://pdl.perl.org/
 URL:		https://metacpan.org/dist/PDL
@@ -457,6 +460,9 @@ Przykładowe skrypty z użyciem PDL.
 %patch -P2 -p1
 %patch -P4 -p1
 %patch -P5 -p1
+%patch -P6 -p1
+%patch -P7 -p1
+%patch -P8 -p1
 
 # g77 flags for compiling Slatec:
 %{__perl} -pi -e 's@\) \$mycflags s@\) %{rpmcflags} -fPIC s@' Lib/Slatec/Makefile.PL
